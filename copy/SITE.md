@@ -27,7 +27,7 @@ $ commonplace search "japan trip"
 2026-09-27  email    gmail:msg:18f2c0a4b                  (Flight to Tokyo confirmed)
 2026-09-21  post     url:redd.it/1g4x2k                   (Japan in two weeks: what worked)
 2026-09-19  video    yt:video:kX9rT2mQ4bA                 (Tokyo on a budget, 10 days)
-2026-09-18  message  chat:imessage:c81f4e                 ("japan trip is happening. april?")
+2026-09-18  message  chat:imessage:c81f4e                 ("japan trip is on. april?")
 2026-09-14  page     url:japan-guide.com/jrpass          (JR Pass, worth it?)
 
 $ commonplace timeline --since 2026-10-07 --limit 5
