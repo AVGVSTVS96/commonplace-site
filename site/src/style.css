@@ -231,12 +231,12 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: var(--s4);
+  box-sizing: content-box;
   height: 3.5rem;
+  padding-top: env(safe-area-inset-top);
   padding-inline: var(--gutter);
   border-bottom: 1px solid var(--hair);
-  background: color-mix(in oklab, var(--bg) 90%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--bg);
 }
 .bar-mark {
   display: block;
