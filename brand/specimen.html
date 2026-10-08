@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>commonplace specimen</title>
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "Plex Sans"; src: url("fonts/plex-sans-var.woff2") format("woff2"); font-weight: 100 700; font-display: swap; }
+@font-face { font-family: "Plex Sans"; src: url("fonts/plex-sans-var-italic.woff2") format("woff2"); font-weight: 100 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+:root {
+  --bg: #FAF9F6;
+  --bg-2: #F1EFEA;
+  --ink: #141412;
+  --ink-2: #5C5A55;
+  --ink-3: #908D86;
+  --hair: rgb(20 20 18 / 0.14);
+  --hair-2: rgb(20 20 18 / 0.07);
+  --red: #D2451E;
+  --red-ink: #B83A16;
+  --red-soft: rgb(210 69 30 / 0.10);
+  --green: #2F7D4A;
+  --blue: #2A56C6;
+  --amber: #B06F0A;
+  --on-ink: #FAF9F6;
+
+  --sans: "Plex Sans", "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "Plex Mono", "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem; --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4rem; --s9: 6rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --bg-2: #1A1A18; --ink: #ECEAE4; --ink-2: #A7A49D; --ink-3: #726F69;
+    --hair: rgb(236 234 228 / 0.16); --hair-2: rgb(236 234 228 / 0.08);
+    --red: #F06A42; --red-ink: #F27B57; --red-soft: rgb(240 106 66 / 0.14);
+    --green: #5FBF80; --blue: #83A6FF; --amber: #E2A43C; --on-ink: #121211;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --bg-2: #1A1A18; --ink: #ECEAE4; --ink-2: #A7A49D; --ink-3: #726F69;
+  --hair: rgb(236 234 228 / 0.16); --hair-2: rgb(236 234 228 / 0.08);
+  --red: #F06A42; --red-ink: #F27B57; --red-soft: rgb(240 106 66 / 0.14);
+  --green: #5FBF80; --blue: #83A6FF; --amber: #E2A43C; --on-ink: #121211;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--sans);
+  font-feature-settings: "ss01", "cv05";
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, pre, figure, ul, ol, dl { margin: 0; }
+a { color: inherit; text-decoration-color: var(--hair); text-underline-offset: 0.15em; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+code, kbd, pre, .mono { font-family: var(--mono); font-feature-settings: normal; }
+::selection { background: var(--red-soft); }
+
+.page { max-width: 76rem; margin-inline: auto; border-inline: 1px solid var(--hair); }
+section { padding: var(--s8) var(--gutter); border-top: 1px solid var(--hair); }
+section + section { }
+
+/* Rubric: the red mono label that opens every section, like the red headings in a manuscript */
+.rubric {
+  display: flex; align-items: baseline; gap: var(--s4);
+  margin-bottom: var(--s6);
+  font: 500 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--red);
+}
+.rubric::after { content: ""; flex: 1; height: 1px; background: var(--hair); align-self: center; }
+.rubric span { color: var(--ink-3); }
+
+h1 { font-size: clamp(2.25rem, 1.25rem + 4.8vw, 4.25rem); font-weight: 560; line-height: 1.02; letter-spacing: -0.028em; text-wrap: balance; }
+h2 { font-size: clamp(1.625rem, 1rem + 2vw, 2.25rem); font-weight: 540; line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
+h3 { font-size: 1.125rem; font-weight: 560; letter-spacing: -0.01em; line-height: 1.3; }
+.lede { font-size: 1.25rem; line-height: 1.45; color: var(--ink-2); max-width: 36em; text-wrap: pretty; }
+.measure { max-width: 64ch; }
+.muted { color: var(--ink-2); }
+.faint { color: var(--ink-3); }
+
+/* Header */
+.bar {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
+  height: 3.5rem; padding-inline: var(--gutter);
+  border-bottom: 1px solid var(--hair);
+  background: color-mix(in oklab, var(--bg) 90%, transparent); backdrop-filter: blur(10px);
+}
+.bar img, .bar svg { display: block; height: 1.0625rem; width: auto; }
+.bar nav { display: flex; gap: var(--s5); font: 400 0.8125rem/1 var(--mono); }
+.bar nav a { text-decoration: none; color: var(--ink-2); white-space: nowrap; }
+@media (max-width: 40rem) { .bar nav a:not(.gh) { display: none; } }
+.bar nav a:hover { color: var(--ink); }
+.bar nav a.gh::before { content: "↗ "; color: var(--ink-3); }
+
+/* Buttons: square, 1px, mono */
+.actions { display: flex; flex-wrap: wrap; gap: var(--s3); }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  height: 2.75rem; padding-inline: 1.1rem;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--on-ink);
+  font: 500 0.875rem/1 var(--mono); text-decoration: none; white-space: nowrap;
+  transition: background 120ms var(--ease), color 120ms var(--ease);
+}
+.btn .k { color: var(--red); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost .k { color: var(--red); }
+.btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.btn:hover .k { color: #fff; }
+.btn.ghost:hover { background: var(--bg-2); border-color: var(--ink); color: var(--ink); }
+.btn.ghost:hover .k { color: var(--red); }
+
+/* Hero */
+.hero { display: grid; gap: var(--s7); padding-block: var(--s8) var(--s9); }
+.hero-copy { display: grid; gap: var(--s5); align-content: center; }
+.hero-copy .lede { margin-top: var(--s1); }
+.stamp { font: 400 0.8125rem/1 var(--mono); color: var(--ink-2); }
+.stamp b { font-weight: 500; color: var(--red); }
+.sources-line { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; font: 400 0.8125rem/1.4 var(--mono); color: var(--ink-2); }
+.sources-line span::after { content: " ·"; color: var(--ink-3); }
+.sources-line span:last-child::after { content: ""; }
+.sources-line em { font-style: normal; color: var(--ink); }
+@media (min-width: 60rem) { .hero { grid-template-columns: minmax(0, 7fr) minmax(0, 6fr); align-items: center; } }
+
+/* Terminal: the light terminal. One panel tone, a title row, mono 14px, the prompt in red. */
+.term {
+  display: grid; grid-template-rows: auto 1fr;
+  border: 1px solid var(--hair); background: var(--bg-2);
+  font: 400 0.875rem/1.6 var(--mono); color: var(--ink);
+  min-width: 0;
+}
+.term-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
+  padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--hair);
+  font-size: 0.75rem; color: var(--ink-3);
+}
+.term-head b { font-weight: 500; color: var(--ink-2); }
+.term pre { padding: 0.875rem; overflow-x: auto; tab-size: 2; }
+.term .p { color: var(--red); font-weight: 500; }
+.term .c { color: var(--ink-3); }
+.term .d { color: var(--ink-2); }
+.term .ok { color: var(--green); }
+.term .id { color: var(--blue); }
+.term .hl { background: var(--red-soft); color: var(--red-ink); padding: 0 0.1em; }
+.term .cur { display: inline-block; width: 0.6em; height: 1.05em; vertical-align: -0.2em; background: var(--red); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .term .cur { animation: none; } }
+
+/* Type scale */
+.scale { display: grid; gap: var(--s4); }
+.scale > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--s4); align-items: baseline; padding-block: var(--s3); border-bottom: 1px solid var(--hair-2); }
+.scale > div:last-child { border-bottom: 0; }
+.scale .t { font: 400 0.75rem/1 var(--mono); color: var(--ink-3); }
+.d1 { font: 560 3.25rem/1.02 var(--sans); letter-spacing: -0.028em; }
+.d2 { font: 540 2.25rem/1.1 var(--sans); letter-spacing: -0.02em; }
+.d3 { font: 540 1.5rem/1.2 var(--sans); letter-spacing: -0.015em; }
+.b1 { font: 400 1.0625rem/1.55 var(--sans); }
+.b2 { font: 400 0.9375rem/1.5 var(--sans); color: var(--ink-2); }
+.m1 { font: 400 0.875rem/1.6 var(--mono); }
+.m2 { font: 500 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.m2.r { color: var(--red); }
+@media (max-width: 40rem) { .scale > div { grid-template-columns: 1fr; gap: var(--s2); } .d1 { font-size: 2.5rem; } }
+
+/* Colors */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+.sw { background: var(--bg); padding: var(--s3); display: grid; gap: var(--s3); font: 400 0.75rem/1.4 var(--mono); }
+.sw i { display: block; height: 3.5rem; border: 1px solid var(--hair-2); }
+.sw b { font-weight: 500; display: block; }
+.sw span { color: var(--ink-3); }
+.pairs { display: grid; gap: var(--s4); margin-top: var(--s6); }
+.pairs .row { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--s4); align-items: baseline; font: 400 0.8125rem/1.5 var(--mono); }
+.pairs .row .t { color: var(--ink-3); font-size: 0.75rem; }
+.chip { display: inline-block; padding: 0.15em 0.45em; border: 1px solid var(--hair); font: 500 0.75rem/1.4 var(--mono); color: var(--ink-2); vertical-align: 0.1em; }
+.chip.red { color: var(--red); border-color: var(--red); }
+.chip.fill { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+
+/* Tables: the ledger. Dates first, numbers right, hairlines only. */
+table { width: 100%; min-width: 44rem; border-collapse: collapse; font: 400 0.875rem/1.5 var(--mono); }
+thead th { text-align: left; font: 500 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 0 0.75rem 0.75rem 0; border-bottom: 1px solid var(--ink); }
+tbody td { padding: 0.7rem 0.75rem 0.7rem 0; border-bottom: 1px solid var(--hair-2); vertical-align: top; }
+tbody tr:last-child td { border-bottom: 1px solid var(--hair); }
+th.n, td.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td:nth-child(3) { white-space: nowrap; }
+td.what { font-family: var(--sans); color: var(--ink-2); font-size: 0.9375rem; }
+td .src { font-weight: 500; }
+tr.coming td { color: var(--ink-3); }
+tr.coming td .src { color: var(--ink-2); font-weight: 400; }
+tr.coming td.n::before { content: "—"; }
+.table-wrap { overflow-x: auto; }
+.table-note { margin-top: var(--s4); font: 400 0.8125rem/1.5 var(--mono); color: var(--ink-3); }
+.table-note b { font-weight: 500; color: var(--red); }
+
+/* Bars: a chart that is still a table row */
+.bars { display: grid; gap: var(--s3); font: 400 0.8125rem/1.3 var(--mono); max-width: 40rem; margin-top: var(--s7); }
+.bars .row { display: grid; grid-template-columns: 6rem 1fr 3.5rem; gap: var(--s4); align-items: center; }
+.bars .track { height: 0.75rem; background: var(--hair-2); position: relative; }
+.bars .track i { position: absolute; inset: 0 auto 0 0; background: var(--ink); width: var(--w); }
+.bars .row.now .track i { background: var(--red); }
+.bars .n { text-align: right; font-variant-numeric: tabular-nums; }
+.bars .l { color: var(--ink-2); }
+
+/* Diagram: typed boxes with 1px lines; SVG so it can move later */
+.diagram { display: grid; gap: var(--s6); }
+.diagram .svg-wrap { overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 46rem; height: auto; font: 400 13px/1 var(--mono); }
+.diagram .box { fill: var(--bg); stroke: var(--ink); stroke-width: 1; }
+.diagram .soft { fill: var(--bg-2); stroke: var(--hair); }
+.diagram .wire { fill: none; stroke: var(--ink); stroke-width: 1; }
+.diagram .wire.dash { stroke-dasharray: 3 3; stroke: var(--ink-2); }
+.diagram text { fill: var(--ink); }
+.diagram .lbl { fill: var(--ink-3); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.diagram .sub { fill: var(--ink-2); font-size: 12px; }
+.diagram .red { fill: var(--red); }
+.diagram .redl { stroke: var(--red); }
+.tree { font: 400 0.875rem/1.55 var(--mono); color: var(--ink); white-space: pre; overflow-x: auto; }
+.tree .c { color: var(--ink-3); }
+.tree .r { color: var(--red); }
+.two { display: grid; gap: var(--s6); align-items: start; }
+@media (min-width: 60rem) { .two { grid-template-columns: 1fr 1fr; } }
+
+/* Logo section */
+.logos { display: grid; gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+.logos > div { background: #FAF9F6; color: #141412; padding: var(--s6); display: grid; gap: var(--s4); align-content: space-between; min-height: 10rem; }
+.logos > div.dark { background: #121211; color: #ECEAE4; }
+.logos img { display: block; height: 1.75rem; width: auto; }
+.logos img.mark { height: 3rem; }
+.logos .cap { font: 400 0.75rem/1.4 var(--mono); color: #908D86; }
+.logos > div.dark .cap { color: #726F69; }
+.explore { display: grid; gap: var(--s5); margin-top: var(--s6); }
+.explore > div { display: grid; grid-template-columns: 1fr; gap: var(--s3); padding-block: var(--s4); border-top: 1px solid var(--hair-2); }
+.explore img { display: block; height: 1.75rem; width: auto; justify-self: start; }
+.explore .card { background: #FAF9F6; border: 1px solid var(--hair); padding: var(--s4) var(--s5); justify-self: stretch; }
+.explore p { font-size: 0.9375rem; color: var(--ink-2); max-width: 60ch; }
+.explore p b { font-weight: 500; color: var(--ink); }
+.explore .pick p b { color: var(--red); }
+@media (min-width: 48rem) { .logos { grid-template-columns: repeat(2, 1fr); } .explore > div { grid-template-columns: 18rem 1fr; align-items: start; } }
+
+/* Motion */
+.motion { display: grid; gap: var(--s4); font: 400 0.875rem/1.6 var(--mono); max-width: 64ch; }
+.motion dt { color: var(--red); font-weight: 500; }
+.motion dd { margin: 0 0 var(--s3); color: var(--ink-2); }
+
+footer { padding: var(--s6) var(--gutter); border-top: 1px solid var(--hair); display: flex; justify-content: space-between; gap: var(--s4); flex-wrap: wrap; font: 400 0.8125rem/1.5 var(--mono); color: var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="bar">
+  <a href="#" aria-label="commonplace"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736.8 103.2" role="img" aria-label="commonplace"><path fill="currentColor" d="M37.90 91.20L37.90 91.20Q32.10 91.20 27.55 89.30Q23 87.40 19.85 83.90Q16.70 80.40 15.05 75.40Q13.40 70.40 13.40 64.20L13.40 64.20Q13.40 58 15.05 53Q16.70 48 19.85 44.50Q23 41 27.55 39.10Q32.10 37.20 37.80 37.20L37.80 37.20Q45.80 37.20 50.65 40.60Q55.50 44 57.90 49.40L57.90 49.40L49.40 54Q48 50.40 45.15 48.30Q42.30 46.20 37.80 46.20L37.80 46.20Q31.60 46.20 28.20 49.95Q24.80 53.70 24.80 59.90L24.80 59.90L24.80 68.50Q24.80 74.60 28.20 78.40Q31.60 82.20 38 82.20L38 82.20Q42.80 82.20 45.85 80Q48.90 77.80 50.70 74L50.70 74L58.70 78.90Q56.20 84.30 51.10 87.75Q46 91.20 37.90 91.20ZM96 91.20L96 91.20Q90.30 91.20 85.75 89.30Q81.20 87.40 78.05 83.90Q74.90 80.40 73.20 75.40Q71.50 70.40 71.50 64.20L71.50 64.20Q71.50 58 73.20 53Q74.90 48 78.05 44.50Q81.20 41 85.75 39.10Q90.30 37.20 96 37.20L96 37.20Q101.70 37.20 106.25 39.10Q110.80 41 113.95 44.50Q117.10 48 118.80 53Q120.50 58 120.50 64.20L120.50 64.20Q120.50 70.40 118.80 75.40Q117.10 80.40 113.95 83.90Q110.80 87.40 106.25 89.30Q101.70 91.20 96 91.20ZM96 82.60L96 82.60Q102 82.60 105.55 78.95Q109.10 75.30 109.10 68.10L109.10 68.10L109.10 60.30Q109.10 53.10 105.55 49.45Q102 45.80 96 45.80L96 45.80Q90 45.80 86.45 49.45Q82.90 53.10 82.90 60.30L82.90 60.30L82.90 68.10Q82.90 75.30 86.45 78.95Q90 82.60 96 82.60ZM139.70 90L130.40 90L130.40 38.40L139.70 38.40L139.70 45.10L140.20 45.10Q141.40 41.80 143.65 39.50Q145.90 37.20 150.10 37.20L150.10 37.20Q154.20 37.20 156.45 39.45Q158.70 41.70 159.30 45.60L159.30 45.60L159.70 45.60Q161.10 42.10 163.60 39.65Q166.10 37.20 170.80 37.20L170.80 37.20Q176.80 37.20 179.15 41.40Q181.50 45.60 181.50 53.70L181.50 53.70L181.50 90L172.20 90L172.20 55.10Q172.20 49.70 170.90 47.65Q169.60 45.60 166.70 45.60L166.70 45.60Q164.10 45.60 162.35 47.35Q160.60 49.10 160.60 52.60L160.60 52.60L160.60 90L151.30 90L151.30 55.10Q151.30 49.70 150.05 47.65Q148.80 45.60 145.90 45.60L145.90 45.60Q143.20 45.60 141.45 47.35Q139.70 49.10 139.70 52.60L139.70 52.60L139.70 90ZM199.70 90L190.40 90L190.40 38.40L199.70 38.40L199.70 45.10L200.20 45.10Q201.40 41.80 203.65 39.50Q205.90 37.20 210.10 37.20L210.10 37.20Q214.20 37.20 216.45 39.45Q218.70 41.70 219.30 45.60L219.30 45.60L219.70 45.60Q221.10 42.10 223.60 39.65Q226.10 37.20 230.80 37.20L230.80 37.20Q236.80 37.20 239.15 41.40Q241.50 45.60 241.50 53.70L241.50 53.70L241.50 90L232.20 90L232.20 55.10Q232.20 49.70 230.90 47.65Q229.60 45.60 226.70 45.60L226.70 45.60Q224.10 45.60 222.35 47.35Q220.60 49.10 220.60 52.60L220.60 52.60L220.60 90L211.30 90L211.30 55.10Q211.30 49.70 210.05 47.65Q208.80 45.60 205.90 45.60L205.90 45.60Q203.20 45.60 201.45 47.35Q199.70 49.10 199.70 52.60L199.70 52.60L199.70 90ZM276 91.20L276 91.20Q270.30 91.20 265.75 89.30Q261.20 87.40 258.05 83.90Q254.90 80.40 253.20 75.40Q251.50 70.40 251.50 64.20L251.50 64.20Q251.50 58 253.20 53Q254.90 48 258.05 44.50Q261.20 41 265.75 39.10Q270.30 37.20 276 37.20L276 37.20Q281.70 37.20 286.25 39.10Q290.80 41 293.95 44.50Q297.10 48 298.80 53Q300.50 58 300.50 64.20L300.50 64.20Q300.50 70.40 298.80 75.40Q297.10 80.40 293.95 83.90Q290.80 87.40 286.25 89.30Q281.70 91.20 276 91.20ZM276 82.60L276 82.60Q282 82.60 285.55 78.95Q289.10 75.30 289.10 68.10L289.10 68.10L289.10 60.30Q289.10 53.10 285.55 49.45Q282 45.80 276 45.80L276 45.80Q270 45.80 266.45 49.45Q262.90 53.10 262.90 60.30L262.90 60.30L262.90 68.10Q262.90 75.30 266.45 78.95Q270 82.60 276 82.60ZM325.30 90L314.40 90L314.40 38.40L325.30 38.40L325.30 47.20L325.80 47.20Q326.60 45.20 327.85 43.35Q329.10 41.50 330.90 40.15Q332.70 38.80 335.10 38Q337.50 37.20 340.70 37.20L340.70 37.20Q348.50 37.20 353.30 42.30Q358.10 47.40 358.10 56.80L358.10 56.80L358.10 90L347.20 90L347.20 58.40Q347.20 46.10 336.50 46.10L336.50 46.10Q334.40 46.10 332.40 46.65Q330.40 47.20 328.80 48.30Q327.20 49.40 326.25 51.10Q325.30 52.80 325.30 55L325.30 55L325.30 90ZM373.90 110L373.90 38.40L384.80 38.40L384.80 47.20L385.40 47.20Q387.70 42.50 391.50 39.85Q395.30 37.20 401 37.20L401 37.20Q410.10 37.20 415.50 44Q420.90 50.80 420.90 64.20L420.90 64.20Q420.90 77.60 415.50 84.40Q410.10 91.20 401 91.20L401 91.20Q395.30 91.20 391.50 88.55Q387.70 85.90 385.40 81.20L385.40 81.20L384.80 81.20L384.80 110L373.90 110ZM396.50 82.30L396.50 82.30Q402.70 82.30 406.05 78.50Q409.40 74.70 409.40 68.40L409.40 68.40L409.40 60Q409.40 53.70 406.05 49.90Q402.70 46.10 396.50 46.10L396.50 46.10Q394.10 46.10 392 46.70Q389.90 47.30 388.30 48.50Q386.70 49.70 385.75 51.45Q384.80 53.20 384.80 55.60L384.80 55.60L384.80 72.80Q384.80 75.20 385.75 76.95Q386.70 78.70 388.30 79.90Q389.90 81.10 392 81.70Q394.10 82.30 396.50 82.30ZM433.50 90L433.50 81.20L450.60 81.20L450.60 24.80L433.50 24.80L433.50 16L461.50 16L461.50 81.20L478.60 81.20L478.60 90L433.50 90ZM541.90 90L535.20 90Q530.50 90 528.15 87.60Q525.80 85.20 525.30 81.30L525.30 81.30L524.80 81.30Q523.30 86 519.35 88.60Q515.40 91.20 509.30 91.20L509.30 91.20Q501.40 91.20 496.70 87.05Q492 82.90 492 75.60L492 75.60Q492 68.10 497.55 64.15Q503.10 60.20 514.60 60.20L514.60 60.20L524.50 60.20L524.50 56.20Q524.50 45.70 513.40 45.70L513.40 45.70Q508.40 45.70 505.30 47.65Q502.20 49.60 500.10 52.80L500.10 52.80L493.60 47.50Q495.80 43.30 501 40.25Q506.20 37.20 514.40 37.20L514.40 37.20Q524.20 37.20 529.80 41.90Q535.40 46.60 535.40 55.50L535.40 55.50L535.40 81.40L541.90 81.40L541.90 90ZM512.40 83.20L512.40 83.20Q517.70 83.20 521.10 80.80Q524.50 78.40 524.50 74.60L524.50 74.60L524.50 67.10L514.80 67.10Q503 67.10 503 74.20L503 74.20L503 76.20Q503 79.70 505.50 81.45Q508 83.20 512.40 83.20ZM577.90 91.20L577.90 91.20Q572.10 91.20 567.55 89.30Q563 87.40 559.85 83.90Q556.70 80.40 555.05 75.40Q553.40 70.40 553.40 64.20L553.40 64.20Q553.40 58 555.05 53Q556.70 48 559.85 44.50Q563 41 567.55 39.10Q572.10 37.20 577.80 37.20L577.80 37.20Q585.80 37.20 590.65 40.60Q595.50 44 597.90 49.40L597.90 49.40L589.40 54Q588 50.40 585.15 48.30Q582.30 46.20 577.80 46.20L577.80 46.20Q571.60 46.20 568.20 49.95Q564.80 53.70 564.80 59.90L564.80 59.90L564.80 68.50Q564.80 74.60 568.20 78.40Q571.60 82.20 578 82.20L578 82.20Q582.80 82.20 585.85 80Q588.90 77.80 590.70 74L590.70 74L598.70 78.90Q596.20 84.30 591.10 87.75Q586 91.20 577.90 91.20ZM637.10 91.20L637.10 91.20Q631.20 91.20 626.50 89.30Q621.80 87.40 618.60 83.90Q615.40 80.40 613.70 75.45Q612 70.50 612 64.30L612 64.30Q612 58.10 613.75 53.10Q615.50 48.10 618.65 44.55Q621.80 41 626.30 39.10Q630.80 37.20 636.30 37.20L636.30 37.20Q641.70 37.20 646.10 39.05Q650.50 40.90 653.60 44.30Q656.70 47.70 658.35 52.40Q660 57.10 660 62.80L660 62.80L660 66.90L623 66.90L623 68.60Q623 74.70 626.80 78.55Q630.60 82.40 637.30 82.40L637.30 82.40Q642.30 82.40 645.85 80.25Q649.40 78.10 651.60 74.50L651.60 74.50L658.40 80.50Q655.80 85 650.45 88.10Q645.10 91.20 637.10 91.20ZM636.30 45.50L636.30 45.50Q633.40 45.50 630.95 46.50Q628.50 47.50 626.75 49.35Q625 51.20 624 53.70Q623 56.20 623 59.20L623 59.20L623 59.90L648.90 59.90L648.90 58.90Q648.90 52.80 645.45 49.15Q642 45.50 636.30 45.50Z"/><rect fill="currentColor" x="684.0" y="38.4" width="46.8" height="51.6"/></svg></a>
+  <nav>
+    <a href="#sources">sources</a>
+    <a href="#how">how it works</a>
+    <a class="gh" href="https://github.com/AVGVSTVS96/commonplace">github</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="stamp"><b>$</b> a commonplace book for the age of agents</p>
+    <h1>Your personal data kit for agents.</h1>
+    <p class="lede">A template repo. Fork it and it copies your digital life into a private archive on your machine, keeps it current, and gives every agent you use one safe way to read it.</p>
+    <div class="actions">
+      <a class="btn" href="#"><span class="k">$</span> gh repo create --template</a>
+      <a class="btn ghost" href="#"><span class="k">↗</span> README</a>
+    </div>
+    <p class="sources-line"><span><em>messages</em></span><span><em>mail</em></span><span><em>github</em> comments and reviews</span><span><em>youtube</em> history</span><span><em>instagram</em> saves</span><span><em>reddit</em> saves</span><span><em>bookmarks</em></span><span>anything with an export</span></p>
+  </div>
+  <figure class="term" aria-label="terminal">
+    <div class="term-head"><span><b>~/my-commonplace</b></span><span>bash</span></div>
+<pre><span class="p">$</span> commonplace sync
+<span class="d">takeout    2026-10-08  159,092 things  180,578 events</span>
+<span class="d">x          2026-10-08   40,112 things   12,370 events</span>
+<span class="d">prompts    2026-10-08    1,809 things   19,234 events</span>
+<span class="d">github     2026-10-08    1,040 things    5,528 events</span>
+<span class="d">raindrop   2026-10-08      356 things      356 events</span>
+<span class="ok">built commonplace.db from 41 snapshots in 2.4s</span>
+
+<span class="p">$</span> commonplace search <span class="hl">"syntax highlighting"</span>
+<span class="d">2025-04-21  pr     </span><span class="id">gh:pr:AVGVSTVS96/assistant-ui#1</span>
+<span class="c">            docs: the right default theme</span>
+<span class="d">2024-05-24  issue  </span><span class="id">gh:issue:AVGVSTVS96/astroSite#374</span>
+<span class="c">            highlight streaming responses</span>
+<span class="d">2021-10-30  repo   </span><span class="id">gh:repo:zdharma-continuum/fast-syntax…</span>
+
+<span class="p">$</span> <span class="cur"></span></pre>
+  </figure>
+</section>
+
+<section id="type">
+  <p class="rubric">01 <span>type</span></p>
+  <div class="scale">
+    <div><span class="t">display · sans 560</span><p class="d1">Everything you read, saved and thought.</p></div>
+    <div><span class="t">h2 · sans 540</span><p class="d2">Private by design. Always current.</p></div>
+    <div><span class="t">h3 · sans 540</span><p class="d3">Agents add the sources.</p></div>
+    <div><span class="t">body · sans 400 / 17</span><p class="b1 measure">Scholars from Bacon to Locke kept a commonplace book: one place for everything they read, saved, and thought, added to every day for life. commonplace is yours, except it keeps itself.</p></div>
+    <div><span class="t">small · sans 400 / 15</span><p class="b2 measure">Your data lives in <code>data/</code>, which never enters git. Agents never touch the database: they go through the CLI or MCP server, which only show the sources you allow.</p></div>
+    <div><span class="t">mono · 400 / 14</span><p class="m1 measure">data/raw/github/2026-10-08/  read-only, kept forever<br>IDs come from content: <span class="muted">url:github.com/AVGVSTVS96/react-shiki</span></p></div>
+    <div><span class="t">label · mono 500 / 12</span><p><span class="m2 r">rubric label</span> &nbsp;&nbsp; <span class="m2 faint">column head</span></p></div>
+  </div>
+</section>
+
+<section id="color">
+  <p class="rubric">02 <span>color</span></p>
+  <div class="swatches">
+    <div class="sw"><i style="background:var(--bg)"></i><b>--bg</b><span>paper · page</span></div>
+    <div class="sw"><i style="background:var(--bg-2)"></i><b>--bg-2</b><span>panel · terminal</span></div>
+    <div class="sw"><i style="background:var(--ink)"></i><b>--ink</b><span>text · rules · fills</span></div>
+    <div class="sw"><i style="background:var(--ink-2)"></i><b>--ink-2</b><span>secondary text</span></div>
+    <div class="sw"><i style="background:var(--ink-3)"></i><b>--ink-3</b><span>labels · hints</span></div>
+    <div class="sw"><i style="background:var(--red)"></i><b>--red</b><span>rubric · prompt · now</span></div>
+    <div class="sw"><i style="background:var(--green)"></i><b>--green</b><span>done · added</span></div>
+    <div class="sw"><i style="background:var(--blue)"></i><b>--blue</b><span>ids · links in output</span></div>
+    <div class="sw"><i style="background:var(--amber)"></i><b>--amber</b><span>pending · coming</span></div>
+    <div class="sw"><i style="background:var(--hair)"></i><b>--hair</b><span>1px rules</span></div>
+  </div>
+  <div class="pairs">
+    <div class="row"><span class="t">one accent</span><span>Red is the rubric: the <code>$</code>, section labels, the current row, the cursor. Nothing else is red.</span></div>
+    <div class="row"><span class="t">chips</span><span><span class="chip">github</span> <span class="chip">prompts</span> <span class="chip red">coming</span> <span class="chip fill">built in</span></span></div>
+    <div class="row"><span class="t">dark</span><span>Same tokens, swapped. Paper becomes <code>#121211</code>, not pure black; red warms up one step so it holds on dark.</span></div>
+  </div>
+</section>
+
+<section id="sources">
+  <p class="rubric">03 <span>sources · the ledger</span></p>
+  <h2 class="measure" style="margin-bottom: var(--s6)">Everything becomes things, events and links.</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>source</th><th>what</th><th>last snapshot</th><th class="n">things</th><th class="n">events</th></tr></thead>
+    <tbody>
+      <tr><td><span class="src">takeout</span></td><td class="what">searches, YouTube, Maps, Chrome history</td><td>2026-10-08</td><td class="n">159,092</td><td class="n">180,578</td></tr>
+      <tr><td><span class="src">x</span></td><td class="what">posts, likes, bookmarks and their folders</td><td>2026-10-08</td><td class="n">40,112</td><td class="n">12,370</td></tr>
+      <tr><td><span class="src">prompts</span></td><td class="what">every prompt you typed into Claude Code and Codex</td><td>2026-10-08</td><td class="n">1,809</td><td class="n">19,234</td></tr>
+      <tr><td><span class="src">github</span></td><td class="what">pull requests, issues, reviews, stars</td><td>2026-10-08</td><td class="n">1,040</td><td class="n">5,528</td></tr>
+      <tr><td><span class="src">raindrop</span></td><td class="what">bookmarks and collections</td><td>2026-10-08</td><td class="n">356</td><td class="n">356</td></tr>
+      <tr class="coming"><td><span class="src">youtube</span></td><td class="what">watch and search history, from Takeout</td><td><span class="chip red">coming</span></td><td class="n"></td><td class="n"></td></tr>
+      <tr class="coming"><td><span class="src">obsidian</span></td><td class="what">one ask away: <i>"add my vault to commonplace"</i></td><td><span class="chip">skill</span></td><td class="n"></td><td class="n"></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="table-note">numbers are one real archive on 2026-10-08 · <b>coming</b> rows are dimmed, never faked</p>
+
+  <div class="bars" aria-label="events by verb">
+    <div class="row"><span class="l">searched</span><span class="track"><i style="--w: 100%"></i></span><span class="n">66,150</span></div>
+    <div class="row"><span class="l">watched</span><span class="track"><i style="--w: 91%"></i></span><span class="n">60,105</span></div>
+    <div class="row"><span class="l">visited</span><span class="track"><i style="--w: 82%"></i></span><span class="n">54,323</span></div>
+    <div class="row"><span class="l">prompted</span><span class="track"><i style="--w: 29%"></i></span><span class="n">19,234</span></div>
+    <div class="row"><span class="l">liked</span><span class="track"><i style="--w: 7.8%"></i></span><span class="n">5,128</span></div>
+    <div class="row now"><span class="l">saved</span><span class="track"><i style="--w: 3.2%"></i></span><span class="n">2,089</span></div>
+  </div>
+</section>
+
+<section id="how">
+  <p class="rubric">04 <span>how it works</span></p>
+  <div class="diagram">
+    <div class="svg-wrap"><svg viewBox="0 0 1000 260" aria-label="your accounts, to raw snapshots, to one database, to the CLI and MCP, to your agents">
+      <text class="lbl" x="0" y="14">your accounts</text>
+      <rect class="box soft" x="0" y="28" width="200" height="40"/><text x="12" y="53">GitHub</text>
+      <rect class="box soft" x="0" y="76" width="200" height="40"/><text x="12" y="101">Messages</text>
+      <rect class="box soft" x="0" y="124" width="200" height="40"/><text x="12" y="149">X, Reddit, YouTube</text>
+      <rect class="box soft" x="0" y="172" width="200" height="40" stroke-dasharray="3 3"/><text x="12" y="197" class="sub">+ anything, one ask away</text>
+
+      <path class="wire" d="M200 48 H236 V120 M200 96 H236 M200 144 H236 M200 192 H236 V120 M236 120 H280"/>
+      <text class="sub" x="196" y="236">fetch, once a day</text>
+
+      <text class="lbl" x="280" y="14">data/raw/</text>
+      <rect class="box" x="280" y="28" width="200" height="184"/>
+      <text x="294" y="54">github/</text>
+      <text x="294" y="78" class="sub">├ 2026-10-06/</text>
+      <text x="294" y="100" class="sub">├ 2026-10-07/</text>
+      <text x="294" y="122" class="red">└ 2026-10-08/</text>
+      <text x="294" y="154">prompts/</text>
+      <text x="294" y="178" class="sub">└ 2026-10-08/</text>
+      <text x="294" y="200" class="sub">read-only · kept forever</text>
+
+      <path class="wire" d="M480 120 H540"/>
+      <text class="sub" x="486" y="236">import + redact</text>
+
+      <text class="lbl" x="540" y="14">commonplace.db</text>
+      <rect class="box" x="540" y="28" width="150" height="184"/>
+      <text x="554" y="60">things</text>
+      <text x="554" y="92">events</text>
+      <text x="554" y="124">links</text>
+      <text x="554" y="156">search</text>
+      <text x="554" y="196" class="sub">rebuilt anytime</text>
+
+      <path class="wire" d="M690 80 H750 M690 160 H750"/>
+
+      <text class="lbl" x="750" y="14">one door</text>
+      <rect class="box" x="750" y="60" width="110" height="40"/><text x="764" y="85">cli</text>
+      <rect class="box" x="750" y="140" width="110" height="40"/><text x="764" y="165">mcp</text>
+      <text class="sub" x="750" y="236">only the sources you allow</text>
+
+      <path class="wire redl" d="M860 80 H900 V160 M860 160 H900 M900 120 H940"/>
+      <text x="946" y="112" class="red">you</text>
+      <text x="946" y="140" class="red">+ agents</text>
+    </svg></div>
+
+    <div class="two">
+      <pre class="tree">my-commonplace/
+├ commonplace.config.ts   <span class="c">sources, rank, mcp, redact</span>
+├ sources/
+│ ├ github.ts             <span class="c">one file per source, ~80 lines</span>
+│ └ prompts.ts
+├ data/                   <span class="c">yours · never enters git</span>
+│ ├ raw/
+│ │ └ github/
+│ │   ├ 2026-10-07/
+│ │   └ <span class="r">2026-10-08/</span>
+│ └ commonplace.db
+└ skills/add-source/      <span class="c">your agent writes the next one</span></pre>
+      <div class="term">
+        <div class="term-head"><span><b>claude</b></span><span>mcp · commonplace</span></div>
+<pre><span class="c">› add my Obsidian vault to commonplace</span>
+
+reading skills/add-source/SKILL.md
+found ~/Notes · 1,284 markdown files
+wrote <span class="id">sources/obsidian.ts</span>  <span class="d">72 lines</span>
+<span class="p">$</span> commonplace sync
+<span class="d">obsidian   2026-10-08    1,284 things    1,284 events</span>
+<span class="ok">built commonplace.db from 32 snapshots in 1.9s</span>
+
+<span class="c">› what was I reading the week I started react-shiki?</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logo">
+  <p class="rubric">05 <span>wordmark</span></p>
+  <div class="logos">
+    <div><img src="logo/commonplace.svg" alt="commonplace"><span class="cap">light · logo/commonplace.svg</span></div>
+    <div class="dark"><img src="logo/commonplace-dark.svg" alt="commonplace"><span class="cap">dark · logo/commonplace-dark.svg</span></div>
+    <div><img class="mark" src="logo/mark.svg" alt=""><span class="cap">mark · logo/mark.svg · favicon.svg follows the system theme</span></div>
+    <div class="dark"><img class="mark" src="logo/mark-dark.svg" alt=""><span class="cap">mark, dark</span></div>
+  </div>
+  <div class="explore">
+    <div class="pick"><div class="card"><img src="logo/explore-a-cursor.svg" alt="direction A"></div><p><b>A · the cursor. Picked.</b> The name set in Plex Mono, and a block cursor at x-height in red. It says CLI without a window frame, and it says the book is never finished: there is always a next line. One glyph to remember, works at 16px.</p></div>
+    <div><div class="card"><img src="logo/explore-b-bookplate.svg" alt="direction B"></div><p><b>B · the bookplate.</b> <code>cp</code> in a hairline square, the name in Plex Sans. Closest to the heritage, and the best mark for a sticker. Passed: the sans wordmark reads as a company, and a boxed monogram is what every SaaS ships.</p></div>
+    <div><div class="card"><img src="logo/explore-c-rows.svg" alt="direction C"></div><p><b>C · the rows.</b> Three snapshot rows, the newest in red. Most literal about the data. Passed: at small sizes it is a hamburger menu, and the system already has rows everywhere; the logo did not need to be one too.</p></div>
+  </div>
+</section>
+
+<section id="motion">
+  <p class="rubric">06 <span>motion</span></p>
+  <dl class="motion">
+    <dt>follows state</dt><dd>Things move when something happened: a snapshot landed, a row appeared, a command finished. Never on a timer, never on scroll position.</dd>
+    <dt>120 · 200 · 320 ms</dt><dd>Hover and color, 120. Enter and reveal, 200. Layout and diagram wires, 320. One curve: <code>cubic-bezier(.2,.7,.2,1)</code>.</dd>
+    <dt>typed, not faded</dt><dd>Terminal lines appear whole, in order, like real output. The cursor blinks at 1s in steps. Reduced motion stops it.</dd>
+    <dt>numbers are real</dt><dd>A counter counts to a number that exists in the archive. No made-up stats, no infinite tickers.</dd>
+  </dl>
+</section>
+
+<footer>
+  <span>commonplace · MIT · github.com/AVGVSTVS96/commonplace</span>
+  <span>specimen · brand/specimen.html</span>
+</footer>
+
+</div>
+</body>
+</html>
