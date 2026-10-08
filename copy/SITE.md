@@ -19,54 +19,70 @@ Every section is one headline, one short line and a visual. Terminal mocks do mo
 - Primary CTA: Use this template
 - Secondary CTA: Read the source
 
-*(The hero visual is a terminal, light. One session, three commands, real output. Keep the output shape exactly as the CLI prints it: date, what, id, title.)*
+*(The hero visual is a terminal, light. One session, three commands. Every line is illustrative, none of it is real data, and together the hits span a whole life: a card charge, a flight email, a saved thread, a video, a text, a page. Keep the output shape exactly as the CLI prints it: date, kind or verb, id, title.)*
 
 ```
-$ commonplace search "syntax highlighting"
-2026-09-14  saved       gh:repo:shikijs/shiki  (shikijs/shiki)
-2026-08-02  prompted    prompts:claude-code:…  can react-shiki stream tokens as they arrive
-2026-06-21  opened      gh:pr:AVGVSTVS96/react-shiki#41  (feat: streaming highlighter)
+$ commonplace search "japan trip"
+2026-09-28  txn      bank:txn:7a3e9c1d                    (ANA Airlines  $1,184.20)
+2026-09-27  email    gmail:msg:18f2c0a4b                  (Your flight to Tokyo is confirmed)
+2026-09-21  post     url:redd.it/1g4x2k                   (Two weeks in Japan, what I'd do again)
+2026-09-19  video    yt:video:kX9rT2mQ4bA                 (Tokyo on a budget, 10 days)
+2026-09-18  message  chat:imessage:c81f4e                 ("ok japan trip is happening. april?")
+2026-09-14  page     url:japan-guide.com/e/e2361          (JR Pass: still worth it?)
 
-$ commonplace timeline --since 2026-10-01 --verb prompted --limit 2
-2026-10-08  prompted    prompts:claude-code:…
-            start another project for me: a data repo anyone can set up for their agents
-2026-10-07  prompted    prompts:codex:…
-            make the sidebar follow the system theme
+$ commonplace timeline --since 2026-10-07 --limit 5
+2026-10-08  prompted    prompts:3e9a71c8             ("plan japan from what i've saved")
+2026-10-08  watched     yt:video:p7Lq0WnE3xY         (How Shinkansen timetables work)
+2026-10-08  paid        bank:txn:9d02b6f1            (PG&E  $142.60)
+2026-10-07  sent        chat:imessage:c81f4e         ("landed. dinner?")
+2026-10-07  saved       url:x.com/i/status/18834920  (a thread on kerning)
 
 $ commonplace stats
-github         latest 2026-10-08  1 snapshot(s)  2521 things  1404 events
-prompts        latest 2026-10-08  1 snapshot(s)  1170 things  1158 events
+gmail          latest 2026-10-08  31 snapshot(s)  48211 things  52904 events
+chrome         latest 2026-10-08  31 snapshot(s)  39480 things  61117 events
+youtube        latest 2026-10-08  31 snapshot(s)  12306 things  14872 events
+imessage       latest 2026-10-08  31 snapshot(s)   9418 things  88250 events
+x              latest 2026-10-08  31 snapshot(s)   7905 things   9131 events
+bank           latest 2026-10-08  31 snapshot(s)   3266 things   3266 events
+github         latest 2026-10-08  31 snapshot(s)   2521 things   1404 events
+reddit         latest 2026-10-06   4 snapshot(s)   2140 things   2588 events
+instagram      latest 2026-10-05   2 snapshot(s)   1972 things   1972 events
+prompts        latest 2026-10-08  31 snapshot(s)   1170 things   1158 events
 ```
 
-*(The search results are illustrative but shaped like real ones. Swap in Bassim's real output before launch, with any private text removed.)*
+Caption under the terminal: Ten sources in one archive. Three are built in today, the rest are coming or one ask away.
+
+*(The caption keeps the terminal honest: it shows what the archive is for, and the Sources section says what ships today. `charged` and `paid` are verbs the schema still needs.)*
 
 ## Strip
 
 *(A one-line strip under the hero, four facts, monospace.)*
 
+- 1 archive: texts, mail, charges, history, saves, code, prompts
 - ~1,000 lines of TypeScript
 - 0 dependencies: Bun and its SQLite
-- 1 database: things, events, links, search
 - MIT, and a template you own
 
 ## Everything
 
 Section title: Not just your GitHub. Everything.
-Line: Your texts, your mail, your review comments, what you watched, what you saved, what you liked, every prompt you ever typed. All the small things that show what you pay attention to.
+Line: Your texts, your mail, your card charges and bills, your browser and YouTube history, what you saved, what you liked, your notes and your calendar, every prompt you ever typed. All the small things that show what you pay attention to.
 
-*(The visual is one tall timeline scrolling slowly, newest first, in the CLI's shape. Every line is a verb and a thing. The verbs are the real ones from `src/schema.ts`.)*
+*(The visual is a ledger of events, newest first, in the CLI's shape. Every line is a verb and a thing, and the verbs are the real ones from `src/schema.ts`, plus `charged` and `paid` for money. No auto-scroll: motion follows events, not timers.)*
 
 ```
-saved      an article about SQLite's write-ahead log
+charged    $1,184.20 to ANA Airlines
+received   "Your flight to Tokyo is confirmed"
+saved      a thread on two weeks in Japan
+watched    a talk on structured concurrency
+sent       "landed. dinner?"
+paid       PG&E, $142.60
+visited    a page on commonplace books
 liked      a post about kerning by hand
 prompted   "make the sidebar follow the system theme"
 commented  on a review: "this allocates on every keystroke"
-watched    a talk on structured concurrency
-posted     "software should be fun"
-saved      a repo for GPU syntax highlighting
-sent       "landed. dinner?"
-visited    a page on commonplace books
 searched   "how did Locke index his notebook"
+saved      an article about SQLite's write-ahead log
 ```
 
 Caption: One shape for all of it: things, events, links. Same page saved in two apps is one record.
@@ -76,18 +92,21 @@ Caption: One shape for all of it: things, events, links. Same page saved in two 
 Section title: This is how an agent learns your judgment.
 Line: Your taste isn't in any one file. It's in what you saved, what you starred, what you rejected, and how you asked last time. An agent that can search that stops guessing what you mean.
 
-*(Two-column terminal: the agent's question on the left, the search it ran and what it found on the right. Keep it to one exchange.)*
+*(One terminal: your ask, the searches the agent ran and what they found, its answer. Keep it to one exchange, and keep it about a life, not a codebase.)*
 
 ```
-you    which markdown renderer should i use for streaming?
+you    plan the japan trip. same vibe as portugal, under $4k, mid april.
 
-agent  search "markdown streaming"
-       2026-07-30  saved   url:x.com/anur7ag/…   Tailmark: only parses the unfinished tail
-       2026-05-12  liked   url:x.com/…           "most renderers reprocess the whole response per token"
-       2026-05-12  prompted "try streamdown, it flickers on code blocks"
+agent  search "portugal"  ·  timeline --verb charged --since 2025-05
+       2025-05-12  txn      bank:txn:2c7e40a9      (TAP Air Portugal  $812.40)
+       2025-05-14  txn      bank:txn:5b19f3d2      (Casa do Conto  $698.00  ·  4 nights)
+       2025-05-18  message  chat:imessage:c81f4e   ("that tiny hotel in porto was the best part")
+       2026-09-21  post     url:redd.it/1g4x2k     (Two weeks in Japan, what I'd do again)
+       2026-09-28  txn      bank:txn:7a3e9c1d      (ANA Airlines  $1,184.20)
 
-agent  you saved Tailmark in July and had flicker with streamdown in May.
-       Tailmark keeps settled blocks stable; that's the one.
+agent  Portugal was nine days, $3,120, one small hotel you loved and no tours. You already
+       bought the ANA flight for April 14. A ryokan in Kyoto like the Porto place, and the
+       Reddit itinerary you saved cut to ten days, lands at $3,860. Want the day-by-day?
 ```
 
 Closing line: The more an agent knows about you, the less you have to say, and the more you can hand it.
@@ -95,7 +114,7 @@ Closing line: The more an agent knows about you, the less you have to say, and t
 ## Sources
 
 Section title: Sources, by how much setup they need.
-Line: Two work the moment you sync. Five are on the way. Everything else is one ask away.
+Line: Three work the moment you sync. Four are on the way. Everything else is one ask away.
 
 ### Built in
 
@@ -105,6 +124,7 @@ Line: Two work the moment you sync. Five are on the way. Everything else is one 
 |---|---|---|
 | `github` | your pull requests, issues and stars | `gh` signed in |
 | `prompts` | every prompt you typed into Claude Code and Codex | nothing, read from disk |
+| `imessage` | your conversations | macOS, Full Disk Access |
 
 ### Coming built in
 
@@ -114,7 +134,6 @@ Line: Two work the moment you sync. Five are on the way. Everything else is one 
 |---|---|---|
 | X archive | your posts, likes, DMs and Grok chats, all of them | the archive from X's settings |
 | X | new posts, likes and bookmarks every day | an X developer app, cents a day |
-| iMessage | your conversations | macOS, Full Disk Access |
 | Google Takeout | searches, YouTube, Maps, Chrome, Calendar | a Takeout export |
 | Raindrop | bookmarks and collections | a CSV export or API token |
 
@@ -124,11 +143,13 @@ Line: Anything with an export, a local database, an API or a CLI. Ask your agent
 
 *(Chips, wrapping. Each chip is a thing people have. Keep them in these groups.)*
 
+- Money: bank and card CSV exports, Apple Card, receipts in Gmail
 - Browsing: Chrome, Safari, Arc, Dia
-- Notes: Obsidian, any folder of markdown, Apple Notes
-- Mail and calendar: Gmail via Takeout, any `.ics`
+- Mail and calendar: Gmail via Takeout, any mbox, any `.ics`
 - Chat: Slack, Discord, Telegram exports
-- Reading and media: Readwise, Pocket, Goodreads, Letterboxd, Spotify, Reddit
+- Saves: Instagram, Pinterest, Reddit, Readwise, Pocket
+- Notes: Obsidian, any folder of markdown, Apple Notes
+- Media: YouTube via Takeout, Letterboxd, Goodreads, Spotify
 
 *(Below the chips, a tiny terminal: the ask and the result.)*
 
@@ -183,7 +204,7 @@ export default defineConfig({
 });
 ```
 
-- **`mcp`** is the list of sources any MCP client may read. `commonplace mcp --sources github` narrows it further for one client.
+- **`mcp`** is the list of sources any MCP client may read. `commonplace mcp --sources github` narrows it further for one client. `imessage` is in `sources` but not in `mcp`, so your messages stay local until you add it.
 - **`redact`** rules keep rows out of the archive entirely. They're never written.
 - **All or nothing per row.** A reader sees a row only if it may read every source that contributed to it, so a hidden source can't leak through a merge.
 

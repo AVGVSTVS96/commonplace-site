@@ -25,7 +25,7 @@ Runners-up, in order:
 Three moves. Tell them in this order and don't skip the first one.
 
 **1. It's all your data, not just GitHub.**
-Agents can already read your code. Everything else about you is scattered: texts, mail, GitHub comments and review comments, YouTube history, Reddit posts and saves, Instagram saves, the articles and blog posts and inspiration you saved, every prompt you ever typed. All that small activity is the record of what you pay attention to and what you chose. commonplace is the one place it all lands, with one shape: things, events, links.
+Agents can already read your code. Everything else about you is scattered: texts, mail, card charges and bills, browser history, YouTube history, Reddit posts and saves, Instagram and Pinterest saves, the articles and inspiration you saved, your notes and calendar, GitHub comments and review comments, every prompt you ever typed. All that small activity is the record of what you pay attention to and what you chose. commonplace is the one place it all lands, with one shape: things, events, links.
 
 **2. That's how an agent learns your intent and judgment.**
 Your taste isn't in any one file. It's in what you saved, what you liked, what you starred, how you asked for things last time. An agent that can search that stops guessing what you mean. It knows which libraries you've already rejected, which writers you read, what you were working on the week you first tried something.
@@ -40,7 +40,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 - **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About a thousand lines of TypeScript you can read in an afternoon, with no runtime dependencies: Bun, its built-in SQLite, and plain files.
 - **An archive that keeps itself.** One dated, read-only snapshot per source per day in `data/raw/`, kept forever. One SQLite database rebuilt from those snapshots anytime. Full-text search.
 - **One door.** A CLI and an MCP server, both over the same store, which only show the sources you allow. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
-- **Sources that agents write.** Two built in today (GitHub; every Claude Code and Codex prompt), five coming, and anything with an export, a local database, an API or a CLI is one ask away: the `add-source` skill has your agent write it, one file, usually under 80 lines.
+- **Sources that agents write.** Three built in today (GitHub; every Claude Code and Codex prompt; iMessage), four coming, and anything with an export, a local database, an API or a CLI is one ask away: the `add-source` skill has your agent write it, one file, usually under 80 lines.
 
 ## What it isn't
 
@@ -67,6 +67,7 @@ Don't say "secure", "safe by default", "privacy-first", "end-to-end". Say what t
 Plain words a smart friend would use. Specific over clever. Short. Let the work speak.
 
 **Do**
+- Show a whole life in every example: a charge, a bill, a text, a mail, a video, a page, a save, a prompt. GitHub is one line among many, never the subject.
 - State what's there. "Every prompt you typed into Claude Code and Codex."
 - Use the real names of things: `data/raw/`, `commonplace sync`, `redact`, `add-source`.
 - Give real numbers when we have them: "one snapshot per source per day", "usually under 80 lines".
