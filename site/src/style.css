@@ -457,7 +457,10 @@ h3 {
   font-weight: 500;
   color: var(--ink-3);
 }
-.term .line:has(.who):not(:has(.who:empty)) .who {
+.term .who {
+  color: var(--ink-2);
+}
+.term .who.you {
   color: var(--red);
 }
 .term .pending {
@@ -699,6 +702,18 @@ table.coming td.what {
   grid-template-columns: 10rem 1fr;
   gap: 0 var(--s4);
   align-items: baseline;
+}
+.node .snapshots {
+  grid-column: 1 / -1;
+  margin-top: var(--s2);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  white-space: pre;
+  overflow-x: auto;
+}
+.node .snapshots .r {
+  color: var(--red);
 }
 .node.soft {
   border-color: var(--hair);

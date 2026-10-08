@@ -123,7 +123,7 @@
   <figure class="term chat">
     <figcaption class="term-head"><b>claude</b><span>mcp · commonplace</span></figcaption>
     <div class="term-body">
-<span class="line"><i class="who">you</i>which markdown renderer should i use for streaming?</span>
+<span class="line"><i class="who you">you</i>which markdown renderer should i use for streaming?</span>
 <span class="line gap"></span>
 <span class="line"><i class="who">agent</i><span class="d">search</span> "markdown streaming"</span>
 <span class="line"><i class="who"></i>2025-12-22  pr     <span class="id">gh:pr:AVGVSTVS96/react-shiki#122</span>  <span class="d">(feat(playground): add streaming code demo with playback controls)</span></span>
@@ -181,7 +181,7 @@
   <figure class="term chat small">
     <figcaption class="term-head"><b>claude</b><span>skill · add-source</span></figcaption>
     <div class="term-body">
-<span class="line"><i class="who">you</i>add my obsidian vault to commonplace</span>
+<span class="line"><i class="who you">you</i>add my obsidian vault to commonplace</span>
 <span class="line gap"></span>
 <span class="line"><i class="who">agent</i>wrote <span class="id">sources/obsidian.ts</span> <span class="d">(61 lines)</span></span>
 <span class="line"><i class="who"></i>added it to <span class="id">commonplace.config.ts</span></span>
@@ -202,7 +202,12 @@
     <figure class="flow" aria-label="Your accounts, fetched into dated snapshots in data/raw, built into commonplace.db, read through the CLI and MCP">
       <div class="node soft"><b>your accounts</b><span>GitHub, Claude Code, Codex, …</span></div>
       <div class="wire"><span>fetch: one dated snapshot per source per day</span></div>
-      <div class="node"><b>data/raw/</b><span>read-only, kept forever, never in git</span></div>
+      <div class="node"><b>data/raw/</b><span>read-only, kept forever, never in git</span><pre class="snapshots">├ github/
+│ ├ 2026-10-06/
+│ ├ 2026-10-07/
+│ └ <span class="r">2026-10-08/</span>
+└ prompts/
+  └ <span class="r">2026-10-08/</span></pre></div>
       <div class="wire"><span>build: replay every snapshot, redact as you go</span></div>
       <div class="node"><b>commonplace.db</b><span>things · events · links · search</span></div>
       <div class="wire"><span></span></div>
