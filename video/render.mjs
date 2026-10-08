@@ -93,7 +93,11 @@ if (mode === "audio") {
   console.log(join(out, "sheet.png"))
 } else {
   const fps = Number(rest[0] ?? 60)
-  const hash = createHash("sha256").update(await readFile(import.meta.filename))
+  const encode = [
+    "-vf", "scale=out_color_matrix=bt709:out_range=tv:flags=accurate_rnd+full_chroma_int,format=yuv420p,setparams=color_primaries=bt709:color_trc=bt709:colorspace=bt709:range=tv",
+    "-c:v", "libx264", "-preset", "slow", "-crf", "14", "-profile:v", "high", "-threads", "4",
+  ]
+  const hash = createHash("sha256").update(encode.join(" "))
   for (const [path, body] of [...served].sort(([a], [b]) => a.localeCompare(b))) hash.update(path).update(body)
   const parts = join(out, `parts-${fps}-${hash.digest("hex").slice(0, 12)}`)
   for (const dir of await readdir(out)) if (dir.startsWith("parts-") && join(out, dir) !== parts) await rm(join(out, dir), { recursive: true })
@@ -107,12 +111,7 @@ if (mode === "audio") {
     if (existsSync(join(parts, part))) continue
     await open()
     const times = Array.from({ length: Math.min(batch, frames - from) }, (_, i) => (from + i) / fps)
-    await pipe(times, [
-      "-framerate", String(fps), "-i", "-",
-      "-vf", "scale=out_color_matrix=bt709:out_range=tv:flags=accurate_rnd+full_chroma_int,format=yuv420p,setparams=color_primaries=bt709:color_trc=bt709:colorspace=bt709:range=tv",
-      "-c:v", "libx264", "-preset", "slow", "-crf", "14", "-profile:v", "high", "-threads", "4",
-      join(parts, `tmp-${part}`),
-    ])
+    await pipe(times, ["-framerate", String(fps), "-i", "-", ...encode, join(parts, `tmp-${part}`)])
     await rename(join(parts, `tmp-${part}`), join(parts, part))
     process.stdout.write(`\r${Math.min((from + batch) / fps, end)}s / ${end}s`)
   }
