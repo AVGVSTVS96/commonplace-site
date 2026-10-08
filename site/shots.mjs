@@ -24,19 +24,20 @@ for (let tries = 0; ; tries++) {
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME ?? "/usr/bin/google-chrome-stable",
   headless: true,
-  args: ["--force-color-profile=srgb", "--hide-scrollbars"],
+  protocolTimeout: 180000,
+  args: ["--force-color-profile=srgb", "--hide-scrollbars", "--disable-dev-shm-usage"],
 });
 const page = await browser.newPage();
 const settle = () => page.evaluate(() => document.fonts.ready);
 
 await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
-for (const [name, width] of [
-  ["wide", 1600],
-  ["desktop", 1280],
-  ["tablet", 768],
-  ["phone", 390],
+for (const [name, width, scale] of [
+  ["wide", 1600, 1],
+  ["desktop", 1280, 1],
+  ["tablet", 768, 1],
+  ["phone", 390, 2],
 ]) {
-  await page.setViewport({ width, height: 900, deviceScaleFactor: 2 });
+  await page.setViewport({ width, height: 900, deviceScaleFactor: scale });
   for (const scheme of ["light", "dark"]) {
     await page.emulateMediaFeatures([
       { name: "prefers-color-scheme", value: scheme },

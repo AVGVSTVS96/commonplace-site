@@ -346,6 +346,11 @@ h3 {
   aspect-ratio: 736.8 / 107.1;
   fill: currentColor;
 }
+.hero-note {
+  font: 400 0.8125rem/1.5 var(--font-mono);
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
 .tagline {
   margin-top: calc(-1 * var(--s3));
   font: 400 0.875rem/1 var(--font-mono);
@@ -369,6 +374,10 @@ h3 {
   .hero {
     grid-template-columns: minmax(0, 5fr) minmax(0, 8fr);
     column-gap: var(--s6);
+    row-gap: var(--s4);
+  }
+  .hero-note {
+    grid-column: 2;
     align-items: center;
   }
 }
