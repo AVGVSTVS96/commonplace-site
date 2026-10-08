@@ -41,10 +41,10 @@ function voices(ctx, master) {
     }
   }
   return {
-    key: t => click(t, 0.22, 2600 + Math.random() * 900, 1.2, 0.028),
-    enter: t => click(t, 0.3, 1500, 1.0, 0.05),
-    row: t => click(t, 0.07, 5200, 2.5, 0.012),
-    land: t => click(t, 0.12, 4200, 2.0, 0.02),
+    key: t => click(t, 0.1 + Math.random() * 0.04, 2400 + Math.random() * 1200, 1.4, 0.02),
+    enter: t => click(t, 0.18, 1400, 1.0, 0.04),
+    row: t => click(t, 0.05, 5200, 2.5, 0.01),
+    land: t => click(t, 0.08, 4200, 2.0, 0.016),
     build: t => tone(t, [[880, 1], [1760, 0.25], [2640, 0.06]], 0.28, 0.9),
     answer: t => tone(t, [[659.25, 1], [1318.5, 0.2]], 0.22, 0.8),
     end: t => tone(t, [[440, 1], [880, 0.35], [1320, 0.08]], 0.3, 2.4),
