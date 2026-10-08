@@ -37,7 +37,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 
 ## What it is
 
-- **A template repo.** You fork it. The code is yours, in your repo, next to your data. About a thousand lines of TypeScript you can read in an afternoon, with no runtime dependencies: Bun, its built-in SQLite, and plain files.
+- **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About a thousand lines of TypeScript you can read in an afternoon, with no runtime dependencies: Bun, its built-in SQLite, and plain files.
 - **An archive that keeps itself.** One dated, read-only snapshot per source per day in `data/raw/`, kept forever. One SQLite database rebuilt from those snapshots anytime. Full-text search.
 - **One door.** A CLI and an MCP server, both over the same store, which only show the sources you allow. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
 - **Sources that agents write.** Two built in today (GitHub; every Claude Code and Codex prompt), five coming, and anything with an export, a local database, an API or a CLI is one ask away: the `add-source` skill has your agent write it, one file, usually under 80 lines.

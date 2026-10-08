@@ -7,7 +7,7 @@ Every section is one headline, one short line and a visual. Terminal mocks do mo
 ## Page
 
 - `<title>`: commonplace · your personal data kit for agents
-- Meta description: A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you fork, about a thousand lines, MIT.
+- Meta description: A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about a thousand lines, MIT.
 - Nav: Sources · How it works · Privacy · Docs · GitHub
 
 ## Hero
@@ -16,7 +16,7 @@ Every section is one headline, one short line and a visual. Terminal mocks do mo
 - Tagline, under the wordmark: your personal data kit for agents
 - Hero line: Everything you've made, saved and said. One door for every agent.
 - Sub line: A private archive on your machine that keeps itself current. Agents read it through a CLI or MCP, and only the parts you allow.
-- Primary CTA: Fork it
+- Primary CTA: Use this template
 - Secondary CTA: Read the source
 
 *(The hero visual is a terminal, light. One session, three commands, real output. Keep the output shape exactly as the CLI prints it: date, what, id, title.)*
@@ -47,7 +47,7 @@ prompts        latest 2026-10-08  1 snapshot(s)  1170 things  1158 events
 - ~1,000 lines of TypeScript
 - 0 dependencies: Bun and its SQLite
 - 1 database: things, events, links, search
-- MIT, and a template you fork
+- MIT, and a template you own
 
 ## Everything
 
@@ -189,7 +189,7 @@ export default defineConfig({
 
 ## Yours
 
-Section title: A template you fork. Not an app you install.
+Section title: A template you own. Not an app you install.
 Line: About a thousand lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.
 
 *(Three cards, each a small file tree or terminal.)*

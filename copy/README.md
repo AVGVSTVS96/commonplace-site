@@ -17,7 +17,7 @@ commonplace      CLI ── search · timeline · show · stats
      └── mcp     Claude Code, Codex, Claude Desktop, any MCP client
 ```
 
-It's a template you fork, not an app you install: about a thousand lines of TypeScript, no runtime dependencies (Bun and its built-in SQLite), in your own repo next to your own data. Read it in an afternoon. Change anything.
+It's a template you own, not an app you install: about a thousand lines of TypeScript, no runtime dependencies (Bun and its built-in SQLite), in your own repo next to your own data. Read it in an afternoon. Change anything.
 
 - **Agents only see what you allow.** Your data lives in `data/`, which never enters git. Agents never open the database: they go through the CLI or MCP server, which only show the sources you list, and `redact` rules keep rows out of the archive entirely.
 - **It keeps itself current.** `commonplace sync` takes one snapshot per source per day and rebuilds. The Claude Code plugin runs it whenever a session ends.
@@ -63,6 +63,13 @@ cd my-commonplace
 bun install
 bun add -g "$PWD"     # puts `commonplace` on your PATH
 commonplace sync
+```
+
+It's a private copy, not a fork: forks of public repos are always public, and your config and sources say a lot about you. To take updates later:
+
+```sh
+git remote add upstream https://github.com/AVGVSTVS96/commonplace
+git pull upstream main --allow-unrelated-histories   # the first time; plain `git pull upstream main` after
 ```
 
 Then connect your agents:

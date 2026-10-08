@@ -12,7 +12,7 @@ a commonplace book for the age of agents. it copies everything you've made, save
 - not just your github. texts, mail, review comments, what you watched, what you saved, every prompt you ever typed
 - agents read it through a cli or mcp, and only the sources you allow
 - two sources built in, five coming, and anything with an export, db, api or cli is one ask away: the add-source skill has your agent write it
-- a template you fork, not an app you install. ~1k lines of typescript, zero deps, sqlite, mit
+- a template you own, not an app you install. ~1k lines of typescript, zero deps, sqlite, mit
 
 this is how an agent learns your intent and your judgment, not just your code
 ```
@@ -22,7 +22,7 @@ First reply:
 ```
 github.com/AVGVSTVS96/commonplace
 
-fork it, run `commonplace sync`, then ask your agent something only your history can answer
+make it yours with one command, run `commonplace sync`, then ask your agent something only your history can answer
 ```
 
 Second reply, optional, the video.
@@ -36,7 +36,7 @@ i built commonplace: a commonplace book for the age of agents
 
 everything you've made, saved and said, in a private archive on your machine, with one door for every agent (cli + mcp). it keeps itself current
 
-it's a template you fork, not an app. ~1k lines, zero deps, sqlite. agents add the sources for you
+it's a template you own, not an app. ~1k lines, zero deps, sqlite. agents add the sources for you
 
 agents can already read your code. this is the rest of you
 ```
@@ -52,7 +52,7 @@ what you saved, what you liked, what you starred, what you rejected, how you ask
 
 commonplace puts it in one private archive on your machine, keeps it current, and gives every agent one safe door to it. cli + mcp, only the sources you allow
 
-a template you fork. ~1k lines, zero deps, sqlite, mit. github, claude code and codex prompts built in; x, imessage, takeout, raindrop coming; anything else is one ask away
+a template you own. ~1k lines, zero deps, sqlite, mit. github, claude code and codex prompts built in; x, imessage, takeout, raindrop coming; anything else is one ask away
 ```
 
 ## Launch video, 60–90 seconds
@@ -72,7 +72,7 @@ Same look as the site: a light terminal, monospace, no voiceover, captions burne
 | 09 | 0:43 | `commonplace.config.ts`, the `mcp: ["github", "prompts"]` line highlighted, then the `redact` line. | agents only see the sources you allow. redact rules keep rows out entirely. |
 | 10 | 0:50 | The sources table, three tiers. "built in" is solid, "coming" is muted, "one ask away" is a row of chips. | two built in. five coming. anything with an export is one ask away. |
 | 11 | 0:56 | `you  add my obsidian vault to commonplace` → `agent  wrote sources/obsidian.ts (61 lines)` → `$ commonplace sync` → one new line in stats. | your agent writes the source. one file, usually under 80 lines. |
-| 12 | 1:04 | A file tree: `src/` with its eight files, one line each. A counter runs up to ~1,000 lines, 0 dependencies. | a template you fork. read it in an afternoon. change anything. |
+| 12 | 1:04 | A file tree: `src/` with its eight files, one line each. A counter runs up to ~1,000 lines, 0 dependencies. | a template you own. read it in an afternoon. change anything. |
 | 13 | 1:11 | The five start commands, typed at speed, ending on `commonplace sync`. | start in five lines. |
 | 14 | 1:17 | Wordmark, tagline, URL. Hold. | **commonplace** · a commonplace book for the age of agents · github.com/AVGVSTVS96/commonplace |
 
