@@ -6,8 +6,8 @@ The launch video, made from HTML in the brand's own type and colours. `scenes.js
 bun install
 bun render.mjs stills 12 30.5     # PNGs of single moments, in out/
 bun render.mjs sheet 2            # a contact sheet, one frame every 2 s
-bun render.mjs audio              # out/soundtrack.wav, mastered to -16 LUFS
-bun render.mjs video              # out/commonplace-launch.mp4 at 60 fps, with the soundtrack if it exists
+bun render.mjs audio              # out/soundtrack.wav, aiming for -14 LUFS under -2 dBTP; prints what it got
+bun render.mjs video              # out/commonplace-launch.mp4: 60 fps, BT.709, 5 s parts that resume, with the soundtrack if it exists
 ```
 
 Open `index.html` through any static server rooted at the repo (fonts come from `../brand/fonts/`) to watch it live; `?t=30` jumps to a time.
