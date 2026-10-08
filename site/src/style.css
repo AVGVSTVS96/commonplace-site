@@ -277,6 +277,11 @@ h3 {
     display: none;
   }
 }
+@media (max-width: 22.5rem) {
+  .bar nav a:nth-child(3) {
+    display: none;
+  }
+}
 
 /* Buttons */
 .actions {
