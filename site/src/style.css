@@ -430,6 +430,15 @@ h3 {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+.term .say {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  padding-left: 7ch;
+  text-indent: -7ch;
+}
+.term .say .who {
+  text-indent: 0;
+}
 @media (max-width: 40rem) {
   .hero-term .ti {
     display: none;
