@@ -402,13 +402,32 @@ h3 {
 }
 .term-body {
   padding: 0.875rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
+  overflow: hidden;
 }
 .term .line {
   display: block;
   white-space: pre;
   min-height: 1.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.term.wrap .line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding-left: 2ch;
+  text-indent: -2ch;
+}
+.term .cmd {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 40rem) {
+  .hero-term .ti {
+    display: none;
+  }
+  .tree {
+    white-space: pre-wrap;
+  }
 }
 .term .gap {
   min-height: 1em;
@@ -710,7 +729,8 @@ table.coming td.what {
   line-height: 1.5;
   color: var(--ink-2);
   white-space: pre;
-  overflow-x: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .node .snapshots .r {
   color: var(--red);
@@ -808,6 +828,8 @@ table.coming td.what {
 }
 .config .line {
   padding-inline: 0.875rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   transition: background 120ms var(--ease);
 }
 .config[data-hl="mcp"] .l-mcp,
@@ -865,7 +887,8 @@ table.coming td.what {
   font: 400 0.8125rem/1.6 var(--font-mono);
   color: var(--ink);
   white-space: pre;
-  overflow-x: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: var(--s2);
   padding: var(--s3) var(--s4);
   background: var(--bg-2);

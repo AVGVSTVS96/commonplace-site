@@ -31,7 +31,9 @@ const settle = () => page.evaluate(() => document.fonts.ready);
 
 await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
 for (const [name, width] of [
+  ["wide", 1600],
   ["desktop", 1280],
+  ["tablet", 768],
   ["phone", 390],
 ]) {
   await page.setViewport({ width, height: 900, deviceScaleFactor: 2 });
