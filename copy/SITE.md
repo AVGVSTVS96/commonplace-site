@@ -14,8 +14,8 @@ Every section is one headline, one short line and a visual. Terminal mocks do mo
 
 - Wordmark: commonplace
 - Tagline, under the wordmark: your personal data kit for agents
-- Hero line: Everything you've made, saved and said. One door for every agent.
-- Sub line: A private archive on your machine that keeps itself current. Agents read it through a CLI or MCP, and only the parts you allow.
+- Hero line: Everything you've made, saved and said.
+- Sub line: A private archive that keeps itself current, with one door for every agent.
 - Primary CTA: Use this template
 - Secondary CTA: Read the source
 

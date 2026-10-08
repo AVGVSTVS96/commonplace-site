@@ -20,6 +20,13 @@ Runners-up, in order:
 2. **everything you've made, saved and said.** The scope line. Good as a section title and as the "everything" list's heading.
 3. **one door for every agent.** The access line. Fine in a sub line, too thin on its own.
 
+## Hero
+
+- **Headline:** Everything you've made, saved and said.
+- **Sub line:** A private archive that keeps itself current, with one door for every agent.
+
+The headline is the scope line on its own, so it stays three short lines beside the terminal. The access line moves into the sub line. How the door works (CLI, MCP, only the sources you allow) belongs in the sections below, not the hero.
+
 ## The story
 
 Three moves. Tell them in this order and don't skip the first one.
