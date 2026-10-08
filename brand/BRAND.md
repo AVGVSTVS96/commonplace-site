@@ -21,14 +21,14 @@
 
 ## The visual system
 
-### Type: IBM Plex Mono + IBM Plex Sans (OFL, free)
+### Type: Ioskeley Mono + IBM Plex Sans (OFL, free)
 
-One family, two voices. Plex was drawn as a set, so mono and sans share x-height, stroke and colour, and mixing them in one line never looks like two fonts fighting.
+Two voices. Ioskeley Mono is an Iosevka build in the proportions of Berkeley Mono (the mono he admires, see `references.md`), free under the OFL, and it ships every glyph the system draws with: box drawing `├ └ │ ─`, arrows `→ ↗`, the block `▮`. Plex Sans carries the prose.
 
-- **Plex Mono** for everything the computer says: terminal, tables, labels, paths, dates, numbers, the wordmark. 14px is the working size (`0.875rem/1.6`); 12px uppercase tracked `0.08em` for labels; 13px in diagrams. Weights 400 and 500 only, 600 for the wordmark.
+- **Ioskeley Mono** for everything the computer says: terminal, tables, labels, paths, dates, numbers, the wordmark. 14px is the working size (`0.875rem/1.6`); 12px uppercase tracked `0.08em` for labels; 13px in diagrams and dense panels. Weights 400 and 500 only, 500 for the wordmark. Ligatures off everywhere (`font-variant-ligatures: none`): `=>` and `--` stay two characters, like a terminal.
 - **Plex Sans** (variable) for everything a person says: headlines at 540–560, letter-spacing `-0.02` to `-0.028em`, line-height 1.02–1.1; body at 400, 17px/1.55; small body 15px. Enable `ss01` and `cv05` (the single-storey a and open g make it friendlier). Measure 64ch.
-- Plex Mono has the typewritten warmth the commonplace book needs; the heritage is in the letterforms, so the page never needs parchment or serifs.
-- Upgrade path if he wants to spend money: **Berkeley Mono** ($75, US Graphics; he saved their specimen post) swaps in for Plex Mono with no other change.
+- The mono is one CSS token, `--font-mono`, so swapping it is one line. Shipped as subsets (`fonts/ioskeley-mono-{400,500,600}.woff2`, Latin plus U+2190–21FF, U+2500–257F, U+25A0–25FF, about 17 KB each); the full builds are in `fonts/ioskeley/`.
+- Upgrade path if he wants to spend money: **Berkeley Mono** ($75, US Graphics) swaps in for Ioskeley with no other change; the proportions already match.
 
 ### Color: paper, ink, one red
 
@@ -67,7 +67,7 @@ Rule: **red is the only brand colour, and it means "this one, now".** Green, blu
 5. **The cursor.** A block at x-height in red. The wordmark ends with it, the terminal ends with it, the video ends with it.
 6. **The date.** `2026-10-08` as a stamp wherever something was last true. Never "2 hours ago".
 
-The book heritage is carried by Plex Mono, red rubrics and ledger tables. No quills, parchment, serifs, drop caps, or ornament.
+The book heritage is carried by the mono, red rubrics and ledger tables. No quills, parchment, serifs, drop caps, or ornament.
 
 ### Iconography
 
@@ -96,7 +96,7 @@ Same system on a 1920×1080 paper stage. Every scene is a real command and its r
 
 `logo/commonplace.svg` (light), `logo/commonplace-dark.svg`, `logo/commonplace-mono.svg` (`currentColor`, for inline use), `logo/mark.svg`, `logo/mark-dark.svg`, `logo/favicon.svg` (follows the system theme). `logo/gen.mjs` regenerates all of them from the fonts with `bun logo/gen.mjs`.
 
-Three directions were explored (`logo/explore-*.svg`, shown and argued in `specimen.html`). The pick is **A, the cursor**: the name in Plex Mono with a red block cursor at x-height. It says CLI without drawing a window, it says the book is never finished, and it reduces to a 16px favicon (`c▮`) without losing anything.
+Three directions were explored (`logo/explore-*.svg`, shown and argued in `specimen.html`). The pick is **A, the cursor**: the name in Ioskeley Mono with a red block cursor at x-height. It says CLI without drawing a window, it says the book is never finished, and it reduces to a 16px favicon (`c▮`) without losing anything.
 
 Clear space: one cursor width on every side. Minimum height: 14px for the wordmark, 16px for the mark. Never recolour the cursor to anything but `--red` (or `currentColor` in the mono version).
 
@@ -108,6 +108,6 @@ brand/
 ├ references.md       what from his own saved inspiration this is built on
 ├ specimen.html       the system in use
 ├ render.mjs          bun render.mjs → shots/{desktop,phone}-{light,dark}.png
-├ fonts/              Plex Mono 400/400i/500/600, Plex Sans variable (+italic), OFL
-└ logo/               wordmark, mark, favicon, explorations, gen.mjs, the two TTFs it reads
+├ fonts/              Ioskeley Mono 400/500/600 subsets (+ full builds in ioskeley/), Plex Sans variable (+italic), OFL
+└ logo/               wordmark, mark, favicon, explorations, gen.mjs, the two TTFs it reads (Ioskeley Mono Medium, Plex Sans SemiBold)
 ```

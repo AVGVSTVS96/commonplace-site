@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync } from "node:fs"
 const out = import.meta.dirname
 mkdirSync(out, { recursive: true })
 
-const mono = opentype.loadSync(new URL("ttf/IBMPlexMono-Medium.ttf", import.meta.url).pathname)
+const mono = opentype.loadSync(new URL("ttf/IoskeleyMono-Medium.ttf", import.meta.url).pathname)
 const sans = opentype.loadSync(new URL("ttf/IBMPlexSans-SemiBold.ttf", import.meta.url).pathname)
 const SIZE = 100
 const em = (font, units) => (units / font.unitsPerEm) * SIZE
