@@ -1,0 +1,13 @@
+{
+  "name": "commonplace-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "video": "bun render.mjs",
+    "stills": "bun render.mjs stills",
+    "audio": "bun render.mjs audio"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.12.0"
+  }
+}
