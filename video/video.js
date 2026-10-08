@@ -97,10 +97,14 @@ function seek(t) {
   for (const b of bodies) {
     const on = [...b.querySelectorAll(".line.on")]
     const style = getComputedStyle(b)
-    const room = Math.floor((b.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) / parseFloat(style.lineHeight))
-    const gone = Math.max(0, on.filter(l => !l.classList.contains("gap")).length - room)
-    let hide = gone
-    for (const l of on) l.classList.toggle("gone", hide > 0 && hide-- > 0)
+    const room = b.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)
+    const height = l => (l.classList.contains("gap") ? 0.8 * parseFloat(style.fontSize) : parseFloat(style.lineHeight))
+    let used = on.reduce((sum, l) => sum + height(l), 0)
+    for (const l of on) {
+      const gone = used > room + 0.5
+      l.classList.toggle("gone", gone)
+      if (gone) used -= height(l)
+    }
     for (const c of b.querySelectorAll(".cmd")) c.classList.toggle("live", c === on.at(-1))
   }
 }

@@ -51,20 +51,20 @@ body { background: #000; overflow: hidden; }
 .scene { position: absolute; left: var(--rail-x); right: var(--rail-x); top: var(--rail-y); bottom: var(--rail-y); display: none; padding: 44px 40px 40px; flex-direction: column; gap: 28px; }
 .scene.on { display: flex; }
 
-.title { display: flex; flex-direction: column; gap: 14px; min-height: 136px; }
+.title { display: flex; flex-direction: column; gap: 14px; height: 136px; flex: none; }
 .rubric { font: 500 18px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red); white-space: pre; }
 h2 { font: 550 48px/1.08 var(--font-sans); letter-spacing: -.024em; max-width: 46ch; }
 h2 i { font-style: normal; color: var(--ink-3); }
 h2 code { font: 500 .78em/1 var(--font-mono); letter-spacing: 0; }
 
 .panels { flex: 1; min-height: 0; display: flex; gap: 32px; }
-.panel { flex: 1; min-height: 0; display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--hair); background: var(--bg-2); }
+.panel { flex: 1; min-height: 0; display: flex; flex-direction: column; border: 1px solid var(--hair); background: var(--bg-2); }
 .head { display: flex; justify-content: space-between; align-items: center; padding: 10px 24px; border-bottom: 1px solid var(--hair); font-size: 18px; color: var(--ink-3); }
 .head b { font-weight: 500; color: var(--ink-2); }
-.body { padding: 14px 24px; overflow: hidden; }
+.body { flex: 1; min-height: 0; padding: 14px 24px; overflow: hidden; }
 .split { --mono: 27px; }
 
-.line { display: none; white-space: pre; min-height: 1.6em; }
+.line { display: none; white-space: pre; min-height: 1.5em; }
 .line.on { display: block; }
 .line.on.gone { display: none; }
 .line.gap { min-height: .8em; }
@@ -93,7 +93,7 @@ h2 code { font: 500 .78em/1 var(--font-mono); letter-spacing: 0; }
 .cmd.live .cur { display: inline-block; }
 #stage:not(.blink) .cmd.live.idle .cur { opacity: 0; }
 
-.cap { font: 400 34px/1.4 var(--font-sans); color: var(--ink-2); max-width: 60ch; min-height: 1.4em; visibility: hidden; }
+.cap { font: 400 32px/1.5 var(--font-sans); color: var(--ink-2); white-space: nowrap; height: 48px; flex: none; visibility: hidden; }
 .cap.on { visibility: visible; }
 .cap b { font-weight: 550; color: var(--ink); }
 
