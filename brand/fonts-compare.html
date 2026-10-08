@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>commonplace mono compare</title>
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "Plex Sans"; src: url("fonts/plex-sans-var.woff2") format("woff2"); font-weight: 100 700; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-600-normal.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "Ioskeley Mono"; src: url("fonts/ioskeley/IoskeleyMono-Regular.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Ioskeley Mono"; src: url("fonts/ioskeley/IoskeleyMono-Medium.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Ioskeley Mono"; src: url("fonts/ioskeley/IoskeleyMono-SemiBold.woff2") format("woff2"); font-weight: 600; }
+/* Berkeley Mono is commercial and never committed: an installed copy wins, else the local evaluation files outside the repo */
+@font-face { font-family: "Berkeley Mono eval"; src: local("Berkeley Mono"), local("BerkeleyMono-Regular"); font-weight: 400; }
+@font-face { font-family: "Berkeley Mono eval"; src: local("Berkeley Mono Bold"), local("BerkeleyMono-Bold"); font-weight: 700; }
+
+:root {
+  --bg: #FAF9F6; --bg-2: #F1EFEA; --ink: #141412; --ink-2: #5C5A55; --ink-3: #908D86;
+  --hair: rgb(20 20 18 / 0.14); --hair-2: rgb(20 20 18 / 0.07);
+  --red: #D2451E; --red-ink: #B83A16; --red-soft: rgb(210 69 30 / 0.10);
+  --green: #2F7D4A; --blue: #2A56C6;
+  --sans: "Plex Sans", system-ui, sans-serif;
+  --font-mono: "Plex Mono";
+  --gutter: 3rem;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --bg-2: #1A1A18; --ink: #ECEAE4; --ink-2: #A7A49D; --ink-3: #726F69;
+    --hair: rgb(236 234 228 / 0.16); --hair-2: rgb(236 234 228 / 0.08);
+    --red: #F06A42; --red-ink: #F27B57; --red-soft: rgb(240 106 66 / 0.14); --green: #5FBF80; --blue: #83A6FF;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --bg-2: #1A1A18; --ink: #ECEAE4; --ink-2: #A7A49D; --ink-3: #726F69;
+  --hair: rgb(236 234 228 / 0.16); --hair-2: rgb(236 234 228 / 0.08);
+  --red: #F06A42; --red-ink: #F27B57; --red-soft: rgb(240 106 66 / 0.14); --green: #5FBF80; --blue: #83A6FF;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+:root, .font, .pair { --mono: var(--font-mono), ui-monospace, monospace; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.55 var(--sans); font-feature-settings: "ss01", "cv05"; -webkit-font-smoothing: antialiased; }
+h1, p, pre, figure { margin: 0; }
+code, pre, .mono { font-family: var(--mono); font-feature-settings: normal; }
+
+.page { max-width: 76rem; margin-inline: auto; border-inline: 1px solid var(--hair); }
+.intro { padding: 3rem var(--gutter) 2rem; display: grid; gap: 0.75rem; }
+.intro h1 { font-size: 2.25rem; font-weight: 540; letter-spacing: -0.02em; line-height: 1.1; }
+.intro p { color: var(--ink-2); max-width: 64ch; }
+
+.font { padding: 2.5rem var(--gutter) 3rem; border-top: 1px solid var(--hair); display: grid; gap: 2rem; }
+.rubric { display: flex; align-items: baseline; gap: 1rem; font: 500 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); }
+.rubric::after { content: ""; flex: 1; height: 1px; background: var(--hair); align-self: center; }
+.rubric span { color: var(--ink-3); }
+.row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; align-items: start; }
+.stack { display: grid; gap: 2rem; align-content: start; }
+
+.wordmark { font: 600 2.75rem/1 var(--mono); letter-spacing: 0; white-space: nowrap; }
+.wordmark i { display: inline-block; width: 0.468em; height: 1ex; margin-left: 0.24em; background: var(--red); }
+
+.term { border: 1px solid var(--hair); background: var(--bg-2); font: 400 0.875rem/1.6 var(--mono); min-width: 0; }
+.term-head { display: flex; justify-content: space-between; padding: 0.5rem 0.875rem; border-bottom: 1px solid var(--hair); font-size: 0.75rem; color: var(--ink-3); }
+.term-head b { font-weight: 500; color: var(--ink-2); }
+.term pre { padding: 0.875rem; overflow-x: auto; tab-size: 2; }
+.p { color: var(--red); font-weight: 500; }
+.c { color: var(--ink-3); }
+.d { color: var(--ink-2); }
+.ok { color: var(--green); }
+.id { color: var(--blue); }
+.hl { background: var(--red-soft); color: var(--red-ink); padding: 0 0.1em; }
+.cur { display: inline-block; width: 0.6em; height: 1.05em; vertical-align: -0.2em; background: var(--red); }
+
+.tree { font: 400 0.875rem/1.55 var(--mono); white-space: pre; }
+.tree .r { color: var(--red); }
+
+.code { font: 400 0.875rem/1.6 var(--mono); font-variant-ligatures: none; white-space: pre; padding: 0.875rem; border: 1px solid var(--hair); }
+.code .k { color: var(--red); }
+.code .s { color: var(--green); }
+
+table { width: 100%; border-collapse: collapse; font: 400 0.875rem/1.5 var(--mono); }
+thead th { text-align: left; font: 500 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 0 0.75rem 0.75rem 0; border-bottom: 1px solid var(--ink); }
+tbody td { padding: 0.7rem 0.75rem 0.7rem 0; border-bottom: 1px solid var(--hair-2); }
+tbody tr:last-child td { border-bottom: 1px solid var(--hair); }
+th.n, td.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+td.what { font-family: var(--sans); color: var(--ink-2); font-size: 0.9375rem; }
+.src { font-weight: 500; }
+tr.coming td { color: var(--ink-3); }
+tr.coming .src { color: var(--ink-2); font-weight: 400; }
+tr.coming td.n::before { content: "—"; }
+
+.close { padding: 2.5rem var(--gutter) 3rem; border-top: 1px solid var(--hair); display: grid; gap: 1.5rem; }
+.close .pair { display: grid; grid-template-columns: 16rem minmax(0, 40rem); gap: 2rem; align-items: center; }
+.close .pair .wordmark { font-size: 1.75rem; }
+.close .pair figcaption { font: 400 0.75rem/1.4 var(--mono); color: var(--ink-3); margin-top: 0.75rem; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <h1>Three monos, same page.</h1>
+  <p>The same terminal, ledger, tree, wordmark and code, set three times. Sizes, colours and layout are identical; only <code>--font-mono</code> changes.</p>
+</header>
+
+<template id="sample">
+  <section class="font">
+    <p class="rubric"><b data-n></b> <span data-name></span></p>
+    <div class="row">
+      <div class="stack">
+        <p class="wordmark">commonplace<i></i></p>
+        <pre class="tree">my-commonplace/
+├ commonplace.config.ts
+├ sources/
+│ ├ github.ts
+│ └ prompts.ts
+├ data/
+│ ├ raw/
+│ │ └ github/
+│ │   ├ 2026-10-07/
+│ │   └ <span class="r">2026-10-08/</span>
+│ └ commonplace.db
+└ skills/add-source/</pre>
+      </div>
+      <figure class="term">
+        <div class="term-head"><span><b>~/my-commonplace</b></span><span>bash</span></div>
+<pre><span class="p">$</span> commonplace sync
+<span class="d">takeout    2026-10-08  159,092 things  180,578 events</span>
+<span class="d">x          2026-10-08   40,112 things   12,370 events</span>
+<span class="d">prompts    2026-10-08    1,809 things   19,234 events</span>
+<span class="d">github     2026-10-08    1,040 things    5,528 events</span>
+<span class="d">raindrop   2026-10-08      356 things      356 events</span>
+<span class="ok">built commonplace.db from 41 snapshots in 2.4s</span>
+
+<span class="p">$</span> commonplace search <span class="hl">"syntax highlighting"</span>
+<span class="d">2025-04-21  pr     </span><span class="id">gh:pr:AVGVSTVS96/assistant-ui#1</span>
+<span class="c">            docs: the right default theme</span>
+<span class="d">2024-05-24  issue  </span><span class="id">gh:issue:AVGVSTVS96/astroSite#374</span>
+<span class="c">            highlight streaming responses</span>
+
+<span class="p">$</span> <span class="cur"></span></pre>
+      </figure>
+    </div>
+    <table>
+      <thead><tr><th>source</th><th>what</th><th>last snapshot</th><th class="n">things</th><th class="n">events</th></tr></thead>
+      <tbody>
+        <tr><td><span class="src">takeout</span></td><td class="what">searches, YouTube, Maps, Chrome history</td><td>2026-10-08</td><td class="n">159,092</td><td class="n">180,578</td></tr>
+        <tr><td><span class="src">x</span></td><td class="what">posts, likes, bookmarks and their folders</td><td>2026-10-08</td><td class="n">40,112</td><td class="n">12,370</td></tr>
+        <tr><td><span class="src">prompts</span></td><td class="what">every prompt you typed into Claude Code and Codex</td><td>2026-10-08</td><td class="n">1,809</td><td class="n">19,234</td></tr>
+        <tr><td><span class="src">github</span></td><td class="what">pull requests, issues, reviews, stars</td><td>2026-10-08</td><td class="n">1,040</td><td class="n">5,528</td></tr>
+        <tr><td><span class="src">raindrop</span></td><td class="what">bookmarks and collections</td><td>2026-10-08</td><td class="n">356</td><td class="n">356</td></tr>
+        <tr class="coming"><td><span class="src">youtube</span></td><td class="what">watch and search history, from Takeout</td><td>coming</td><td class="n"></td><td class="n"></td></tr>
+      </tbody>
+    </table>
+<pre class="code"><span class="k">export default</span> defineConfig({
+  sources: [<span class="s">"github"</span>, <span class="s">"prompts"</span>, <span class="s">"x"</span>, <span class="s">"takeout"</span>],
+  rank: { recency: 0.4, saved: 1.5 },
+  mcp: { allow: [<span class="s">"github"</span>, <span class="s">"prompts"</span>] },
+  redact: [<span class="s">/sk-[A-Za-z0-9]{20,}/</span>, <span class="s">"~/.ssh/**"</span>],
+}) <span class="c">// 0O 1lI| {}[]() == != -> => *#\/</span></pre>
+  </section>
+</template>
+
+<div id="fonts"></div>
+
+<section class="close" id="close">
+  <p class="rubric"><b>04</b> <span>close reading · wordmark and terminal</span></p>
+</section>
+
+</div>
+<script>
+const fonts = [
+  { name: "IBM Plex Mono · current · OFL, free", family: '"Plex Mono"' },
+  { name: "Berkeley Mono · U.S. Graphics · commercial, $75", family: '"Berkeley Mono eval"' },
+  { name: "Ioskeley Mono · Iosevka build after Berkeley · OFL, free", family: '"Ioskeley Mono"' },
+]
+const sample = document.getElementById("sample").content
+const close = document.getElementById("close")
+fonts.forEach(({ name, family }, i) => {
+  const block = sample.cloneNode(true).firstElementChild
+  block.style.setProperty("--font-mono", family)
+  block.id = `font-${i + 1}`
+  block.querySelector("[data-n]").textContent = String(i + 1).padStart(2, "0")
+  block.querySelector("[data-name]").textContent = name
+  document.getElementById("fonts").append(block)
+
+  const pair = document.createElement("div")
+  pair.className = "pair"
+  pair.style.setProperty("--font-mono", family)
+  const left = document.createElement("div")
+  const cap = document.createElement("figcaption")
+  cap.textContent = name.split(" · ")[0]
+  left.append(block.querySelector(".wordmark").cloneNode(true), cap)
+  pair.append(left, block.querySelector(".term").cloneNode(true))
+  close.append(pair)
+})
+</script>
+</body>
+</html>
