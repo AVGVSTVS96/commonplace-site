@@ -24,15 +24,15 @@ Every section is one headline, one short line and a visual. Terminal mocks do mo
 ```
 $ commonplace search "japan trip"
 2026-09-28  txn      bank:txn:7a3e9c1d                    (ANA Airlines  $1,184.20)
-2026-09-27  email    gmail:msg:18f2c0a4b                  (Your flight to Tokyo is confirmed)
-2026-09-21  post     url:redd.it/1g4x2k                   (Two weeks in Japan, what I'd do again)
+2026-09-27  email    gmail:msg:18f2c0a4b                  (Flight to Tokyo confirmed)
+2026-09-21  post     url:redd.it/1g4x2k                   (Japan in two weeks: what worked)
 2026-09-19  video    yt:video:kX9rT2mQ4bA                 (Tokyo on a budget, 10 days)
-2026-09-18  message  chat:imessage:c81f4e                 ("ok japan trip is happening. april?")
-2026-09-14  page     url:japan-guide.com/e/e2361          (JR Pass: still worth it?)
+2026-09-18  message  chat:imessage:c81f4e                 ("japan trip is happening. april?")
+2026-09-14  page     url:japan-guide.com/jrpass          (JR Pass, worth it?)
 
 $ commonplace timeline --since 2026-10-07 --limit 5
-2026-10-08  prompted    prompts:3e9a71c8             ("plan japan from what i've saved")
-2026-10-08  watched     yt:video:p7Lq0WnE3xY         (How Shinkansen timetables work)
+2026-10-08  prompted    prompts:3e9a71c8             ("plan japan from my saves")
+2026-10-08  watched     yt:video:p7Lq0WnE3xY         (Shinkansen timetables)
 2026-10-08  paid        bank:txn:9d02b6f1            (PG&E  $142.60)
 2026-10-07  sent        chat:imessage:c81f4e         ("landed. dinner?")
 2026-10-07  saved       url:x.com/i/status/18834920  (a thread on kerning)
@@ -101,7 +101,7 @@ agent  search "portugal"  ·  timeline --verb charged --since 2025-05
        2025-05-12  txn      bank:txn:2c7e40a9      (TAP Air Portugal  $812.40)
        2025-05-14  txn      bank:txn:5b19f3d2      (Casa do Conto  $698.00  ·  4 nights)
        2025-05-18  message  chat:imessage:c81f4e   ("that tiny hotel in porto was the best part")
-       2026-09-21  post     url:redd.it/1g4x2k     (Two weeks in Japan, what I'd do again)
+       2026-09-21  post     url:redd.it/1g4x2k     (Japan in two weeks: what worked)
        2026-09-28  txn      bank:txn:7a3e9c1d      (ANA Airlines  $1,184.20)
 
 agent  Portugal was nine days, $3,120, one small hotel you loved and no tours. You already
