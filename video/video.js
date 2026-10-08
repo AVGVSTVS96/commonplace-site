@@ -47,7 +47,7 @@ function lay(scene, index) {
       t += step.hold ?? step.every ?? (step.row !== undefined ? 0.18 : 0)
     }
   }
-  const end = t + (scene.hold ?? 1.2)
+  const end = Math.ceil((t + (scene.hold ?? 1.2)) * 2) / 2
 
   if (scene.html) {
     el.innerHTML = scene.html
