@@ -29,7 +29,7 @@
   --bg-2: #f1efea;
   --ink: #141412;
   --ink-2: #5c5a55;
-  --ink-3: #908d86;
+  --ink-3: #6f6c66;
   --hair: rgb(20 20 18 / 0.14);
   --hair-2: rgb(20 20 18 / 0.07);
   --red: #d2451e;
@@ -62,7 +62,7 @@
     --bg-2: #1a1a18;
     --ink: #eceae4;
     --ink-2: #a7a49d;
-    --ink-3: #726f69;
+    --ink-3: #8f8c85;
     --hair: rgb(236 234 228 / 0.16);
     --hair-2: rgb(236 234 228 / 0.08);
     --red: #f06a42;
@@ -146,6 +146,10 @@ p code {
   font-size: 0.875em;
   color: var(--ink);
 }
+p code,
+li code {
+  white-space: nowrap;
+}
 .measure {
   max-width: 64ch;
 }
@@ -162,6 +166,7 @@ section {
   padding: var(--s8) var(--gutter);
   border-top: 1px solid var(--hair);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s6);
 }
 .stack {
@@ -429,10 +434,6 @@ h3 {
   padding-left: 2ch;
   text-indent: -2ch;
 }
-.term .cmd {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
 .term .say {
   white-space: pre-wrap;
   overflow-wrap: break-word;
@@ -559,6 +560,7 @@ h3 {
 /* Split layouts */
 .split {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s6);
   align-items: start;
 }
@@ -860,6 +862,7 @@ table.coming td.what {
 }
 .rules {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s4);
 }
 .rules li {

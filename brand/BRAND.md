@@ -40,7 +40,7 @@ Light is the default (the brief says light-terminal). Dark is the same tokens sw
 | `--bg-2` | `#F1EFEA` | `#1A1A18` | terminal and panel fill |
 | `--ink` | `#141412` | `#ECEAE4` | text, rules, filled buttons |
 | `--ink-2` | `#5C5A55` | `#A7A49D` | secondary text, terminal output |
-| `--ink-3` | `#908D86` | `#726F69` | labels, hints, dimmed rows |
+| `--ink-3` | `#6F6C66` | `#8F8C85` | labels, hints, dimmed rows |
 | `--hair` | `rgb(20 20 18 / .14)` | `rgb(236 234 228 / .16)` | 1px rules and borders |
 | `--hair-2` | `rgb(20 20 18 / .07)` | `rgb(236 234 228 / .08)` | row dividers, bar tracks |
 | `--red` | `#D2451E` | `#F06A42` | the rubric: `$`, section labels, the newest snapshot, the cursor, the "now" row |

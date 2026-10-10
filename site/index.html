@@ -11,9 +11,9 @@
 <meta property="og:title" content="commonplace · your personal data kit for agents">
 <meta property="og:description" content="A commonplace book for the age of agents. Everything you've made, saved and said, in a private archive on your machine, with one door for every agent. A template you own, about a thousand lines, MIT.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="/og.png">
+<meta property="og:image" content="https://commonplace-eight-sable.vercel.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="/og.png">
+<meta name="twitter:image" content="https://commonplace-eight-sable.vercel.app/og.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/ioskeley-mono-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -188,10 +188,10 @@
   <p class="line-copy measure">Anything with an export, a local database, an API or a CLI. Ask your agent, and the <code>add-source</code> skill has it write the source: one file, usually under 80 lines.</p>
   <dl class="chips">
     <div><dt>Money</dt><dd><span>bank and card CSV exports</span><span>Apple Card</span><span>receipts in Gmail</span></dd></div>
-    <div><dt>Browsing</dt><dd><span>Chrome</span><span>Safari</span><span>Arc</span><span>Dia</span></dd></div>
+    <div><dt>Browsing</dt><dd><span>Chrome</span><span>Safari</span><span>Firefox</span><span>Edge</span><span>Arc</span><span>any other browser</span></dd></div>
     <div><dt>Mail and calendar</dt><dd><span>Gmail via Takeout</span><span>any mbox</span><span>any <code>.ics</code></span></dd></div>
     <div><dt>Chat</dt><dd><span>Slack</span><span>Discord</span><span>Telegram exports</span></dd></div>
-    <div><dt>Saves</dt><dd><span>Instagram</span><span>Pinterest</span><span>Reddit</span><span>Readwise</span><span>Pocket</span></dd></div>
+    <div><dt>Saves</dt><dd><span>Instagram</span><span>Pinterest</span><span>Reddit</span><span>Readwise</span></dd></div>
     <div><dt>Notes</dt><dd><span>Obsidian</span><span>any folder of markdown</span><span>Apple Notes</span></dd></div>
     <div><dt>Media</dt><dd><span>YouTube via Takeout</span><span>Letterboxd</span><span>Goodreads</span><span>Spotify</span></dd></div>
   </dl>
@@ -261,7 +261,7 @@
       </div>
     </figure>
     <ul class="rules">
-      <li data-line="mcp"><button type="button" class="term-k"><code>mcp</code></button> <span>is the list of sources any MCP client may read. <code>commonplace mcp --sources github</code> narrows it further for one client. <code>imessage</code> is in <code>sources</code> but not in <code>mcp</code>, so your messages stay local until you add it.</span></li>
+      <li data-line="mcp"><button type="button" class="term-k"><code>mcp</code></button> <span>is the list of sources any MCP client may read. The <code>--sources github</code> flag on <code>commonplace mcp</code> narrows it for one client. <code>imessage</code> is in <code>sources</code> but not in <code>mcp</code>, so your messages stay local until you add it.</span></li>
       <li data-line="redact"><button type="button" class="term-k"><code>redact</code></button> <span>rules keep rows out of the archive entirely. They're never written.</span></li>
       <li data-line="sources"><button type="button" class="term-k">All or nothing per row.</button> <span>A reader sees a row only if it may read every source that contributed to it, so a hidden source can't leak through a merge.</span></li>
     </ul>
@@ -339,7 +339,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
       </figure>
     </div>
   </div>
-  <p class="closing measure">Then ask something only your history can answer. <em>"What was I working on the week I first used Effect?"</em></p>
+  <p class="closing measure">Then ask something only your history can answer. <em>"What was I working on the week before my last trip?"</em></p>
 </section>
 
 <aside class="next" aria-label="Next">

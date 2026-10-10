@@ -144,10 +144,10 @@ Line: Anything with an export, a local database, an API or a CLI. Ask your agent
 *(Chips, wrapping. Each chip is a thing people have. Keep them in these groups.)*
 
 - Money: bank and card CSV exports, Apple Card, receipts in Gmail
-- Browsing: Chrome, Safari, Arc, Dia
+- Browsing: Chrome, Safari, Firefox, Edge, Arc, any other browser
 - Mail and calendar: Gmail via Takeout, any mbox, any `.ics`
 - Chat: Slack, Discord, Telegram exports
-- Saves: Instagram, Pinterest, Reddit, Readwise, Pocket
+- Saves: Instagram, Pinterest, Reddit, Readwise
 - Notes: Obsidian, any folder of markdown, Apple Notes
 - Media: YouTube via Takeout, Letterboxd, Goodreads, Spotify
 
@@ -204,7 +204,7 @@ export default defineConfig({
 });
 ```
 
-- **`mcp`** is the list of sources any MCP client may read. `commonplace mcp --sources github` narrows it further for one client. `imessage` is in `sources` but not in `mcp`, so your messages stay local until you add it.
+- **`mcp`** is the list of sources any MCP client may read. The `--sources github` flag on `commonplace mcp` narrows it for one client. `imessage` is in `sources` but not in `mcp`, so your messages stay local until you add it.
 - **`redact`** rules keep rows out of the archive entirely. They're never written.
 - **All or nothing per row.** A reader sees a row only if it may read every source that contributed to it, so a hidden source can't leak through a merge.
 
@@ -268,7 +268,7 @@ codex mcp add commonplace -- commonplace mcp
 command: commonplace   args: ["mcp"]
 ```
 
-Closing line: Then ask something only your history can answer. *"What was I working on the week I first used Effect?"*
+Closing line: Then ask something only your history can answer. *"What was I working on the week before my last trip?"*
 
 ## Next
 
