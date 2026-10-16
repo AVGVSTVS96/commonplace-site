@@ -2,119 +2,73 @@
 
 Final copy. Use it word for word. Text in `code` is shown as code. Notes in *(italics)* are for the designer, not the page. Anything marked **coming** isn't built yet and has to look it on the page (muted, with a small "coming" tag).
 
-Every section is one headline, one short line and a visual. Terminal mocks do most of the explaining, so keep them real: real commands, real output shapes, real file names. Nothing on this page may claim something the code doesn't do today.
+Every section is one headline, one short line and a visual. Nothing on this page may claim something the code doesn't do today.
+
+**The terminals are real output.** `bun demo/run.ts` writes a small made-up archive in the formats the shipped sources read (`demo/fixture.ts`), runs the real CLI from the public repo on it, and writes what it printed to `demo/out/` and into the `<!-- demo:… -->` blocks of `site/index.html`. Never edit inside those blocks by hand: change the fixture or the commands in `demo/run.ts` and run it again. What the user asks and what the agent answers sits outside the blocks, and the answer may only say what the output above it shows. Every name, number and account in the fixture is made up.
 
 ## Page
 
 - `<title>`: commonplace · your personal data kit for agents
-- Meta description: A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about 1,300 lines, MIT.
+- Meta description: Your personal data kit for agents. commonplace brings your accounts, local files and exports into one archive on your machine, and your agents search it through a CLI or MCP server. A template you own, MIT.
 - Nav: Sources · How it works · Privacy · Docs · GitHub
 
 ## Hero
 
 - Wordmark: commonplace
 - Tagline, under the wordmark: your personal data kit for agents
-- Hero line: Everything you've made, saved and said.
-- Sub line: A private archive that keeps itself current, with one door for every agent.
+- Hero line: Your personal data, searchable by your agents.
+- Sub line: Bring accounts, local files and exports into one archive on your machine. Connect agents through the CLI or MCP.
+- Then: Ask your coding agent to add another source. It writes the code in your repo.
 - Primary CTA: Use this template
 - Secondary CTA: Read the source
 
-*(The hero visual is a terminal, light. One session, three commands. Every line is illustrative, none of it is real data, and together the hits span a whole life: a card charge, a flight email, a saved thread, a video, a text, a page. Keep the output shape exactly as the CLI prints it: date, kind or verb, id, title.)*
+*(The hero visual is a terminal, light: block `demo:hero`, which is `commonplace search kyoto --limit 5`, `commonplace timeline --limit 3` and `commonplace stats`, as printed in `demo/out/hero.txt`. The hits span texts, a search, a saved page, a prompt and a like.)*
 
-```
-$ commonplace search "japan trip"
-2026-09-28  txn      bank:txn:7a3e9c1d                    (ANA Airlines  $1,184.20)
-2026-09-27  email    gmail:msg:18f2c0a4b                  (Flight to Tokyo confirmed)
-2026-09-21  post     url:redd.it/1g4x2k                   (Japan in two weeks: what worked)
-2026-09-19  video    yt:video:kX9rT2mQ4bA                 (Tokyo on a budget, 10 days)
-2026-09-18  message  chat:imessage:c81f4e                 ("japan trip is on. april?")
-2026-09-14  page     url:japan-guide.com/jrpass          (JR Pass, worth it?)
-
-$ commonplace timeline --since 2026-10-07 --limit 5
-2026-10-08  prompted    prompts:3e9a71c8             ("plan japan from my saves")
-2026-10-08  watched     yt:video:p7Lq0WnE3xY         (Shinkansen timetables)
-2026-10-08  paid        bank:txn:9d02b6f1            (PG&E  $142.60)
-2026-10-07  sent        chat:imessage:c81f4e         ("landed. dinner?")
-2026-10-07  saved       url:x.com/i/status/18834920  (a thread on kerning)
-
-$ commonplace stats
-gmail          latest 2026-10-08  31 snapshot(s)  48211 things  52904 events
-chrome         latest 2026-10-08  31 snapshot(s)  39480 things  61117 events
-youtube        latest 2026-10-08  31 snapshot(s)  12306 things  14872 events
-imessage       latest 2026-10-08  31 snapshot(s)   9418 things  88250 events
-x              latest 2026-10-08  31 snapshot(s)   7905 things   9131 events
-bank           latest 2026-10-08  31 snapshot(s)   3266 things   3266 events
-github         latest 2026-10-08  31 snapshot(s)   2521 things   1404 events
-reddit         latest 2026-10-06   4 snapshot(s)   2140 things   2588 events
-instagram      latest 2026-10-05   2 snapshot(s)   1972 things   1972 events
-prompts        latest 2026-10-08  31 snapshot(s)   1170 things   1158 events
-```
-
-Caption under the terminal: Ten sources in one archive. Six work today; the rest are one ask away.
-
-*(The caption keeps the terminal honest: it shows what the archive is for, and the Sources section says what ships today. Six of the ten work today: the four built in, and chrome and youtube from Takeout.)*
+Caption under the terminal: Real output from the shipped sources, run on a small made-up archive.
 
 ## Strip
 
 *(A one-line strip under the hero, four facts, monospace.)*
 
-- 1 archive: texts, mail, charges, history, saves, code, prompts
-- ~1,300 lines of TypeScript
-- 0 dependencies: Bun and its SQLite
+- 1 archive: texts, saves, videos, searches, posts, code, prompts
+- ~1,300 lines in the core
+- 0 runtime packages: Bun and its SQLite
 - MIT, and a template you own
 
 ## Everything
 
-Section title: Not just your GitHub. Everything.
-Line: Your texts, your mail, your card charges and bills, your browser and YouTube history, what you saved, what you liked, your notes and your calendar, every prompt you ever typed. All the small things that show what you pay attention to.
+Section title: Bring your history together.
+Line: Search messages, saved posts, watched videos and past prompts in one place. Add more sources with your agent.
 
-*(The visual is a ledger of events, newest first, in the CLI's shape. Every line is a verb and a thing, and the verbs are the real ones from `src/schema.ts`. No auto-scroll: motion follows events, not timers.)*
-
-```
-charged    $1,184.20 to ANA Airlines
-received   "Your flight to Tokyo is confirmed"
-saved      a thread on two weeks in Japan
-watched    a talk on structured concurrency
-sent       "landed. dinner?"
-paid       PG&E, $142.60
-visited    a page on commonplace books
-liked      a post about kerning by hand
-prompted   "make the sidebar follow the system theme"
-commented  on a review: "this allocates on every keystroke"
-searched   "how did Locke index his notebook"
-saved      an article about SQLite's write-ahead log
-```
+*(The visual is a ledger of the made-up archive's twelve newest events, block `demo:ledger`, from `commonplace timeline --limit 12`: the verb, then what was said in quotes, or the thing's title. No auto-scroll: motion follows events, not timers.)*
 
 Caption: One shape for all of it: things, events, links. Same page saved in two apps is one record.
 
 ## Why
 
-Section title: This is how an agent learns your judgment.
-Line: Your taste isn't in any one file. It's in what you saved, what you starred, what you rejected, and how you asked last time. An agent that can search that stops guessing what you mean.
+Section title: Let your agent look up the history behind your request.
+Line: It can find what you saved, what you said and how you asked last time.
 
-*(One terminal: your ask, the searches the agent ran and what they found, its answer. Keep it to one exchange, and keep it about a life, not a codebase.)*
+*(One terminal: your ask, the searches the agent ran with what they found (block `demo:why`, in `demo/out/why.txt`), its answer. Keep it to one exchange, and keep it about a life, not a codebase.)*
 
 ```
-you    plan the japan trip. same vibe as portugal, under $4k, mid april.
+you    make me a packing list for kyoto
 
-agent  search "portugal"  ·  timeline --verb charged --since 2025-05
-       2025-05-12  txn      bank:txn:2c7e40a9      (TAP Air Portugal  $812.40)
-       2025-05-14  txn      bank:txn:5b19f3d2      (Casa do Conto  $698.00  ·  4 nights)
-       2025-05-18  message  chat:imessage:c81f4e   ("that tiny hotel in porto was the best part")
-       2026-09-21  post     url:redd.it/1g4x2k     (Japan in two weeks: what worked)
-       2026-09-28  txn      bank:txn:7a3e9c1d      (ANA Airlines  $1,184.20)
+agent  $ commonplace search "packing list"
+       $ commonplace search "kyoto april"
+       $ commonplace search fushimi
+       (their output)
 
-agent  Portugal was nine days, $3,120, one small hotel you loved and no tours. You already
-       bought the ANA flight for April 14. A ryokan in Kyoto like the Porto place, and the
-       Reddit itinerary you saved cut to ten days, lands at $3,860. Want the day-by-day?
+agent  Carry-on only, like your Lisbon list. You're in Kyoto April 14 to 18, so five days of clothes, and real
+       shoes for the two hours of stairs at Fushimi Inari. Want it as a checklist?
 ```
 
-Closing line: The more an agent knows about you, the less you have to say, and the more you can hand it.
+Closing line: The more an agent can look up, the less you have to say, and the more you can hand it.
 
 ## Sources
 
 Section title: Sources, by how much setup they need.
-Line: Four are built in, three read an export you download, and everything else is one ask away.
+Line: Seven ship today: four fetch on their own and three read an export you download. Your agent can write more.
 
 ### Built in
 
@@ -125,7 +79,7 @@ Line: Four are built in, three read an export you download, and everything else 
 | `github` | your pull requests, issues, reviews, review comments, stars and commits | `gh` signed in |
 | `prompts` | every prompt you typed into Claude Code, Codex and Pi, or sent from chat apps | nothing, read from disk |
 | `imessage` | your conversations | macOS, Full Disk Access |
-| `x` | your bookmarks with their folders, likes, posts and replies | a browser on your machine, signed in once |
+| `x` | your bookmarks with their folders, likes, posts and replies | `agent-browser`, [signed in to X](https://github.com/AVGVSTVS96/commonplace#x). No paid API key. |
 
 ### From an export
 
@@ -137,9 +91,9 @@ Line: Four are built in, three read an export you download, and everything else 
 | `x-archive` | every post, like, follow, DM and Grok chat | the archive from X's settings |
 | `raindrop` | bookmarks, collections, tags and highlights | Raindrop's CSV backup |
 
-### One ask away
+### Written by your agent
 
-Line: Anything with an export, a local database, an API or a CLI. Ask your agent, and the `add-source` skill has it write the source: one file, usually under 80 lines.
+Line: Anything with an export, a local database, an API or a CLI. Ask your agent, and the `add-source` skill has it write the source, run it and check what landed: one file in your repo.
 
 *(Chips, wrapping. Each chip is a thing people have. Keep them in these groups.)*
 
@@ -151,28 +105,28 @@ Line: Anything with an export, a local database, an API or a CLI. Ask your agent
 - Notes: Obsidian, any folder of markdown, Apple Notes
 - Media: Letterboxd, Goodreads, Spotify
 
-*(Below the chips, a tiny terminal: the ask and the result.)*
+*(Below the chips, a tiny terminal: the ask, then block `demo:add-source`. `demo/sources/chrome.ts` is a real source written by following the skill; the demo copies it in, adds it to the config, runs `commonplace sync`, which fetches only `chrome`, and shows the visits it read. The line count is the file's.)*
 
 ```
-you    add my obsidian vault to commonplace
+you    add my browser history to commonplace
 
-agent  wrote sources/obsidian.ts (61 lines)
-       added it to commonplace.config.ts
-       $ commonplace sync
-       obsidian   2026-10-08   1,204 things   1,204 events
+agent  found Chrome's history and wrote sources/chrome.ts (58 lines)
+       added it to commonplace.config.ts and ran commonplace sync
+       $ commonplace timeline --verb visited --limit 3
+       (its output)
 ```
 
-Caption: The skill works for any agent that reads files, not just Claude Code.
+Caption: Any coding agent with file and terminal access can follow the skill, not just Claude Code.
 
 ## How it works
 
-Section title: Three steps, one direction.
-Line: Fetch writes. Build reads snapshots. Agents read the database through one door. Nothing goes the other way.
+Section title: Keep the snapshots. Rebuild the archive.
+Line: Sources save dated snapshots. Build combines them in SQLite. Agents search through read-only tools.
 
 *(The visual is the diagram from the README, drawn clean: three boxes down the left, one arrow each, labels on the right. Monospace labels.)*
 
 ```
-your accounts    GitHub, Claude Code, Codex, …
+your data        accounts, local files, exports
      │  fetch: one dated snapshot per source per day
 data/raw/        read-only, kept forever, never in git
      │  build: replay every snapshot, redact as you go
@@ -182,14 +136,14 @@ commonplace      CLI ── search · timeline · show · stats
      └── mcp     Claude Code, Codex, Claude Desktop, any MCP client
 ```
 
-1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. On a Mac, `commonplace install` runs it on its own, and the Claude Code plugin runs it whenever a session ends.
+1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. On a Mac, `commonplace install` runs it at login and when Messages changes, and the Claude Code plugin runs it when a session ends. A source with today's snapshot waits for tomorrow; an export source updates when you add a newer export.
 2. **Build.** Every build starts from empty and replays every snapshot into one SQLite database. The same `raw/` always gives the same database, so you can fix a source and rebuild years of history.
-3. **Read.** The CLI and the MCP server read the same store. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
+3. **Read.** The CLI and the MCP server read the same store, read-only: `search`, `timeline`, `show`, `stats`, and `sql` for you.
 
 ## Privacy
 
-Section title: What goes in is up to you.
-Line: Your data lives in `data/`, which never enters git. Agents read it through the CLI or MCP, never the database file, and see everything in it.
+Section title: Choose what you collect and expose.
+Line: Data stays in your local `data/` folder, which the template keeps out of git. Connected agents can read everything in the built archive, and may send what they read to their model provider.
 
 *(The visual is the config file, real, with three lines highlighted in turn.)*
 
@@ -207,13 +161,15 @@ export default defineConfig({
 ```
 
 - **`sources`** is everything the archive holds. A source you leave off is never read.
-- **`drop`** keeps matching messages out of the snapshot itself, so from then on they exist only in Messages.
-- **`redact`** rules keep rows out of the database.
+- **`drop`** keeps matching messages out of new snapshots.
+- **`redact`** keeps rows out of the database. Raw snapshots stay on disk.
+
+Under the three, small: Run `commonplace build` after changing `sources` or `redact`.
 
 ## Yours
 
-Section title: A template you own. Not an app you install.
-Line: About 1,300 lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.
+Section title: Your repo, your sources, your archive.
+Line: About 1,300 lines in the core, plus the sources. Bun and SQLite, with no runtime packages. Read it in an afternoon. Change anything.
 
 *(Three cards, each a small file tree or terminal.)*
 
@@ -244,7 +200,7 @@ Line: About 1,300 lines of TypeScript in your own repo, next to your own data. R
 ## Start
 
 Section title: Start
-Line: You need Bun, and `gh` signed in for the GitHub source.
+Line: You need Bun, and `gh` signed in for the GitHub source. On a Mac, iMessage is on by default, so give your terminal Full Disk Access first. [X](https://github.com/AVGVSTVS96/commonplace#x) is off until you sign in and add it.
 
 ```sh
 gh repo create my-commonplace --template AVGVSTVS96/commonplace --private --clone
@@ -252,7 +208,7 @@ cd my-commonplace
 bun install
 bun add -g "$PWD"
 commonplace sync
-commonplace install
+commonplace install   # on a Mac: sync on its own
 ```
 
 Copy button: Copy · after click: Copied
@@ -277,7 +233,7 @@ Closing line: Then ask something only your history can answer. *"What was I work
 
 *(A short muted strip, "next" tag.)*
 
-Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser history. Yours, if you send one back.
+Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and live browser history. Yours, if you send one back.
 
 ## Footer
 
@@ -291,11 +247,11 @@ Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser his
 
 Short pages, one per question. Every page opens with the command or file it's about.
 
-1. **Start** — the commands above, what `sync` prints the first time, where things went (`data/raw/`, `data/commonplace.db`).
-2. **Connect an agent** — Claude Code plugin (what the plugin installs: MCP server, the skill, the SessionEnd hook), Codex, Claude Desktop, any MCP client, shell agents through the CLI. 
+1. **Start** — the commands above, what `sync` prints the first time, where things went (`data/raw/`, `data/commonplace.db`), Full Disk Access for iMessage on a Mac.
+2. **Connect an agent** — Claude Code plugin (what the plugin installs: MCP server, the skill, the SessionEnd hook), Codex, Claude Desktop, any MCP client, shell agents through the CLI.
 3. **CLI** — every command with one real example each: `search` (FTS5 syntax: words, "phrases", prefix*, OR, NOT), `timeline`, `show`, `stats`, `sync`, `build`, `mcp`, `sql`, `root`. `--json` and `--limit`.
-4. **Sources** — the three tiers (built in, from an export, one ask away), what each one needs, and what each built-in source actually fetches. X: signing in once with agent-browser.
-5. **Add a source** — the `add-source` skill, in prose: find the data, write `fetch`, write `rows`, register, run. The IDs-from-content rule, the verbs, "times are real or null". The bookmarks example in full.
+4. **Sources** — the three tiers (built in, from an export, written by your agent), what each one needs, and what each built-in source actually fetches. X: signing in once with agent-browser.
+5. **Add a source** — the `add-source` skill, in prose: find the data, write `fetch`, write `rows`, register, run. The IDs-from-content rule, the verbs, "times are real or null". `demo/sources/chrome.ts` in full.
 6. **The schema** — things, events, links. Once verbs and repeat verbs. How merging works: by ID, strongest source wins per field, nulls never erase, once-only events merge across sources and keep every collection.
-7. **Privacy** — `mcp`, `redact`, all-or-nothing visibility, what's in git and what isn't, what `sql` can and can't do.
-8. **How it's built** — snapshots and `.partial`, rebuild from empty, why the same `raw/` always gives the same database, the lock that keeps two syncs from running at once.
+7. **Privacy** — `sources`, `drop`, `redact`, what agents can read (everything in the built archive) and where it can go from there (their model provider), what's in git and what isn't, rebuilding after a change, what `sql` can and can't do.
+8. **How it's built** — snapshots and `.partial`, rebuild from empty, why the same `raw/` always gives the same database, the daily snapshot per source, the lock that keeps two syncs from running at once.
