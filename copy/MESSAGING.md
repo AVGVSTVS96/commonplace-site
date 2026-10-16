@@ -63,8 +63,7 @@ Say these as facts, in this order, without softening or hedging:
 
 - Your data lives in `data/`, which never enters git.
 - Agents never open the database. They read it through the CLI or MCP and see everything in it, so you choose what goes in: leave a source off, `drop` messages before they're saved, `redact` rows before they're written.
-- `redact` rules keep rows out of the archive entirely. They're never written.
-- A row is visible only if the reader may read every source that contributed to it, so a hidden source can't leak through a merge.
+- `redact` rules keep rows out of the database.
 - Snapshots are read-only. A crash never leaves half a snapshot.
 
 Don't say "secure", "safe by default", "privacy-first", "end-to-end". Say what the code does.

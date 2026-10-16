@@ -207,8 +207,8 @@ export default defineConfig({
 ```
 
 - **`sources`** is everything the archive holds. A source you leave off is never read.
-- **`drop`** keeps matching messages out of the snapshot itself, so they never exist anywhere but Messages.
-- **`redact`** rules keep rows out of the archive entirely. They're never written.
+- **`drop`** keeps matching messages out of the snapshot itself, so from then on they exist only in Messages.
+- **`redact`** rules keep rows out of the database.
 
 ## Yours
 
