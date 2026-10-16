@@ -44,17 +44,17 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 
 ## What it is
 
-- **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About a thousand lines of TypeScript you can read in an afternoon, with no runtime dependencies: Bun, its built-in SQLite, and plain files.
+- **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About 1,300 lines of TypeScript you can read in an afternoon, with no runtime dependencies: Bun, its built-in SQLite, and plain files.
 - **An archive that keeps itself.** One dated, read-only snapshot per source per day in `data/raw/`, kept forever. One SQLite database rebuilt from those snapshots anytime. Full-text search.
 - **One door.** A CLI and an MCP server, both over the same store, which only show the sources you allow. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
-- **Sources that agents write.** Three built in today (GitHub; every Claude Code and Codex prompt; iMessage), four coming, and anything with an export, a local database, an API or a CLI is one ask away: the `add-source` skill has your agent write it, one file, usually under 80 lines.
+- **Sources that agents write.** Four built in today (GitHub; every Claude Code, Codex and Pi prompt; iMessage; X, read from your own signed-in browser), three that read an export you download (Google Takeout, the X archive, Raindrop), and anything with an export, a local database, an API or a CLI is one ask away: the `add-source` skill has your agent write it, one file, usually under 80 lines.
 
 ## What it isn't
 
-- **Not an app you install.** Nothing runs in the background except a sync when a session ends. No daemon, no tray icon, no account.
+- **Not an app you install.** Nothing runs on its own except a sync: when an agent session ends, and on a Mac at login and when a message arrives, if you run `commonplace install`. No tray icon, no account.
 - **Not a dashboard.** There's no UI. The readers are you at a terminal and your agents.
 - **Not a system or a platform.** It's a folder. Change anything.
-- **Not a cloud.** Nothing leaves your machine. Remote MCP for ChatGPT and claude.ai on the web is on the list, and it'll be your choice, per client.
+- **Not a cloud.** Your archive never leaves your machine, and sources run there too, on your own sign-ins and exports, with no paid APIs. Remote MCP for ChatGPT and claude.ai on the web is on the list, and it'll be your choice, per client.
 - **Not a memory feature.** Memory is what an agent decides to remember about you. commonplace is what actually happened, from the source, with timestamps.
 
 ## Privacy, told plainly
@@ -75,7 +75,7 @@ Plain words a smart friend would use. Specific over clever. Short. Let the work 
 
 **Do**
 - Show a whole life in every example: a charge, a bill, a text, a mail, a video, a page, a save, a prompt. GitHub is one line among many, never the subject.
-- State what's there. "Every prompt you typed into Claude Code and Codex."
+- State what's there. "Every prompt you typed into Claude Code, Codex and Pi."
 - Use the real names of things: `data/raw/`, `commonplace sync`, `redact`, `add-source`.
 - Give real numbers when we have them: "one snapshot per source per day", "usually under 80 lines".
 - Write the way Bassim calls his work good: directly. "This is the way for agents to understand you."

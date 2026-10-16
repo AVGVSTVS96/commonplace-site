@@ -7,7 +7,7 @@ Every section is one headline, one short line and a visual. Terminal mocks do mo
 ## Page
 
 - `<title>`: commonplace · your personal data kit for agents
-- Meta description: A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about a thousand lines, MIT.
+- Meta description: A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about 1,300 lines, MIT.
 - Nav: Sources · How it works · Privacy · Docs · GitHub
 
 ## Hero
@@ -50,7 +50,7 @@ instagram      latest 2026-10-05   2 snapshot(s)   1972 things   1972 events
 prompts        latest 2026-10-08  31 snapshot(s)   1170 things   1158 events
 ```
 
-Caption under the terminal: Ten sources in one archive. Three are built in today, the rest are coming or one ask away.
+Caption under the terminal: Ten sources in one archive. Six are built in today, the rest are one ask away.
 
 *(The caption keeps the terminal honest: it shows what the archive is for, and the Sources section says what ships today. `charged` and `paid` are verbs the schema still needs.)*
 
@@ -59,7 +59,7 @@ Caption under the terminal: Ten sources in one archive. Three are built in today
 *(A one-line strip under the hero, four facts, monospace.)*
 
 - 1 archive: texts, mail, charges, history, saves, code, prompts
-- ~1,000 lines of TypeScript
+- ~1,300 lines of TypeScript
 - 0 dependencies: Bun and its SQLite
 - MIT, and a template you own
 
@@ -114,7 +114,7 @@ Closing line: The more an agent knows about you, the less you have to say, and t
 ## Sources
 
 Section title: Sources, by how much setup they need.
-Line: Three work the moment you sync. Four are on the way. Everything else is one ask away.
+Line: Four are built in, three read an export you download, and everything else is one ask away.
 
 ### Built in
 
@@ -122,20 +122,20 @@ Line: Three work the moment you sync. Four are on the way. Everything else is on
 
 | source | what | needs |
 |---|---|---|
-| `github` | your pull requests, issues and stars | `gh` signed in |
-| `prompts` | every prompt you typed into Claude Code and Codex | nothing, read from disk |
+| `github` | your pull requests, issues, reviews, review comments, stars and commits | `gh` signed in |
+| `prompts` | every prompt you typed into Claude Code, Codex and Pi, or sent from chat apps | nothing, read from disk |
 | `imessage` | your conversations | macOS, Full Disk Access |
+| `x` | your bookmarks with their folders, likes, posts and replies | a browser on your machine, signed in once |
 
-### Coming built in
+### From an export
 
-*(Same table, muted, "coming" tag on the heading.)*
+*(Same table. The last column is "the export".)*
 
-| source | what | needs |
+| source | what | the export |
 |---|---|---|
-| X archive | your posts, likes, DMs and Grok chats, all of them | the archive from X's settings |
-| X | new posts, likes and bookmarks every day | an X developer app, cents a day |
-| Google Takeout | searches, YouTube, Maps, Chrome, Calendar | a Takeout export |
-| Raindrop | bookmarks and collections | a CSV export or API token |
+| `takeout` | searches, YouTube watches, comments and playlists, Maps places, Chrome | Google Takeout |
+| `x-archive` | every post, like, follow, DM and Grok chat | the archive from X's settings |
+| `raindrop` | bookmarks, collections, tags and highlights | Raindrop's CSV backup |
 
 ### One ask away
 
@@ -149,7 +149,7 @@ Line: Anything with an export, a local database, an API or a CLI. Ask your agent
 - Chat: Slack, Discord, Telegram exports
 - Saves: Instagram, Pinterest, Reddit, Readwise
 - Notes: Obsidian, any folder of markdown, Apple Notes
-- Media: YouTube via Takeout, Letterboxd, Goodreads, Spotify
+- Media: Letterboxd, Goodreads, Spotify
 
 *(Below the chips, a tiny terminal: the ask and the result.)*
 
@@ -182,7 +182,7 @@ commonplace      CLI ── search · timeline · show · stats
      └── mcp     Claude Code, Codex, Claude Desktop, any MCP client
 ```
 
-1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. The Claude Code plugin runs it whenever a session ends.
+1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. On a Mac, `commonplace install` runs it on its own, and the Claude Code plugin runs it whenever a session ends.
 2. **Build.** Every build starts from empty and replays every snapshot into one SQLite database. The same `raw/` always gives the same database, so you can fix a source and rebuild years of history.
 3. **Read.** The CLI and the MCP server go through the same store, which shows a reader only the sources you allow. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
 
@@ -195,7 +195,7 @@ Line: Your data lives in `data/`, which never enters git. Agents never open the 
 
 ```ts
 export default defineConfig({
-  sources: [github, prompts, imessage],
+  sources: [github(), prompts(), imessage()],
 
   mcp: ["github", "prompts"],
 
@@ -211,11 +211,11 @@ export default defineConfig({
 ## Yours
 
 Section title: A template you own. Not an app you install.
-Line: About a thousand lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.
+Line: About 1,300 lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.
 
 *(Three cards, each a small file tree or terminal.)*
 
-1. **Read it.** `src/` is eight files. One schema, one builder, one store, two doors.
+1. **Read it.** `src/` is ten small files. One schema, one builder, one store, two doors.
    ```
    src/schema.ts   things, events, links, verbs
    src/build.ts    replays snapshots; the only writer
@@ -231,7 +231,7 @@ Line: About a thousand lines of TypeScript in your own repo, next to your own da
      rows: async function* ({ dir }) { … },
    });
    ```
-3. **Keep it.** Your repo, your data, your rules. Updates to the template never touch `data/` or your config.
+3. **Keep it.** Your repo, your data, your rules. Updates to the template never touch `data/`.
    ```
    my-commonplace/
      commonplace.config.ts   yours
@@ -250,6 +250,7 @@ cd my-commonplace
 bun install
 bun add -g "$PWD"
 commonplace sync
+commonplace install
 ```
 
 Copy button: Copy · after click: Copied
@@ -274,7 +275,7 @@ Closing line: Then ask something only your history can answer. *"What was I work
 
 *(A short muted strip, "next" tag.)*
 
-Remote MCP for ChatGPT and claude.ai on the web. The sources marked coming. Yours, if you send one back.
+Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser history. Yours, if you send one back.
 
 ## Footer
 
@@ -291,7 +292,7 @@ Short pages, one per question. Every page opens with the command or file it's ab
 1. **Start** — the five commands above, what `sync` prints the first time, where things went (`data/raw/`, `data/commonplace.db`).
 2. **Connect an agent** — Claude Code plugin (what the plugin installs: MCP server, the skill, the SessionEnd hook), Codex, Claude Desktop, any MCP client, shell agents through the CLI. Narrowing per client with `--sources`.
 3. **CLI** — every command with one real example each: `search` (FTS5 syntax: words, "phrases", prefix*, OR, NOT), `timeline`, `show`, `stats`, `sync`, `build`, `mcp`, `sql`, `root`. `--json` and `--limit`.
-4. **Sources** — the three tiers, with the "needs" column, and what each built-in source actually fetches.
+4. **Sources** — the three tiers (built in, from an export, one ask away), what each one needs, and what each built-in source actually fetches. X: signing in once with agent-browser.
 5. **Add a source** — the `add-source` skill, in prose: find the data, write `fetch`, write `rows`, register, run. The IDs-from-content rule, the verbs, "times are real or null". The bookmarks example in full.
 6. **The schema** — things, events, links. Once verbs and repeat verbs. How merging works: by ID, strongest source wins per field, nulls never erase, once-only events merge across sources and keep every collection.
 7. **Privacy** — `mcp`, `redact`, all-or-nothing visibility, what's in git and what isn't, what `sql` can and can't do.

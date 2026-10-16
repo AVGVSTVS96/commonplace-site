@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>commonplace · your personal data kit for agents</title>
-<meta name="description" content="A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about a thousand lines, MIT.">
+<meta name="description" content="A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about 1,300 lines, MIT.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="commonplace · your personal data kit for agents">
-<meta property="og:description" content="A commonplace book for the age of agents. Everything you've made, saved and said, in a private archive on your machine, with one door for every agent. A template you own, about a thousand lines, MIT.">
+<meta property="og:description" content="A commonplace book for the age of agents. Everything you've made, saved and said, in a private archive on your machine, with one door for every agent. A template you own, about 1,300 lines, MIT.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://commonplace-eight-sable.vercel.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -93,12 +93,12 @@
 <span class="line cmd end"><b class="p">$</b> <span class="t"></span><span class="cur"></span></span>
     </div>
   </figure>
-  <p class="hero-note">Ten sources in one archive. Three are built in today, the rest are coming or one ask away.</p>
+  <p class="hero-note">Ten sources in one archive. Six are built in today, the rest are one ask away.</p>
 </section>
 
 <ul class="strip" aria-label="Four facts">
   <li><b>1</b> archive: texts, mail, charges, history, saves, code, prompts</li>
-  <li><b>~1,000</b> lines of TypeScript</li>
+  <li><b>~1,300</b> lines of TypeScript</li>
   <li><b>0</b> dependencies: Bun and its SQLite</li>
   <li><b>MIT</b>, and a template you own</li>
 </ul>
@@ -156,7 +156,7 @@
   <p class="rubric">03 <span>sources</span></p>
   <div class="stack">
     <h2 id="sources-title" class="measure">Sources, by how much setup they need.</h2>
-    <p class="line-copy measure">Three work the moment you sync. Four are on the way. Everything else is one ask away.</p>
+    <p class="line-copy measure">Four are built in, three read an export you download, and everything else is one ask away.</p>
   </div>
 
   <h3 class="tier">Built in</h3>
@@ -164,22 +164,22 @@
     <table>
       <thead><tr><th>source</th><th>what</th><th>needs</th></tr></thead>
       <tbody>
-        <tr><td><code class="src">github</code></td><td class="what">your pull requests, issues and stars</td><td><code>gh</code> signed in</td></tr>
-        <tr><td><code class="src">prompts</code></td><td class="what">every prompt you typed into Claude Code and Codex</td><td>nothing, read from disk</td></tr>
+        <tr><td><code class="src">github</code></td><td class="what">your pull requests, issues, reviews, review comments, stars and commits</td><td><code>gh</code> signed in</td></tr>
+        <tr><td><code class="src">prompts</code></td><td class="what">every prompt you typed into Claude Code, Codex and Pi, or sent from chat apps</td><td>nothing, read from disk</td></tr>
         <tr><td><code class="src">imessage</code></td><td class="what">your conversations</td><td>macOS, Full Disk Access</td></tr>
+        <tr><td><code class="src">x</code></td><td class="what">your bookmarks with their folders, likes, posts and replies</td><td>a browser on your machine, signed in once</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h3 class="tier">Coming built in <span class="chip amber">coming</span></h3>
+  <h3 class="tier">From an export</h3>
   <div class="table-wrap">
-    <table class="coming">
-      <thead><tr><th>source</th><th>what</th><th>needs</th></tr></thead>
+    <table>
+      <thead><tr><th>source</th><th>what</th><th>the export</th></tr></thead>
       <tbody>
-        <tr><td><span class="src">X archive</span></td><td class="what">your posts, likes, DMs and Grok chats, all of them</td><td>the archive from X's settings</td></tr>
-        <tr><td><span class="src">X</span></td><td class="what">new posts, likes and bookmarks every day</td><td>an X developer app, cents a day</td></tr>
-        <tr><td><span class="src">Google Takeout</span></td><td class="what">searches, YouTube, Maps, Chrome, Calendar</td><td>a Takeout export</td></tr>
-        <tr><td><span class="src">Raindrop</span></td><td class="what">bookmarks and collections</td><td>a CSV export or API token</td></tr>
+        <tr><td><code class="src">takeout</code></td><td class="what">searches, YouTube watches, comments and playlists, Maps places, Chrome</td><td>Google Takeout</td></tr>
+        <tr><td><code class="src">x-archive</code></td><td class="what">every post, like, follow, DM and Grok chat</td><td>the archive from X's settings</td></tr>
+        <tr><td><code class="src">raindrop</code></td><td class="what">bookmarks, collections, tags and highlights</td><td>Raindrop's CSV backup</td></tr>
       </tbody>
     </table>
   </div>
@@ -193,7 +193,7 @@
     <div><dt>Chat</dt><dd><span>Slack</span><span>Discord</span><span>Telegram exports</span></dd></div>
     <div><dt>Saves</dt><dd><span>Instagram</span><span>Pinterest</span><span>Reddit</span><span>Readwise</span></dd></div>
     <div><dt>Notes</dt><dd><span>Obsidian</span><span>any folder of markdown</span><span>Apple Notes</span></dd></div>
-    <div><dt>Media</dt><dd><span>YouTube via Takeout</span><span>Letterboxd</span><span>Goodreads</span><span>Spotify</span></dd></div>
+    <div><dt>Media</dt><dd><span>Letterboxd</span><span>Goodreads</span><span>Spotify</span></dd></div>
   </dl>
   <figure class="term chat small">
     <figcaption class="term-head"><b>claude</b><span>skill · add-source</span></figcaption>
@@ -233,7 +233,7 @@
       <div class="node door"><b>commonplace</b><span>CLI ── search · timeline · show · stats</span><b class="sub">└── mcp</b><span>Claude Code, Codex, Claude Desktop, any MCP client</span></div>
     </figure>
     <ol class="steps">
-      <li><h3>Fetch.</h3><p><code>commonplace sync</code> takes one snapshot per source per day into <code>data/raw/&lt;source&gt;/&lt;date&gt;/</code>. Each one is written through a <code>.partial</code> directory and made read-only, so a crash never leaves half a snapshot. The Claude Code plugin runs it whenever a session ends.</p></li>
+      <li><h3>Fetch.</h3><p><code>commonplace sync</code> takes one snapshot per source per day into <code>data/raw/&lt;source&gt;/&lt;date&gt;/</code>. Each one is written through a <code>.partial</code> directory and made read-only, so a crash never leaves half a snapshot. On a Mac, <code>commonplace install</code> runs it on its own, and the Claude Code plugin runs it whenever a session ends.</p></li>
       <li><h3>Build.</h3><p>Every build starts from empty and replays every snapshot into one SQLite database. The same <code>raw/</code> always gives the same database, so you can fix a source and rebuild years of history.</p></li>
       <li><h3>Read.</h3><p>The CLI and the MCP server go through the same store, which shows a reader only the sources you allow. <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and read-only <code>sql</code> for you.</p></li>
     </ol>
@@ -251,7 +251,7 @@
       <figcaption class="term-head"><b>commonplace.config.ts</b><span>typescript</span></figcaption>
       <div class="term-body">
 <span class="line"><span class="kw">export default</span> defineConfig({</span>
-<span class="line l-sources">  sources: [github, prompts, imessage],</span>
+<span class="line l-sources">  sources: [github(), prompts(), imessage()],</span>
 <span class="line gap"></span>
 <span class="line l-mcp">  mcp: [<span class="str">"github"</span>, <span class="str">"prompts"</span>],</span>
 <span class="line gap"></span>
@@ -272,12 +272,12 @@
   <p class="rubric">06 <span>yours</span></p>
   <div class="stack">
     <h2 id="yours-title" class="measure">A template you own. Not an app you install.</h2>
-    <p class="line-copy measure">About a thousand lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.</p>
+    <p class="line-copy measure">About 1,300 lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.</p>
   </div>
   <div class="cards">
     <article>
       <h3>Read it.</h3>
-      <p><code>src/</code> is eight files. One schema, one builder, one store, two doors.</p>
+      <p><code>src/</code> is ten small files. One schema, one builder, one store, two doors.</p>
       <pre class="tree">src/schema.ts   <span class="c">things, events, links, verbs</span>
 src/build.ts    <span class="c">replays snapshots; the only writer</span>
 src/store.ts    <span class="c">every read, filtered by what you allow</span>
@@ -295,7 +295,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
     </article>
     <article>
       <h3>Keep it.</h3>
-      <p>Your repo, your data, your rules. Updates to the template never touch <code>data/</code> or your config.</p>
+      <p>Your repo, your data, your rules. Updates to the template never touch <code>data/</code>.</p>
       <pre class="tree">my-commonplace/
   commonplace.config.ts   <span class="c">yours</span>
   sources/                <span class="c">yours, plus ours</span>
@@ -319,6 +319,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
 <span class="line"><b class="p">$</b> bun install</span>
 <span class="line"><b class="p">$</b> bun add -g "$PWD"</span>
 <span class="line"><b class="p">$</b> commonplace sync</span>
+<span class="line"><b class="p">$</b> commonplace install</span>
       </div>
     </figure>
     <div class="connect">
@@ -344,7 +345,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
 
 <aside class="next" aria-label="Next">
   <span class="chip">next</span>
-  <p>Remote MCP for ChatGPT and claude.ai on the web. The sources marked coming. Yours, if you send one back.</p>
+  <p>Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser history. Yours, if you send one back.</p>
 </aside>
 
 </main>

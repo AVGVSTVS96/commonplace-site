@@ -5,7 +5,7 @@
 ## Personality
 
 - **Plain.** It says what it does in the words a README would use. No marketing voice, no setup-and-punchline.
-- **Yours.** A template you fork, not an app you install. Everything on the page should look readable, editable, forkable: file trees, config, one-file sources.
+- **Yours.** A template you own, not an app you install. Everything on the page should look readable, editable, forkable: file trees, config, one-file sources.
 - **Quiet about privacy, loud about structure.** Trust comes from showing the mechanism (dated read-only snapshots, one door, sources you allow), not from a lock icon.
 - **Data-powerful, not data-dashboard.** Numbers are real and set in a ledger, never in a KPI tile.
 - **Developer, in the sense of hackable.** Terminal and tree views, but light, airy and friendly. Never the dark-neovim-rice look.
