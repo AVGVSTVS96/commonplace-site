@@ -378,6 +378,14 @@ h3 {
   max-width: 34em;
   text-wrap: pretty;
 }
+.lede-more {
+  margin-top: calc(-1 * var(--s3));
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 34em;
+  text-wrap: pretty;
+}
 @media (min-width: 64rem) {
   .hero {
     grid-template-columns: minmax(0, 5fr) minmax(0, 8fr);
@@ -387,6 +395,9 @@ h3 {
   .hero-note {
     grid-column: 2;
     align-items: center;
+  }
+  .hero-line {
+    font-size: min(3.5rem, 4.2vw);
   }
 }
 
@@ -666,6 +677,7 @@ td.what {
 }
 .src {
   font-weight: 500;
+  white-space: nowrap;
 }
 table.coming td {
   color: var(--ink-3);
@@ -875,6 +887,11 @@ table.coming td.what {
 }
 .rules li.on {
   border-left-color: var(--red);
+}
+.rules .after {
+  border-left-color: transparent;
+  font: 400 0.8125rem/1.6 var(--font-mono);
+  color: var(--ink-3);
 }
 .term-k {
   font-weight: 560;

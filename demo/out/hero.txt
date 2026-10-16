@@ -1,0 +1,29 @@
+$ commonplace search kyoto --limit 5
+            chat        chat:imessage:iMessage;+;chat482913570  (kyoto crew)
+            «kyoto» crew
+            query       query:ryokan kyoto  (ryokan kyoto)
+            ryokan «kyoto»
+            url         url:japan-guide.com/railpass/kyoto  (Kyoto by train: is the JR Pass worth it?)
+            «Kyoto» by train: is the JR Pass worth it?
+2026-10-10  prompted    prompts:e6a8fb6dd5de29d7  (trips)
+            cheapest way from kansai airport to «kyoto» with two bags
+2026-10-15  received    imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A54  (kyoto crew)
+            found a ramen counter by «kyoto» station that opens at 6am
+
+$ commonplace timeline --limit 3
+2026-10-16  prompted    prompts:d21ebee323639f1d  (tidepool)
+            the tide chart is unreadable in dark mode. follow the system theme, no toggle
+2026-10-16  sent        imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A55  (+15550103)
+            running late, save me a seat
+2026-10-15  liked       liked:x:tweet:1846203117740000103
+            a database in one file, with full-text search built in, on every phone you've ever owned
+
+$ commonplace stats
+github         latest 2026-10-16  3 snapshot(s)  2 things  3 events
+imessage       latest 2026-10-16  3 snapshot(s)  2 things  5 events
+prompts        latest 2026-10-16  3 snapshot(s)  3 things  5 events
+raindrop       latest 2026-10-13  1 snapshot(s)  3 things  3 events
+takeout        latest 2026-10-15  1 snapshot(s)  5 things  5 events
+x              latest 2026-10-16  3 snapshot(s)  4 things  4 events
+kinds  tweet 4 · session 3 · url 3 · chat 2 · query 2 · video 2 · place 1 · pr 1 · repo 1
+verbs  saved 6 · prompted 5 · sent 3 · committed 2 · received 2 · searched 2 · watched 2 · liked 1 · opened 1 · posted 1

@@ -40,7 +40,7 @@ const hero = document.querySelector<HTMLElement>("[data-play]");
 if (hero && !reducedMotion) void document.fonts.ready.then(() => replay(hero));
 
 const config = document.querySelector<HTMLElement>(".config")!;
-const rules = [...config.querySelectorAll<HTMLElement>(".rules li")];
+const rules = [...config.querySelectorAll<HTMLElement>(".rules li[data-line]")];
 const highlight = (rule: HTMLElement) => {
   config.dataset.hl = rule.dataset.line;
   for (const other of rules) other.classList.toggle("on", other === rule);

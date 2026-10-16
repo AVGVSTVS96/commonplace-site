@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>commonplace · your personal data kit for agents</title>
-<meta name="description" content="A commonplace book for the age of agents. commonplace copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it. A template you own, about 1,300 lines, MIT.">
+<meta name="description" content="Your personal data kit for agents. commonplace brings your accounts, local files and exports into one archive on your machine, and your agents search it through a CLI or MCP server. A template you own, MIT.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="commonplace · your personal data kit for agents">
-<meta property="og:description" content="A commonplace book for the age of agents. Everything you've made, saved and said, in a private archive on your machine, with one door for every agent. A template you own, about 1,300 lines, MIT.">
+<meta property="og:description" content="Your personal data, searchable by your agents. Accounts, local files and exports in one archive on your machine, read through a CLI or MCP server. A template you own, MIT.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://commonplace-eight-sable.vercel.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -50,8 +50,9 @@
   <div class="hero-copy">
     <h1 class="mark"><svg role="img" aria-label="commonplace"><use href="#wordmark"/></svg></h1>
     <p class="tagline">your personal data kit for agents</p>
-    <p class="hero-line" id="hero-title">Everything you've made, saved and said.</p>
-    <p class="lede">A private archive that keeps itself current, with one door for every agent.</p>
+    <p class="hero-line" id="hero-title">Your personal data, searchable by your agents.</p>
+    <p class="lede">Bring accounts, local files and exports into one archive on your machine. Connect agents through the CLI or MCP.</p>
+    <p class="lede-more">Ask your coding agent to add another source. It writes the code in your repo.</p>
     <div class="actions">
       <a class="btn" href="https://github.com/new?template_name=commonplace&template_owner=AVGVSTVS96"><span class="k">$</span>Use this template</a>
       <a class="btn ghost" href="https://github.com/AVGVSTVS96/commonplace"><span class="k">↗</span>Read the source</a>
@@ -61,45 +62,48 @@
   <figure class="term hero-term" data-play>
     <figcaption class="term-head"><b>~/my-commonplace</b><span>bash</span></figcaption>
     <div class="term-body">
-<span class="line cmd"><b class="p">$</b> <span class="t">commonplace search "japan trip"</span></span>
-<span class="line">2026-09-28  txn      <span class="id">bank:txn:7a3e9c1d</span>  <span class="d ti">(ANA Airlines  $1,184.20)</span></span>
-<span class="line">2026-09-27  email    <span class="id">gmail:msg:18f2c0a4b</span>  <span class="d ti">(Flight to Tokyo confirmed)</span></span>
-<span class="line">2026-09-21  post     <span class="id">url:redd.it/1g4x2k</span>  <span class="d ti">(Japan in two weeks: what worked)</span></span>
-<span class="line">2026-09-19  video    <span class="id">yt:video:kX9rT2mQ4bA</span>  <span class="d ti">(Tokyo on a budget, 10 days)</span></span>
-<span class="line">2026-09-18  message  <span class="id">chat:imessage:c81f4e</span>  <span class="d ti">("<span class="hl">japan</span> <span class="hl">trip</span> is on. april?")</span></span>
-<span class="line">2026-09-14  page     <span class="id">url:japan-guide.com/jrpass</span>  <span class="d ti">(JR Pass, worth it?)</span></span>
+<!-- demo:hero -->
+<span class="line cmd"><b class="p">$</b> <span class="t">commonplace search kyoto --limit 5</span></span>
+<span class="line">            chat        <span class="id">chat:imessage:iMessage;+;chat482913570</span>  <span class="d ti">(kyoto crew)</span></span>
+<span class="line"><span class="d">            <span class="hl">«kyoto»</span> crew</span></span>
+<span class="line">            query       <span class="id">query:ryokan kyoto</span>  <span class="d ti">(ryokan kyoto)</span></span>
+<span class="line"><span class="d">            ryokan <span class="hl">«kyoto»</span></span></span>
+<span class="line">            url         <span class="id">url:japan-guide.com/railpass/kyoto</span>  <span class="d ti">(Kyoto by train: is the JR Pass worth it?)</span></span>
+<span class="line"><span class="d">            <span class="hl">«Kyoto»</span> by train: is the JR Pass worth it?</span></span>
+<span class="line">2026-10-10  prompted    <span class="id">prompts:e6a8fb6dd5de29d7</span>  <span class="d ti">(trips)</span></span>
+<span class="line"><span class="d">            cheapest way from kansai airport to <span class="hl">«kyoto»</span> with two bags</span></span>
+<span class="line">2026-10-15  received    <span class="id">imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A54</span>  <span class="d ti">(kyoto crew)</span></span>
+<span class="line"><span class="d">            found a ramen counter by <span class="hl">«kyoto»</span> station that opens at 6am</span></span>
 <span class="line gap"></span>
-<span class="line cmd"><b class="p">$</b> <span class="t">commonplace timeline --since 2026-10-07 --limit 5</span></span>
-<span class="line">2026-10-08  prompted    <span class="id">prompts:3e9a71c8</span>  <span class="d ti">("plan japan from my saves")</span></span>
-<span class="line">2026-10-08  watched     <span class="id">yt:video:p7Lq0WnE3xY</span>  <span class="d ti">(Shinkansen timetables)</span></span>
-<span class="line">2026-10-08  paid        <span class="id">bank:txn:9d02b6f1</span>  <span class="d ti">(PG&amp;E  $142.60)</span></span>
-<span class="line">2026-10-07  sent        <span class="id">chat:imessage:c81f4e</span>  <span class="d ti">("landed. dinner?")</span></span>
-<span class="line">2026-10-07  saved       <span class="id">url:x.com/i/status/18834920</span>  <span class="d ti">(a thread on kerning)</span></span>
+<span class="line cmd"><b class="p">$</b> <span class="t">commonplace timeline --limit 3</span></span>
+<span class="line">2026-10-16  prompted    <span class="id">prompts:d21ebee323639f1d</span>  <span class="d ti">(tidepool)</span></span>
+<span class="line"><span class="d">            the tide chart is unreadable in dark mode. follow the system theme, no toggle</span></span>
+<span class="line">2026-10-16  sent        <span class="id">imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A55</span>  <span class="d ti">(+15550103)</span></span>
+<span class="line"><span class="d">            running late, save me a seat</span></span>
+<span class="line">2026-10-15  liked       <span class="id">liked:x:tweet:1846203117740000103</span></span>
+<span class="line"><span class="d">            a database in one file, with full-text search built in, on every phone you've ever owned</span></span>
 <span class="line gap"></span>
 <span class="line cmd"><b class="p">$</b> <span class="t">commonplace stats</span></span>
-<span class="line">gmail      latest <b class="now">2026-10-08</b>  31 snapshot(s)  48211 things  52904 events</span>
-<span class="line">chrome     latest <b class="now">2026-10-08</b>  31 snapshot(s)  39480 things  61117 events</span>
-<span class="line">youtube    latest <b class="now">2026-10-08</b>  31 snapshot(s)  12306 things  14872 events</span>
-<span class="line">imessage   latest <b class="now">2026-10-08</b>  31 snapshot(s)   9418 things  88250 events</span>
-<span class="line">x          latest <b class="now">2026-10-08</b>  31 snapshot(s)   7905 things   9131 events</span>
-<span class="line">bank       latest <b class="now">2026-10-08</b>  31 snapshot(s)   3266 things   3266 events</span>
-<span class="line">github     latest <b class="now">2026-10-08</b>  31 snapshot(s)   2521 things   1404 events</span>
-<span class="line">reddit     latest 2026-10-06   4 snapshot(s)   2140 things   2588 events</span>
-<span class="line">instagram  latest 2026-10-05   2 snapshot(s)   1972 things   1972 events</span>
-<span class="line">prompts    latest <b class="now">2026-10-08</b>  31 snapshot(s)   1170 things   1158 events</span>
-<span class="line"><span class="d">kinds  email 48211 · page 39480 · video 12306 · message 9418 · post 9877 · …</span></span>
-<span class="line"><span class="d">verbs  visited 61117 · received 52904 · sent 88250 · watched 14872 · saved 11204 …</span></span>
+<span class="line">github         latest <b class="now">2026-10-16</b>  3 snapshot(s)  2 things  3 events</span>
+<span class="line">imessage       latest <b class="now">2026-10-16</b>  3 snapshot(s)  2 things  5 events</span>
+<span class="line">prompts        latest <b class="now">2026-10-16</b>  3 snapshot(s)  3 things  5 events</span>
+<span class="line">raindrop       latest 2026-10-13  1 snapshot(s)  3 things  3 events</span>
+<span class="line">takeout        latest 2026-10-15  1 snapshot(s)  5 things  5 events</span>
+<span class="line">x              latest <b class="now">2026-10-16</b>  3 snapshot(s)  4 things  4 events</span>
+<span class="line"><span class="d">kinds  tweet 4 · session 3 · url 3 · chat 2 · query 2 · video 2 · place 1 · pr 1 · repo 1</span></span>
+<span class="line"><span class="d">verbs  saved 6 · prompted 5 · sent 3 · committed 2 · received 2 · searched 2 · watched 2 · liked 1 · opened 1 · posted 1</span></span>
 <span class="line gap"></span>
 <span class="line cmd end"><b class="p">$</b> <span class="t"></span><span class="cur"></span></span>
+<!-- /demo:hero -->
     </div>
   </figure>
-  <p class="hero-note">Ten sources in one archive. Six work today; the rest are one ask away.</p>
+  <p class="hero-note">Real output from the shipped sources, run on a small made-up archive.</p>
 </section>
 
 <ul class="strip" aria-label="Four facts">
-  <li><b>1</b> archive: texts, mail, charges, history, saves, code, prompts</li>
-  <li><b>~1,300</b> lines of TypeScript</li>
-  <li><b>0</b> dependencies: Bun and its SQLite</li>
+  <li><b>1</b> archive: texts, saves, videos, searches, posts, code, prompts</li>
+  <li><b>~1,300</b> lines in the core</li>
+  <li><b>0</b> runtime packages: Bun and its SQLite</li>
   <li><b>MIT</b>, and a template you own</li>
 </ul>
 
@@ -107,23 +111,25 @@
   <p class="rubric">01 <span>everything</span></p>
   <div class="split">
     <div class="split-copy">
-      <h2 id="everything-title">Not just your GitHub. Everything.</h2>
-      <p class="line-copy">Your texts, your mail, your card charges and bills, your browser and YouTube history, what you saved, what you liked, your notes and your calendar, every prompt you ever typed. All the small things that show what you pay attention to.</p>
+      <h2 id="everything-title">Bring your history together.</h2>
+      <p class="line-copy">Search messages, saved posts, watched videos and past prompts in one place. Add more sources with your agent.</p>
       <p class="caption">One shape for all of it: things, events, links. Same page saved in two apps is one record.</p>
     </div>
-    <ol class="ledger-list" aria-label="A timeline, newest first">
-      <li><b>charged</b><span>$1,184.20 to ANA Airlines</span></li>
-      <li><b>received</b><span>"Your flight to Tokyo is confirmed"</span></li>
-      <li><b>saved</b><span>a thread on two weeks in Japan</span></li>
-      <li><b>watched</b><span>a talk on structured concurrency</span></li>
-      <li><b>sent</b><span>"landed. dinner?"</span></li>
-      <li><b>paid</b><span>PG&amp;E, $142.60</span></li>
-      <li><b>visited</b><span>a page on commonplace books</span></li>
-      <li><b>liked</b><span>a post about kerning by hand</span></li>
-      <li><b>prompted</b><span>"make the sidebar follow the system theme"</span></li>
-      <li><b>commented</b><span>on a review: "this allocates on every keystroke"</span></li>
-      <li><b>searched</b><span>"how did Locke index his notebook"</span></li>
-      <li><b>saved</b><span>an article about SQLite's write-ahead log</span></li>
+    <ol class="ledger-list" aria-label="The made-up archive's timeline, newest first">
+<!-- demo:ledger -->
+<li><b>prompted</b><span>"the tide chart is unreadable in dark mode. follow the system theme, no toggle"</span></li>
+<li><b>sent</b><span>"running late, save me a seat"</span></li>
+<li><b>liked</b><span>"a database in one file, with full-text search built in, on every phone you've ever owned"</span></li>
+<li><b>received</b><span>"found a ramen counter by kyoto station that opens at 6am"</span></li>
+<li><b>posted</b><span>"first pass at kerning the tidepool wordmark by hand. the r and n were fighting"</span></li>
+<li><b>committed</b><span>"Read tide tables in the station's local time"</span></li>
+<li><b>prompted</b><span>"add a test for the tide table parser, the noaa file with the blank rows"</span></li>
+<li><b>watched</b><span>Kyoto in three days, on foot</span></li>
+<li><b>searched</b><span>ryokan kyoto</span></li>
+<li><b>saved</b><span>"two weeks in kyoto and osaka. what worked: arashiyama before 8am, fushimi inari at dawn…"</span></li>
+<li><b>opened</b><span>Kern the wordmark by hand</span></li>
+<li><b>committed</b><span>"Kern the wordmark: r, n and the tail of the p"</span></li>
+<!-- /demo:ledger -->
     </ol>
   </div>
 </section>
@@ -131,32 +137,39 @@
 <section id="why" aria-labelledby="why-title">
   <p class="rubric">02 <span>why</span></p>
   <div class="stack">
-    <h2 id="why-title" class="measure">This is how an agent learns your judgment.</h2>
-    <p class="line-copy measure">Your taste isn't in any one file. It's in what you saved, what you starred, what you rejected, and how you asked last time. An agent that can search that stops guessing what you mean.</p>
+    <h2 id="why-title" class="measure">Let your agent look up the history behind your request.</h2>
+    <p class="line-copy measure">It can find what you saved, what you said and how you asked last time.</p>
   </div>
   <figure class="term chat">
-    <figcaption class="term-head"><b>claude</b><span>mcp · commonplace</span></figcaption>
+    <figcaption class="term-head"><b>claude</b><span>bash · commonplace</span></figcaption>
     <div class="term-body">
-<span class="line say"><i class="who you">you</i>plan the japan trip. same vibe as portugal, under $4k, mid april.</span>
+<span class="line say"><i class="who you">you</i>make me a packing list for kyoto</span>
 <span class="line gap"></span>
-<span class="line say"><i class="who">agent</i><span class="d">search</span> "portugal"  <span class="d">·</span>  <span class="d">timeline</span> --verb charged --since 2025-05</span>
-<span class="line"><i class="who"></i>2025-05-12  txn      <span class="id">bank:txn:2c7e40a9</span>  <span class="d">(TAP Air Portugal  $812.40)</span></span>
-<span class="line"><i class="who"></i>2025-05-14  txn      <span class="id">bank:txn:5b19f3d2</span>  <span class="d">(Casa do Conto  $698.00  ·  4 nights)</span></span>
-<span class="line"><i class="who"></i>2025-05-18  message  <span class="id">chat:imessage:c81f4e</span>  <span class="d">("that tiny hotel in porto was the best part")</span></span>
-<span class="line"><i class="who"></i>2026-09-21  post     <span class="id">url:redd.it/1g4x2k</span>  <span class="d">(Japan in two weeks: what worked)</span></span>
-<span class="line"><i class="who"></i>2026-09-28  txn      <span class="id">bank:txn:7a3e9c1d</span>  <span class="d">(ANA Airlines  $1,184.20)</span></span>
+<!-- demo:why -->
+<span class="line"><i class="who">agent</i><b class="p">$</b> commonplace search "packing list"</span>
+<span class="line"><i class="who"></i>2026-05-04  prompted    <span class="id">prompts:b70990a34e90138a</span>  <span class="d ti">(trips)</span></span>
+<span class="line"><i class="who"></i><span class="d">            <span class="hl">«packing»</span> <span class="hl">«list»</span> for lisbon. carry-on only, i never check a bag</span></span>
+<span class="line"><i class="who"></i><b class="p">$</b> commonplace search "kyoto april"</span>
+<span class="line"><i class="who"></i>2026-10-12  received    <span class="id">imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A51</span>  <span class="d ti">(kyoto crew)</span></span>
+<span class="line"><i class="who"></i><span class="d">            ryokan in <span class="hl">«kyoto»</span> is booked! <span class="hl">«april»</span> 14 to 18, right by the philosopher's path</span></span>
+<span class="line"><i class="who"></i><b class="p">$</b> commonplace search fushimi</span>
+<span class="line"><i class="who"></i>            place       <span class="id">place:17291468421904536081</span>  <span class="d ti">(Fushimi Inari Taisha)</span></span>
+<span class="line"><i class="who"></i><span class="d">            <span class="hl">«Fushimi»</span> Inari Taisha</span></span>
+<span class="line"><i class="who"></i>2026-10-14  tweet       <span class="id">x:tweet:1846203117740000102</span></span>
+<span class="line"><i class="who"></i><span class="d">            …arashiyama before 8am, <span class="hl">«fushimi»</span> inari at dawn (two hours of stairs, wear real shoes), one ryokan night is plenty</span></span>
+<!-- /demo:why -->
 <span class="line gap"></span>
-<span class="line say"><i class="who">agent</i>Portugal was nine days, $3,120, one small hotel you loved and no tours. You already bought the ANA flight for April 14. A ryokan in Kyoto like the Porto place, and the Reddit itinerary you saved cut to ten days, lands at $3,860. Want the day-by-day?</span>
+<span class="line say"><i class="who">agent</i>Carry-on only, like your Lisbon list. You're in Kyoto April 14 to 18, so five days of clothes, and real shoes for the two hours of stairs at Fushimi Inari. Want it as a checklist?</span>
     </div>
   </figure>
-  <p class="closing measure">The more an agent knows about you, the less you have to say, and the more you can hand it.</p>
+  <p class="closing measure">The more an agent can look up, the less you have to say, and the more you can hand it.</p>
 </section>
 
 <section id="sources" aria-labelledby="sources-title">
   <p class="rubric">03 <span>sources</span></p>
   <div class="stack">
     <h2 id="sources-title" class="measure">Sources, by how much setup they need.</h2>
-    <p class="line-copy measure">Four are built in, three read an export you download, and everything else is one ask away.</p>
+    <p class="line-copy measure">Seven ship today: four fetch on their own and three read an export you download. Your agent can write more.</p>
   </div>
 
   <h3 class="tier">Built in</h3>
@@ -167,7 +180,7 @@
         <tr><td><code class="src">github</code></td><td class="what">your pull requests, issues, reviews, review comments, stars and commits</td><td><code>gh</code> signed in</td></tr>
         <tr><td><code class="src">prompts</code></td><td class="what">every prompt you typed into Claude Code, Codex and Pi, or sent from chat apps</td><td>nothing, read from disk</td></tr>
         <tr><td><code class="src">imessage</code></td><td class="what">your conversations</td><td>macOS, Full Disk Access</td></tr>
-        <tr><td><code class="src">x</code></td><td class="what">your bookmarks with their folders, likes, posts and replies</td><td>a browser on your machine, signed in once</td></tr>
+        <tr><td><code class="src">x</code></td><td class="what">your bookmarks with their folders, likes, posts and replies</td><td><code>agent-browser</code>, <a href="https://github.com/AVGVSTVS96/commonplace#x">signed in to X</a>. No paid API key.</td></tr>
       </tbody>
     </table>
   </div>
@@ -184,8 +197,8 @@
     </table>
   </div>
 
-  <h3 class="tier">One ask away</h3>
-  <p class="line-copy measure">Anything with an export, a local database, an API or a CLI. Ask your agent, and the <code>add-source</code> skill has it write the source: one file, usually under 80 lines.</p>
+  <h3 class="tier">Written by your agent</h3>
+  <p class="line-copy measure">Anything with an export, a local database, an API or a CLI. Ask your agent, and the <code>add-source</code> skill has it write the source, run it and check what landed: one file in your repo.</p>
   <dl class="chips">
     <div><dt>Money</dt><dd><span>bank and card CSV exports</span><span>Apple Card</span><span>receipts in Gmail</span></dd></div>
     <div><dt>Browsing</dt><dd><span>Chrome</span><span>Safari</span><span>Firefox</span><span>Edge</span><span>Arc</span><span>any other browser</span></dd></div>
@@ -198,26 +211,31 @@
   <figure class="term chat small">
     <figcaption class="term-head"><b>claude</b><span>skill · add-source</span></figcaption>
     <div class="term-body">
-<span class="line say"><i class="who you">you</i>add my obsidian vault to commonplace</span>
+<span class="line say"><i class="who you">you</i>add my browser history to commonplace</span>
 <span class="line gap"></span>
-<span class="line"><i class="who">agent</i>wrote <span class="id">sources/obsidian.ts</span> <span class="d">(61 lines)</span></span>
-<span class="line"><i class="who"></i>added it to <span class="id">commonplace.config.ts</span></span>
-<span class="line"><i class="who"></i><b class="p">$</b> commonplace sync</span>
-<span class="line"><i class="who"></i>obsidian   <b class="now">2026-10-08</b>   1,204 things   1,204 events</span>
+<!-- demo:add-source -->
+<span class="line say"><i class="who">agent</i>found Chrome's history and wrote <span class="id">sources/chrome.ts</span> <span class="d">(58 lines)</span></span>
+<span class="line say"><i class="who"></i>added it to <span class="id">commonplace.config.ts</span> and ran commonplace sync</span>
+<span class="line"><i class="who"></i><b class="p">$</b> commonplace timeline --verb visited --limit 3</span>
+<span class="line"><i class="who"></i>2026-10-16  visited     <span class="id">chrome:4182</span>  <span class="d ti">(prefers-color-scheme - CSS | MDN)</span></span>
+<span class="line"><i class="who"></i>2026-10-15  visited     <span class="id">chrome:4181</span>  <span class="d ti">(Kyoto by train: is the JR Pass worth it?)</span></span>
+<span class="line"><i class="who"></i><span class="d">            Which passes pay off for Kyoto, Osaka and Nara day trips</span></span>
+<span class="line"><i class="who"></i>2026-10-15  visited     <span class="id">chrome:4180</span>  <span class="d ti">(Tide Predictions - NOAA Tides &amp; Currents)</span></span>
+<!-- /demo:add-source -->
     </div>
   </figure>
-  <p class="caption">The skill works for any agent that reads files, not just Claude Code.</p>
+  <p class="caption">Any coding agent with file and terminal access can follow the skill, not just Claude Code.</p>
 </section>
 
 <section id="how" aria-labelledby="how-title">
   <p class="rubric">04 <span>how it works</span></p>
   <div class="stack">
-    <h2 id="how-title" class="measure">Three steps, one direction.</h2>
-    <p class="line-copy measure">Fetch writes. Build reads snapshots. Agents read the database through one door. Nothing goes the other way.</p>
+    <h2 id="how-title" class="measure">Keep the snapshots. Rebuild the archive.</h2>
+    <p class="line-copy measure">Sources save dated snapshots. Build combines them in SQLite. Agents search through read-only tools.</p>
   </div>
   <div class="split how">
-    <figure class="flow" aria-label="Your accounts, fetched into dated snapshots in data/raw, built into commonplace.db, read through the CLI and MCP">
-      <div class="node soft"><b>your accounts</b><span>GitHub, Claude Code, Codex, …</span></div>
+    <figure class="flow" aria-label="Your accounts, local files and exports, fetched into dated snapshots in data/raw, built into commonplace.db, read through the CLI and MCP">
+      <div class="node soft"><b>your data</b><span>accounts, local files, exports</span></div>
       <div class="wire"><span>fetch: one dated snapshot per source per day</span></div>
       <div class="node"><b>data/raw/</b><span>read-only, kept forever, never in git</span><pre class="snapshots">├ github/
 │ ├ 2026-10-06/
@@ -233,9 +251,9 @@
       <div class="node door"><b>commonplace</b><span>CLI ── search · timeline · show · stats</span><b class="sub">└── mcp</b><span>Claude Code, Codex, Claude Desktop, any MCP client</span></div>
     </figure>
     <ol class="steps">
-      <li><h3>Fetch.</h3><p><code>commonplace sync</code> takes one snapshot per source per day into <code>data/raw/&lt;source&gt;/&lt;date&gt;/</code>. Each one is written through a <code>.partial</code> directory and made read-only, so a crash never leaves half a snapshot. On a Mac, <code>commonplace install</code> runs it on its own, and the Claude Code plugin runs it whenever a session ends.</p></li>
+      <li><h3>Fetch.</h3><p><code>commonplace sync</code> takes one snapshot per source per day into <code>data/raw/&lt;source&gt;/&lt;date&gt;/</code>. Each one is written through a <code>.partial</code> directory and made read-only, so a crash never leaves half a snapshot. On a Mac, <code>commonplace install</code> runs it at login and when Messages changes, and the Claude Code plugin runs it when a session ends. A source with today's snapshot waits for tomorrow; an export source updates when you add a newer export.</p></li>
       <li><h3>Build.</h3><p>Every build starts from empty and replays every snapshot into one SQLite database. The same <code>raw/</code> always gives the same database, so you can fix a source and rebuild years of history.</p></li>
-      <li><h3>Read.</h3><p>The CLI and the MCP server read the same store. <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and read-only <code>sql</code> for you.</p></li>
+      <li><h3>Read.</h3><p>The CLI and the MCP server read the same store, read-only: <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and <code>sql</code> for you.</p></li>
     </ol>
   </div>
 </section>
@@ -243,8 +261,8 @@
 <section id="privacy" aria-labelledby="privacy-title">
   <p class="rubric">05 <span>privacy</span></p>
   <div class="stack">
-    <h2 id="privacy-title" class="measure">What goes in is up to you.</h2>
-    <p class="line-copy measure">Your data lives in <code>data/</code>, which never enters git. Agents read it through the CLI or MCP, never the database file, and see everything in it.</p>
+    <h2 id="privacy-title" class="measure">Choose what you collect and expose.</h2>
+    <p class="line-copy measure">Data stays in your local <code>data/</code> folder, which the template keeps out of git. Connected agents can read everything in the built archive, and may send what they read to their model provider.</p>
   </div>
   <div class="split config" data-hl="sources">
     <figure class="term code">
@@ -264,8 +282,9 @@
     </figure>
     <ul class="rules">
       <li data-line="sources"><button type="button" class="term-k"><code>sources</code></button> <span>is everything the archive holds. A source you leave off is never read.</span></li>
-      <li data-line="drop"><button type="button" class="term-k"><code>drop</code></button> <span>keeps matching messages out of the snapshot itself, so from then on they exist only in Messages.</span></li>
-      <li data-line="redact"><button type="button" class="term-k"><code>redact</code></button> <span>rules keep rows out of the database.</span></li>
+      <li data-line="drop"><button type="button" class="term-k"><code>drop</code></button> <span>keeps matching messages out of new snapshots.</span></li>
+      <li data-line="redact"><button type="button" class="term-k"><code>redact</code></button> <span>keeps rows out of the database. Raw snapshots stay on disk.</span></li>
+      <li class="after">Run <code>commonplace build</code> after changing <code>sources</code> or <code>redact</code>.</li>
     </ul>
   </div>
 </section>
@@ -273,8 +292,8 @@
 <section id="yours" aria-labelledby="yours-title">
   <p class="rubric">06 <span>yours</span></p>
   <div class="stack">
-    <h2 id="yours-title" class="measure">A template you own. Not an app you install.</h2>
-    <p class="line-copy measure">About 1,300 lines of TypeScript in your own repo, next to your own data. Read it in an afternoon. Change anything.</p>
+    <h2 id="yours-title" class="measure">Your repo, your sources, your archive.</h2>
+    <p class="line-copy measure">About 1,300 lines in the core, plus the sources. Bun and SQLite, with no runtime packages. Read it in an afternoon. Change anything.</p>
   </div>
   <div class="cards">
     <article>
@@ -310,7 +329,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
   <p class="rubric">07 <span>start</span></p>
   <div class="stack">
     <h2 id="start-title">Start</h2>
-    <p class="line-copy measure">You need Bun, and <code>gh</code> signed in for the GitHub source.</p>
+    <p class="line-copy measure">You need Bun, and <code>gh</code> signed in for the GitHub source. On a Mac, iMessage is on by default, so give your terminal Full Disk Access first. <a href="https://github.com/AVGVSTVS96/commonplace#x">X</a> is off until you sign in and add it.</p>
   </div>
   <div class="stack start">
     <figure class="term wrap">
@@ -321,7 +340,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
 <span class="line"><b class="p">$</b> bun install</span>
 <span class="line"><b class="p">$</b> bun add -g "$PWD"</span>
 <span class="line"><b class="p">$</b> commonplace sync</span>
-<span class="line"><b class="p">$</b> commonplace install</span>
+<span class="line"><b class="p">$</b> commonplace install   <span class="c"># on a Mac: sync on its own</span></span>
       </div>
     </figure>
     <div class="connect">
@@ -347,7 +366,7 @@ src/mcp.ts      <span class="c">the other</span></pre>
 
 <aside class="next" aria-label="Next">
   <span class="chip">next</span>
-  <p>Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser history. Yours, if you send one back.</p>
+  <p>Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and live browser history. Yours, if you send one back.</p>
 </aside>
 
 </main>
