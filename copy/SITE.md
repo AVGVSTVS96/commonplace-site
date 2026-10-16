@@ -133,7 +133,7 @@ Line: Four are built in, three read an export you download, and everything else 
 
 | source | what | the export |
 |---|---|---|
-| `takeout` | searches, YouTube watches, comments and playlists, Maps places, Chrome | Google Takeout |
+| `takeout` | searches, YouTube watches, comments and playlists, Maps places, Chrome | Google Takeout, My Activity as JSON |
 | `x-archive` | every post, like, follow, DM and Grok chat | the archive from X's settings |
 | `raindrop` | bookmarks, collections, tags and highlights | Raindrop's CSV backup |
 
@@ -184,12 +184,12 @@ commonplace      CLI ── search · timeline · show · stats
 
 1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. On a Mac, `commonplace install` runs it on its own, and the Claude Code plugin runs it whenever a session ends.
 2. **Build.** Every build starts from empty and replays every snapshot into one SQLite database. The same `raw/` always gives the same database, so you can fix a source and rebuild years of history.
-3. **Read.** The CLI and the MCP server go through the same store, which shows a reader only the sources you allow. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
+3. **Read.** The CLI and the MCP server go through the same store. The MCP server shows only the sources you allow, and the CLI shows you everything. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
 
 ## Privacy
 
 Section title: What agents see is up to you.
-Line: Your data lives in `data/`, which never enters git. Agents never open the database. They go through the CLI or MCP server, which only show the sources you allow.
+Line: Your data lives in `data/`, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything, to you or to an agent that runs it.
 
 *(The visual is the config file, real, with three lines highlighted in turn.)*
 
