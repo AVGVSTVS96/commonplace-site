@@ -855,7 +855,7 @@ table.coming td.what {
   overflow-wrap: anywhere;
   transition: background 120ms var(--ease);
 }
-.config[data-hl="mcp"] .l-mcp,
+.config[data-hl="drop"] .l-drop,
 .config[data-hl="redact"] .l-redact,
 .config[data-hl="sources"] .l-sources {
   background: var(--red-soft);

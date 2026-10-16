@@ -235,7 +235,7 @@
     <ol class="steps">
       <li><h3>Fetch.</h3><p><code>commonplace sync</code> takes one snapshot per source per day into <code>data/raw/&lt;source&gt;/&lt;date&gt;/</code>. Each one is written through a <code>.partial</code> directory and made read-only, so a crash never leaves half a snapshot. On a Mac, <code>commonplace install</code> runs it on its own, and the Claude Code plugin runs it whenever a session ends.</p></li>
       <li><h3>Build.</h3><p>Every build starts from empty and replays every snapshot into one SQLite database. The same <code>raw/</code> always gives the same database, so you can fix a source and rebuild years of history.</p></li>
-      <li><h3>Read.</h3><p>The CLI and the MCP server read the same store: MCP shows only the sources you allow, the CLI shows you everything. <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and read-only <code>sql</code> for you.</p></li>
+      <li><h3>Read.</h3><p>The CLI and the MCP server read the same store. <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and read-only <code>sql</code> for you.</p></li>
     </ol>
   </div>
 </section>
@@ -243,17 +243,19 @@
 <section id="privacy" aria-labelledby="privacy-title">
   <p class="rubric">05 <span>privacy</span></p>
   <div class="stack">
-    <h2 id="privacy-title" class="measure">What agents see is up to you.</h2>
-    <p class="line-copy measure">Your data lives in <code>data/</code>, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything to whoever runs it.</p>
+    <h2 id="privacy-title" class="measure">What goes in is up to you.</h2>
+    <p class="line-copy measure">Your data lives in <code>data/</code>, which never enters git. Agents read it through the CLI or MCP, never the database file, and see everything in it.</p>
   </div>
-  <div class="split config" data-hl="mcp">
+  <div class="split config" data-hl="sources">
     <figure class="term code">
       <figcaption class="term-head"><b>commonplace.config.ts</b><span>typescript</span></figcaption>
       <div class="term-body">
 <span class="line"><span class="kw">export default</span> defineConfig({</span>
-<span class="line l-sources">  sources: [github(), prompts(), imessage()],</span>
-<span class="line gap"></span>
-<span class="line l-mcp">  mcp: [<span class="str">"github"</span>, <span class="str">"prompts"</span>],</span>
+<span class="line l-sources">  sources: [</span>
+<span class="line l-sources">    github(),</span>
+<span class="line l-sources">    prompts(),</span>
+<span class="line l-sources l-drop">    imessage({ drop: (m) =&gt; m.handle === <span class="str">"+15550100"</span> }),</span>
+<span class="line l-sources">  ],</span>
 <span class="line gap"></span>
 <span class="line l-redact">  redact: (row) =></span>
 <span class="line l-redact">    row.type === <span class="str">"event"</span> &amp;&amp; <span class="str">/\b(password|api[_ -]?key|secret)\b/i</span>.test(row.text ?? <span class="str">""</span>),</span>
@@ -261,9 +263,9 @@
       </div>
     </figure>
     <ul class="rules">
-      <li data-line="mcp"><button type="button" class="term-k"><code>mcp</code></button> <span>is the list of sources any MCP client may read. The <code>--sources github</code> flag on <code>commonplace mcp</code> narrows it for one client. <code>imessage</code> is in <code>sources</code> but not in <code>mcp</code>, so your messages stay local until you add it.</span></li>
+      <li data-line="sources"><button type="button" class="term-k"><code>sources</code></button> <span>is everything the archive holds. A source you leave off is never read.</span></li>
+      <li data-line="drop"><button type="button" class="term-k"><code>drop</code></button> <span>keeps matching messages out of the snapshot itself, so they never exist anywhere but Messages.</span></li>
       <li data-line="redact"><button type="button" class="term-k"><code>redact</code></button> <span>rules keep rows out of the archive entirely. They're never written.</span></li>
-      <li data-line="sources"><button type="button" class="term-k">All or nothing per row.</button> <span>A reader sees a row only if it may read every source that contributed to it, so a hidden source can't leak through a merge.</span></li>
     </ul>
   </div>
 </section>
@@ -280,7 +282,7 @@
       <p><code>src/</code> is ten small files. One schema, one builder, one store, two doors.</p>
       <pre class="tree">src/schema.ts   <span class="c">things, events, links, verbs</span>
 src/build.ts    <span class="c">replays snapshots; the only writer</span>
-src/store.ts    <span class="c">every read, filtered by what you allow</span>
+src/store.ts    <span class="c">every read</span>
 src/cli.ts      <span class="c">one door</span>
 src/mcp.ts      <span class="c">the other</span></pre>
     </article>

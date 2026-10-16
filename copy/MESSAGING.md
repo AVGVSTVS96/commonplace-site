@@ -25,7 +25,7 @@ Runners-up, in order:
 - **Headline:** Everything you've made, saved and said.
 - **Sub line:** A private archive that keeps itself current, with one door for every agent.
 
-The headline is the scope line on its own, so it stays three short lines beside the terminal. The access line moves into the sub line. How the door works (CLI, MCP, only the sources you allow) belongs in the sections below, not the hero.
+The headline is the scope line on its own, so it stays three short lines beside the terminal. The access line moves into the sub line. How the door works (CLI and MCP, and what goes in) belongs in the sections below, not the hero.
 
 ## The story
 
@@ -46,7 +46,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 
 - **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About 1,300 lines of TypeScript you can read in an afternoon, with no runtime dependencies: Bun, its built-in SQLite, and plain files.
 - **An archive that keeps itself.** One dated, read-only snapshot per source per day in `data/raw/`, kept forever. One SQLite database rebuilt from those snapshots anytime. Full-text search.
-- **One door.** A CLI and an MCP server, both over the same store. MCP clients see only the sources you allow; the CLI shows everything. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
+- **One door.** A CLI and an MCP server, both over the same store. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
 - **Sources that agents write.** Four built in today (GitHub; every Claude Code, Codex and Pi prompt; iMessage; X, read from your own signed-in browser), three that read an export you download (Google Takeout, the X archive, Raindrop), and anything with an export, a local database, an API or a CLI is one ask away: the `add-source` skill has your agent write it, one file, usually under 80 lines.
 
 ## What it isn't
@@ -62,7 +62,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 Say these as facts, in this order, without softening or hedging:
 
 - Your data lives in `data/`, which never enters git.
-- Agents never open the database. Over MCP they see only the sources you allow, and each MCP client can be narrowed further. The CLI shows everything to whoever runs it.
+- Agents never open the database. They read it through the CLI or MCP and see everything in it, so you choose what goes in: leave a source off, `drop` messages before they're saved, `redact` rows before they're written.
 - `redact` rules keep rows out of the archive entirely. They're never written.
 - A row is visible only if the reader may read every source that contributed to it, so a hidden source can't leak through a merge.
 - Snapshots are read-only. A crash never leaves half a snapshot.
@@ -97,7 +97,7 @@ Plain words a smart friend would use. Specific over clever. Short. Let the work 
 | Unlock the full power of your personal data. | Everything you've made, saved and said, searchable by any agent. |
 | A seamless ingestion pipeline for all your sources. | One dated snapshot per source per day. Build replays them into one database. |
 | Finally, an AI that actually knows you. | An agent that can search what you saved stops guessing what you mean. |
-| Enterprise-grade privacy controls. | MCP clients only see the sources you allow. `redact` rules keep rows out entirely. |
+| Enterprise-grade privacy controls. | A source you leave off is never read. `redact` rules keep rows out entirely. |
 | Add any source in seconds with our powerful plugin API. | Ask your agent to add your Obsidian vault. The `add-source` skill writes the source: one file, usually under 80 lines. |
 | Your second brain, supercharged. | A commonplace book for the age of agents. |
 

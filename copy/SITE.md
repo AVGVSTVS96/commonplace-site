@@ -184,29 +184,31 @@ commonplace      CLI ── search · timeline · show · stats
 
 1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. On a Mac, `commonplace install` runs it on its own, and the Claude Code plugin runs it whenever a session ends.
 2. **Build.** Every build starts from empty and replays every snapshot into one SQLite database. The same `raw/` always gives the same database, so you can fix a source and rebuild years of history.
-3. **Read.** The CLI and the MCP server read the same store: MCP shows only the sources you allow, the CLI shows you everything. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
+3. **Read.** The CLI and the MCP server read the same store. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
 
 ## Privacy
 
-Section title: What agents see is up to you.
-Line: Your data lives in `data/`, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything to whoever runs it.
+Section title: What goes in is up to you.
+Line: Your data lives in `data/`, which never enters git. Agents read it through the CLI or MCP, never the database file, and see everything in it.
 
 *(The visual is the config file, real, with three lines highlighted in turn.)*
 
 ```ts
 export default defineConfig({
-  sources: [github(), prompts(), imessage()],
-
-  mcp: ["github", "prompts"],
+  sources: [
+    github(),
+    prompts(),
+    imessage({ drop: (m) => m.handle === "+15550100" }),
+  ],
 
   redact: (row) =>
     row.type === "event" && /\b(password|api[_ -]?key|secret)\b/i.test(row.text ?? ""),
 });
 ```
 
-- **`mcp`** is the list of sources any MCP client may read. The `--sources github` flag on `commonplace mcp` narrows it for one client. `imessage` is in `sources` but not in `mcp`, so your messages stay local until you add it.
+- **`sources`** is everything the archive holds. A source you leave off is never read.
+- **`drop`** keeps matching messages out of the snapshot itself, so they never exist anywhere but Messages.
 - **`redact`** rules keep rows out of the archive entirely. They're never written.
-- **All or nothing per row.** A reader sees a row only if it may read every source that contributed to it, so a hidden source can't leak through a merge.
 
 ## Yours
 
@@ -219,7 +221,7 @@ Line: About 1,300 lines of TypeScript in your own repo, next to your own data. R
    ```
    src/schema.ts   things, events, links, verbs
    src/build.ts    replays snapshots; the only writer
-   src/store.ts    every read, filtered by what you allow
+   src/store.ts    every read
    src/cli.ts      one door
    src/mcp.ts      the other
    ```
@@ -290,7 +292,7 @@ Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser his
 Short pages, one per question. Every page opens with the command or file it's about.
 
 1. **Start** — the commands above, what `sync` prints the first time, where things went (`data/raw/`, `data/commonplace.db`).
-2. **Connect an agent** — Claude Code plugin (what the plugin installs: MCP server, the skill, the SessionEnd hook), Codex, Claude Desktop, any MCP client, shell agents through the CLI. Narrowing per client with `--sources`.
+2. **Connect an agent** — Claude Code plugin (what the plugin installs: MCP server, the skill, the SessionEnd hook), Codex, Claude Desktop, any MCP client, shell agents through the CLI. 
 3. **CLI** — every command with one real example each: `search` (FTS5 syntax: words, "phrases", prefix*, OR, NOT), `timeline`, `show`, `stats`, `sync`, `build`, `mcp`, `sql`, `root`. `--json` and `--limit`.
 4. **Sources** — the three tiers (built in, from an export, one ask away), what each one needs, and what each built-in source actually fetches. X: signing in once with agent-browser.
 5. **Add a source** — the `add-source` skill, in prose: find the data, write `fetch`, write `rows`, register, run. The IDs-from-content rule, the verbs, "times are real or null". The bookmarks example in full.
