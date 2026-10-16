@@ -93,7 +93,7 @@
 <span class="line cmd end"><b class="p">$</b> <span class="t"></span><span class="cur"></span></span>
     </div>
   </figure>
-  <p class="hero-note">Ten sources in one archive. Six are built in today, the rest are one ask away.</p>
+  <p class="hero-note">Ten sources in one archive. Six work today; the rest are one ask away.</p>
 </section>
 
 <ul class="strip" aria-label="Four facts">
@@ -235,7 +235,7 @@
     <ol class="steps">
       <li><h3>Fetch.</h3><p><code>commonplace sync</code> takes one snapshot per source per day into <code>data/raw/&lt;source&gt;/&lt;date&gt;/</code>. Each one is written through a <code>.partial</code> directory and made read-only, so a crash never leaves half a snapshot. On a Mac, <code>commonplace install</code> runs it on its own, and the Claude Code plugin runs it whenever a session ends.</p></li>
       <li><h3>Build.</h3><p>Every build starts from empty and replays every snapshot into one SQLite database. The same <code>raw/</code> always gives the same database, so you can fix a source and rebuild years of history.</p></li>
-      <li><h3>Read.</h3><p>The CLI and the MCP server go through the same store. The MCP server shows only the sources you allow, and the CLI shows you everything. <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and read-only <code>sql</code> for you.</p></li>
+      <li><h3>Read.</h3><p>The CLI and the MCP server read the same store: MCP shows only the sources you allow, the CLI shows you everything. <code>search</code>, <code>timeline</code>, <code>show</code>, <code>stats</code>, and read-only <code>sql</code> for you.</p></li>
     </ol>
   </div>
 </section>
@@ -244,7 +244,7 @@
   <p class="rubric">05 <span>privacy</span></p>
   <div class="stack">
     <h2 id="privacy-title" class="measure">What agents see is up to you.</h2>
-    <p class="line-copy measure">Your data lives in <code>data/</code>, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything, to you or to an agent that runs it.</p>
+    <p class="line-copy measure">Your data lives in <code>data/</code>, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything to whoever runs it.</p>
   </div>
   <div class="split config" data-hl="mcp">
     <figure class="term code">

@@ -50,9 +50,9 @@ instagram      latest 2026-10-05   2 snapshot(s)   1972 things   1972 events
 prompts        latest 2026-10-08  31 snapshot(s)   1170 things   1158 events
 ```
 
-Caption under the terminal: Ten sources in one archive. Six are built in today, the rest are one ask away.
+Caption under the terminal: Ten sources in one archive. Six work today; the rest are one ask away.
 
-*(The caption keeps the terminal honest: it shows what the archive is for, and the Sources section says what ships today. `charged` and `paid` are verbs the schema still needs.)*
+*(The caption keeps the terminal honest: it shows what the archive is for, and the Sources section says what ships today. Six of the ten work today: the four built in, and chrome and youtube from Takeout.)*
 
 ## Strip
 
@@ -68,7 +68,7 @@ Caption under the terminal: Ten sources in one archive. Six are built in today, 
 Section title: Not just your GitHub. Everything.
 Line: Your texts, your mail, your card charges and bills, your browser and YouTube history, what you saved, what you liked, your notes and your calendar, every prompt you ever typed. All the small things that show what you pay attention to.
 
-*(The visual is a ledger of events, newest first, in the CLI's shape. Every line is a verb and a thing, and the verbs are the real ones from `src/schema.ts`, plus `charged` and `paid` for money. No auto-scroll: motion follows events, not timers.)*
+*(The visual is a ledger of events, newest first, in the CLI's shape. Every line is a verb and a thing, and the verbs are the real ones from `src/schema.ts`. No auto-scroll: motion follows events, not timers.)*
 
 ```
 charged    $1,184.20 to ANA Airlines
@@ -184,12 +184,12 @@ commonplace      CLI ── search · timeline · show · stats
 
 1. **Fetch.** `commonplace sync` takes one snapshot per source per day into `data/raw/<source>/<date>/`. Each one is written through a `.partial` directory and made read-only, so a crash never leaves half a snapshot. On a Mac, `commonplace install` runs it on its own, and the Claude Code plugin runs it whenever a session ends.
 2. **Build.** Every build starts from empty and replays every snapshot into one SQLite database. The same `raw/` always gives the same database, so you can fix a source and rebuild years of history.
-3. **Read.** The CLI and the MCP server go through the same store. The MCP server shows only the sources you allow, and the CLI shows you everything. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
+3. **Read.** The CLI and the MCP server read the same store: MCP shows only the sources you allow, the CLI shows you everything. `search`, `timeline`, `show`, `stats`, and read-only `sql` for you.
 
 ## Privacy
 
 Section title: What agents see is up to you.
-Line: Your data lives in `data/`, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything, to you or to an agent that runs it.
+Line: Your data lives in `data/`, which never enters git. Agents never open the database. Over MCP they see only the sources you allow; the CLI shows everything to whoever runs it.
 
 *(The visual is the config file, real, with three lines highlighted in turn.)*
 
@@ -289,7 +289,7 @@ Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and browser his
 
 Short pages, one per question. Every page opens with the command or file it's about.
 
-1. **Start** — the five commands above, what `sync` prints the first time, where things went (`data/raw/`, `data/commonplace.db`).
+1. **Start** — the commands above, what `sync` prints the first time, where things went (`data/raw/`, `data/commonplace.db`).
 2. **Connect an agent** — Claude Code plugin (what the plugin installs: MCP server, the skill, the SessionEnd hook), Codex, Claude Desktop, any MCP client, shell agents through the CLI. Narrowing per client with `--sources`.
 3. **CLI** — every command with one real example each: `search` (FTS5 syntax: words, "phrases", prefix*, OR, NOT), `timeline`, `show`, `stats`, `sync`, `build`, `mcp`, `sql`, `root`. `--json` and `--limit`.
 4. **Sources** — the three tiers (built in, from an export, one ask away), what each one needs, and what each built-in source actually fetches. X: signing in once with agent-browser.

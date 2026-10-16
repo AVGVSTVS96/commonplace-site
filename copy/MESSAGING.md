@@ -62,7 +62,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 Say these as facts, in this order, without softening or hedging:
 
 - Your data lives in `data/`, which never enters git.
-- Agents never open the database. Over MCP they see only the sources you allow, and each MCP client can be narrowed further. The CLI shows everything, to you or to an agent that runs it.
+- Agents never open the database. Over MCP they see only the sources you allow, and each MCP client can be narrowed further. The CLI shows everything to whoever runs it.
 - `redact` rules keep rows out of the archive entirely. They're never written.
 - A row is visible only if the reader may read every source that contributed to it, so a hidden source can't leak through a merge.
 - Snapshots are read-only. A crash never leaves half a snapshot.
