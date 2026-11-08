@@ -8,6 +8,6 @@
     "audio": "bun render.mjs audio"
   },
   "devDependencies": {
-    "puppeteer-core": "25.12.0"
+    "puppeteer-core": "catalog:"
   }
 }

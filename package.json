@@ -1,0 +1,33 @@
+{
+  "name": "commonplace-site",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "site",
+      "brand",
+      "video"
+    ],
+    "catalog": {
+      "puppeteer-core": "25.16.0",
+      "typescript": "7.0.2"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "check": "oxlint && oxfmt --check && tsc && bun --filter site typecheck",
+    "demo": "bun demo/run.ts",
+    "fix": "oxlint --fix; oxfmt",
+    "prepare": "lefthook install"
+  },
+  "devDependencies": {
+    "@oxlint/plugins": "1.91.0",
+    "@types/bun": "1.4.4",
+    "lefthook": "2.2.2",
+    "oxfmt": "0.76.0",
+    "oxlint": "1.91.0",
+    "oxlint-tsgolint": "7.0.2006",
+    "typescript": "catalog:",
+    "ultracite": "8.1.1"
+  },
+  "packageManager": "bun@1.4.3"
+}

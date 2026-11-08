@@ -1,28 +1,17 @@
 {
   "name": "site",
-  "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vp dev",
-    "build": "vp build",
-    "preview": "vp preview",
-    "shots": "bun shots.mjs"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "shots": "bun shots.mjs",
+    "typecheck": "tsc"
   },
   "devDependencies": {
-    "puppeteer-core": "25.12.0",
-    "typescript": "~6.0.2",
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
-    "vite-plus": "1.0.0"
-  },
-  "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0"
-  },
-  "devEngines": {
-    "packageManager": {
-      "name": "bun",
-      "version": "1.4.2",
-      "onFail": "download"
-    }
+    "puppeteer-core": "catalog:",
+    "typescript": "catalog:",
+    "vite": "8.3.6"
   }
 }
