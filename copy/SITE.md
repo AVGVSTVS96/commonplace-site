@@ -31,7 +31,7 @@ Caption under the terminal: Real output from the shipped sources, run on a small
 *(A one-line strip under the hero, four facts, monospace.)*
 
 - 1 archive: texts, saves, videos, searches, posts, code, prompts
-- ~1,300 lines in the core
+- ~1,400 lines in the core
 - 0 runtime packages: Bun and its SQLite
 - MIT, and a template you own
 
@@ -169,7 +169,7 @@ Under the three, small: Run `commonplace build` after changing `sources` or `red
 ## Yours
 
 Section title: Your repo, your sources, your archive.
-Line: About 1,300 lines in the core, plus the sources. Bun and SQLite, with no runtime packages. Read it in an afternoon. Change anything.
+Line: About 1,400 lines in the core, plus the sources. Bun and SQLite, with no runtime packages. Read it in an afternoon. Change anything.
 
 *(Three cards, each a small file tree or terminal.)*
 

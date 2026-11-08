@@ -1,25 +1,25 @@
 $ commonplace sync
 source            snapshot             things   events    links redacted
-imessage          2026-10-14                2        3        0        0
-imessage          2026-10-15                2        1        0        0
-imessage          2026-10-16                2        1        0        0
-github            2026-10-14                3        2        1        0
-github            2026-10-15                3        2        1        0
-github            2026-10-16                2        1        1        0
-prompts           2026-10-14                2        3        0        0
-prompts           2026-10-15                1        1        0        0
-prompts           2026-10-16                1        1        0        0
-x                 2026-10-14                4        4        0        0
-x                 2026-10-15                2        2        0        0
-x                 2026-10-16                0        0        0        0
-takeout           2026-10-15                5        5        0        0
-raindrop          2026-10-13                3        3        0        0
-chrome            2026-10-16                3        3        0        0
+imessage          2026-11-06                2        3        0        0
+imessage          2026-11-07                2        1        0        0
+imessage          2026-11-08                2        1        0        0
+github            2026-11-06                3        2        1        0
+github            2026-11-07                3        2        1        0
+github            2026-11-08                2        1        1        0
+prompts           2026-11-06                2        3        0        0
+prompts           2026-11-07                1        1        0        0
+prompts           2026-11-08                1        1        0        0
+x                 2026-11-06                4        4        0        0
+x                 2026-11-07                2        2        0        0
+x                 2026-11-08                0        0        0        0
+takeout           2026-11-07                5        5        0        0
+raindrop          2026-11-05                3        3        0        0
+chrome            2026-11-08                3        3        0        0
 
 commonplace.db  21 things · 28 events · 1 links
 
 $ commonplace timeline --verb visited --limit 3
-2026-10-16  visited     chrome:4182  (prefers-color-scheme - CSS | MDN)
-2026-10-15  visited     chrome:4181  (Kyoto by train: is the JR Pass worth it?)
+2026-11-08  visited     chrome:4182  (prefers-color-scheme - CSS | MDN)
+2026-11-07  visited     chrome:4181  (Kyoto by train: is the JR Pass worth it?)
             Which passes pay off for Kyoto, Osaka and Nara day trips
-2026-10-15  visited     chrome:4180  (Tide Predictions - NOAA Tides & Currents)
+2026-11-07  visited     chrome:4180  (Tide Predictions - NOAA Tides & Currents)

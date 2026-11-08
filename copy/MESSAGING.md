@@ -45,7 +45,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 
 ## What it is
 
-- **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About 1,300 lines in the core, plus one file per source. Bun and its built-in SQLite, with no runtime packages.
+- **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About 1,400 lines in the core, plus one file per source. Bun and its built-in SQLite, with no runtime packages.
 - **An archive of dated snapshots.** At most one read-only snapshot per source per day in `data/raw/`, kept forever. One SQLite database rebuilt from them anytime. Full-text search that matches word forms, not meanings.
 - **A CLI and an MCP server.** Both read the same database, read-only. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
 - **Sources.** Seven ship today. Four fetch on their own: GitHub; every Claude Code, Codex and Pi prompt; iMessage; and X, read from your own signed-in agent-browser session, with no paid API key. Three read an export you download: Google Takeout, the X archive, Raindrop. Your agent writes the rest with `add-source`.
@@ -82,7 +82,7 @@ Plain words a smart friend would use. Specific over clever. Short. Let the work 
 - Keep examples real. Every terminal on the site is what the shipped sources and the real CLI print for the made-up archive in `demo/`, never a mockup.
 - State what's there. "Every prompt you typed into Claude Code, Codex and Pi."
 - Use the real names of things: `data/raw/`, `commonplace sync`, `redact`, `add-source`.
-- Give real numbers when we have them: "one snapshot per source per day", "about 1,300 lines in the core".
+- Give real numbers when we have them: "one snapshot per source per day", "about 1,400 lines in the core".
 - Write the way Bassim calls his work good: directly. "This is the way for agents to understand you."
 - One headline, one line, one visual per section. Let the visual explain.
 - Lowercase in the launch post and anywhere Bassim speaks in his own voice. Sentence case on the site.
