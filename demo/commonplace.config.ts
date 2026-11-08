@@ -9,5 +9,6 @@ import { defineConfig } from "./src/config.ts";
 export default defineConfig({
   sources: [raindrop, takeout, x(), prompts(), github(), imessage()],
 
-  redact: (row) => row.type === "event" && /\b(password|api[_ -]?key|secret)\b/i.test(row.text ?? ""),
+  redact: (row) =>
+    row.type === "event" && /\b(password|api[_ -]?key|secret)\b/i.test(row.text ?? ""),
 });

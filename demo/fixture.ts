@@ -1,35 +1,103 @@
 import { Database } from "bun:sqlite";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
-
-/** A made-up week, in the formats the shipped sources read. Every name, number and account is fictional. */
+import path from "node:path";
 
 const day = 86_400_000;
 
 export const today = new Date().toISOString().slice(0, 10);
 
-const date = (daysAgo: number) => new Date(Date.parse(today) - daysAgo * day).toISOString().slice(0, 10);
+const date = (daysAgo: number) =>
+  new Date(Date.parse(today) - daysAgo * day).toISOString().slice(0, 10);
 
-const at = (daysAgo: number, time: string) => new Date(`${date(daysAgo)}T${time}:00Z`).toISOString();
+const at = (daysAgo: number, time: string) =>
+  new Date(`${date(daysAgo)}T${time}:00Z`).toISOString();
 
-/** x.com's `Thu Oct 15 18:20:00 +0000 2026`. */
-const xTime = (iso: string) => {
+const xCreatedAt = (iso: string) => {
   const [weekday, dd, month, yyyy, hms] = new Date(iso).toUTCString().replace(",", "").split(" ");
+
   return `${weekday} ${month} ${dd} ${hms} +0000 ${yyyy}`;
 };
 
-const write = (path: string, text: string) => {
-  mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, text);
+const write = (file: string, text: string) => {
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, text);
 };
 
-const jsonl = (items: ReadonlyArray<unknown>) => items.map((item) => `${JSON.stringify(item)}\n`).join("");
+const jsonl = (items: readonly unknown[]) =>
+  items.map((item) => `${JSON.stringify(item)}\n`).join("");
 
-const csvCell = (value: string) => (/[",\n]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value);
+const csvCell = (value: string) =>
+  /[",\n]/u.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
+
+const message = (guid: string, chat: string, handle: string | null, ts: string, text: string) => ({
+  guid,
+  chat,
+  handle,
+  from_me: handle === null,
+  ts,
+  text,
+  service: "iMessage",
+  attachments: false,
+  associated: null,
+  inferred: false,
+});
+
+const prompt = (agent: string, session: string, project: string, ts: string, text: string) => ({
+  agent,
+  session,
+  ts,
+  cwd: `/Users/me/code/${project}`,
+  project,
+  model: agent === "codex" ? "gpt-5.5-codex" : "claude-opus-5-5",
+  text,
+  channel: null,
+});
+
+const commit = (sha: string, when: string, subject: string) => ({
+  sha,
+  date: when,
+  author: "me",
+  email: "me@example.com",
+  subject,
+  body: "",
+  repo: "me/tidepool",
+  remote: "git@github.com:me/tidepool.git",
+  path: "/Users/me/code/tidepool",
+});
+
+const post = (id: string, user: string, handle: string, created: string, text: string) => ({
+  rest_id: id,
+  core: { user_results: { result: { rest_id: user, core: { screen_name: handle } } } },
+  legacy: { full_text: text, created_at: xCreatedAt(created) },
+});
+
+const page = (
+  key: "bookmark_timeline_v2" | "bookmark_collection_timeline" | "user",
+  posts: readonly object[],
+) => {
+  const timeline = {
+    timeline: {
+      instructions: [
+        {
+          type: "TimelineAddEntries",
+          entries: posts.map((result, i) => ({
+            entryId: `tweet-${i}`,
+            content: { itemContent: { tweet_results: { result } } },
+          })),
+        },
+      ],
+    },
+  };
+
+  return `${JSON.stringify({ data: key === "user" ? { user: { result: { timeline } } } : { [key]: timeline } })}\n`;
+};
+
+const chromeTime = (iso: string) => (Date.parse(iso) + 11_644_473_600_000) * 1000;
 
 const imessage = (raw: string) => {
   const crew = "iMessage;+;chat482913570";
   const sam = "iMessage;-;+15550103";
+
   const chats = [
     {
       guid: crew,
@@ -39,20 +107,16 @@ const imessage = (raw: string) => {
       handles: ["+15550101", "+15550102"],
       inferred: false,
     },
-    { guid: sam, name: null, service: "iMessage", group: false, handles: ["+15550103"], inferred: false },
+    {
+      guid: sam,
+      name: null,
+      service: "iMessage",
+      group: false,
+      handles: ["+15550103"],
+      inferred: false,
+    },
   ];
-  const message = (guid: string, chat: string, handle: string | null, ts: string, text: string) => ({
-    guid,
-    chat,
-    handle,
-    from_me: handle === null,
-    ts,
-    text,
-    service: "iMessage",
-    attachments: false,
-    associated: null,
-    inferred: false,
-  });
+
   const days = {
     2: [
       message(
@@ -104,17 +168,8 @@ const imessage = (raw: string) => {
 };
 
 const prompts = (raw: string) => {
-  const prompt = (agent: string, session: string, project: string, ts: string, text: string) => ({
-    agent,
-    session,
-    ts,
-    cwd: `/Users/me/code/${project}`,
-    project,
-    model: agent === "codex" ? "gpt-5.5-codex" : "claude-opus-5-5",
-    text,
-    channel: null,
-  });
   const app = "c8f3a2e1-5d4b-4a3c-9e2f-1a0b9c8d7e61";
+
   const days = {
     2: [
       prompt(
@@ -178,17 +233,7 @@ const github = (raw: string) => {
       url: "https://github.com/me/tidepool/pull/12",
     },
   ];
-  const commit = (sha: string, date: string, subject: string) => ({
-    sha,
-    date,
-    author: "me",
-    email: "me@example.com",
-    subject,
-    body: "",
-    repo: "me/tidepool",
-    remote: "git@github.com:me/tidepool.git",
-    path: "/Users/me/code/tidepool",
-  });
+
   const days = {
     2: [
       commit(
@@ -218,30 +263,7 @@ const github = (raw: string) => {
 
 const x = (raw: string) => {
   const me = "1001";
-  const post = (id: string, user: string, handle: string, created: string, text: string) => ({
-    rest_id: id,
-    core: { user_results: { result: { rest_id: user, core: { screen_name: handle } } } },
-    legacy: { full_text: text, created_at: xTime(created) },
-  });
-  const page = (
-    key: "bookmark_timeline_v2" | "bookmark_collection_timeline" | "user",
-    posts: ReadonlyArray<object>,
-  ) => {
-    const timeline = {
-      timeline: {
-        instructions: [
-          {
-            type: "TimelineAddEntries",
-            entries: posts.map((result, i) => ({
-              entryId: `tweet-${i}`,
-              content: { itemContent: { tweet_results: { result } } },
-            })),
-          },
-        ],
-      },
-    };
-    return `${JSON.stringify({ data: key === "user" ? { user: { result: { timeline } } } : { [key]: timeline } })}\n`;
-  };
+
   const kerning = post(
     "1846203117740000101",
     "2001",
@@ -249,6 +271,7 @@ const x = (raw: string) => {
     at(5, "17:30"),
     "kerning by hand: space the n and the o first, then set every other letter against them",
   );
+
   const kyoto = post(
     "1846203117740000102",
     "2002",
@@ -256,6 +279,7 @@ const x = (raw: string) => {
     at(2, "20:00"),
     "two weeks in kyoto and osaka. what worked: arashiyama before 8am, fushimi inari at dawn (two hours of stairs, wear real shoes), one ryokan night is plenty",
   );
+
   const folders = [
     { id: "55", name: "type" },
     { id: "56", name: "travel" },
@@ -267,7 +291,9 @@ const x = (raw: string) => {
   write(
     `${first}/folders.json`,
     JSON.stringify({
-      data: { viewer: { user_results: { result: { bookmark_collections_slice: { items: folders } } } } },
+      data: {
+        viewer: { user_results: { result: { bookmark_collections_slice: { items: folders } } } },
+      },
     }),
   );
   write(`${first}/folders/55.jsonl`, page("bookmark_collection_timeline", [kerning]));
@@ -330,7 +356,10 @@ const takeout = (raw: string) => {
         title: "Watched Kyoto in three days, on foot",
         titleUrl: "https://www.youtube.com/watch?v=Qm3kT8yLp2A",
         subtitles: [
-          { name: "Slow Travel Notes", url: "https://www.youtube.com/channel/UCq7Lm2Xr9Tb4Kd1Wn8Ys3Fa" },
+          {
+            name: "Slow Travel Notes",
+            url: "https://www.youtube.com/channel/UCq7Lm2Xr9Tb4Kd1Wn8Ys3Fa",
+          },
         ],
         time: at(2, "21:30"),
       },
@@ -339,7 +368,10 @@ const takeout = (raw: string) => {
         title: "Watched Kerning by hand, explained",
         titleUrl: "https://www.youtube.com/watch?v=Vt9cKx2LmQe",
         subtitles: [
-          { name: "Letterform Lab", url: "https://www.youtube.com/channel/UCz3Pq8Nv1Hc6Rj2Ld9Mt4Ks" },
+          {
+            name: "Letterform Lab",
+            url: "https://www.youtube.com/channel/UCz3Pq8Nv1Hc6Rj2Ld9Mt4Ks",
+          },
         ],
         time: at(3, "20:40"),
       },
@@ -369,6 +401,7 @@ const takeout = (raw: string) => {
 
 const raindrop = (raw: string) => {
   const header = "id,title,note,excerpt,url,folder,tags,created,cover,highlights,favorite";
+
   const rows = [
     [
       "801",
@@ -410,18 +443,18 @@ const raindrop = (raw: string) => {
       "false",
     ],
   ];
+
   write(
     `${raw}/raindrop/${date(3)}/export.csv`,
     [header, ...rows.map((row) => row.map(csvCell).join(","))].join("\n"),
   );
 };
 
-/** Chrome's own History database, as `sources/chrome.ts` finds it on Linux. */
-export const chromeHistory = (home: string) => {
+const chromeHistory = (home: string) => {
   const file = `${home}/.config/google-chrome/Default/History`;
-  mkdirSync(dirname(file), { recursive: true });
+  mkdirSync(path.dirname(file), { recursive: true });
   const db = new Database(file, { create: true });
-  const chrome = (iso: string) => (Date.parse(iso) + 11_644_473_600_000) * 1000;
+
   const pages = [
     [
       "https://tidesandcurrents.noaa.gov/tide_predictions.html",
@@ -440,19 +473,23 @@ export const chromeHistory = (home: string) => {
     ],
   ] as const;
 
-  db.exec(`
+  db.run(`
     CREATE TABLE urls(id INTEGER PRIMARY KEY AUTOINCREMENT,url LONGVARCHAR,title LONGVARCHAR,visit_count INTEGER DEFAULT 0 NOT NULL,typed_count INTEGER DEFAULT 0 NOT NULL,last_visit_time INTEGER NOT NULL,hidden INTEGER DEFAULT 0 NOT NULL);
     CREATE TABLE visits(id INTEGER PRIMARY KEY AUTOINCREMENT,url INTEGER NOT NULL,visit_time INTEGER NOT NULL,from_visit INTEGER,transition INTEGER DEFAULT 0 NOT NULL,visit_duration INTEGER DEFAULT 0 NOT NULL);
   `);
+
   for (const [i, [url, title, time]] of pages.entries()) {
-    db.run("INSERT INTO urls (id, url, title, visit_count, last_visit_time) VALUES (?, ?, ?, 1, ?)", [
+    db.run(
+      "INSERT INTO urls (id, url, title, visit_count, last_visit_time) VALUES (?, ?, ?, 1, ?)",
+      [i + 1, url, title, chromeTime(time)],
+    );
+    db.run("INSERT INTO visits (id, url, visit_time) VALUES (?, ?, ?)", [
+      4180 + i,
       i + 1,
-      url,
-      title,
-      chrome(time),
+      chromeTime(time),
     ]);
-    db.run("INSERT INTO visits (id, url, visit_time) VALUES (?, ?, ?)", [4180 + i, i + 1, chrome(time)]);
   }
+
   db.close();
 };
 
