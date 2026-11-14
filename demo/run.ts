@@ -155,7 +155,7 @@ const escape = (text: string) =>
   text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 const snippet = (line: string) =>
-  `<span class="d">${escape(line).replaceAll(/«(?<hit>.*?)»/gu, '<span class="hl">«$<hit>»</span>')}</span>`;
+  `<span class="d">${escape(line).replaceAll(/«(?<hit>.*?)»/gu, '<span class="hl">$<hit></span>')}</span>`;
 
 const latest = /^(?<head>\S+ +latest )(?<date>\S+)(?<rest>.*)$/u;
 
@@ -233,7 +233,7 @@ const blocks = {
   hero: heroLines,
   ledger: (ledger?.hits ?? []).map(
     (hit) =>
-      `<li><b>${hit.what}</b><span>${escape(hit.title !== null && !said.has(hit.what) ? hit.title : `"${clip(hit.text ?? "")}"`)}</span></li>`,
+      `<li><b>${hit.what}</b><span>${escape(hit.title !== null && !said.has(hit.what) ? hit.title : `“${clip(hit.text ?? "")}”`)}</span></li>`,
   ),
   why: agent([], ran(why)),
   "add-source": agent(

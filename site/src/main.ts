@@ -8,77 +8,38 @@ const find = (selector: string, root: ParentNode = document) => {
   return found;
 };
 
-const wait = async (ms: number) => {
-  // oxlint-disable-next-line promise/avoid-new -- setTimeout has no promise form in the browser
-  await new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-};
-
 const bar = find(".bar");
 
-new IntersectionObserver(
-  ([entry]) => {
-    bar.classList.toggle("named", entry?.isIntersecting === false);
-  },
-  { rootMargin: "-56px 0px 0px 0px" },
-).observe(find(".mark"));
+new IntersectionObserver(([entry]) => {
+  const shown = entry?.isIntersecting === false;
+  bar.classList.toggle("on", shown);
+  bar.inert = !shown;
+}).observe(find(".band"));
 
-const replay = async (term: HTMLElement) => {
-  const body = find(".term-body", term);
-  const lines = [...term.querySelectorAll<HTMLElement>(".line")];
-  const cursor = find(".cur", term);
-  body.style.minHeight = `${body.offsetHeight}px`;
+const scrollers = [...document.querySelectorAll<HTMLElement>(".term-body, .tree")];
 
-  for (const line of lines) {
-    line.classList.add("pending");
-  }
-
-  await wait(600);
-
-  for (const line of lines) {
-    line.classList.remove("pending");
-
-    if (!line.classList.contains("cmd")) {
-      continue;
-    }
-
-    const target = find(".t", line);
-    const text = target.textContent;
-    target.textContent = "";
-    target.after(cursor);
-
-    for (const char of text) {
-      await wait(35);
-      target.textContent += char;
-    }
-
-    if (line.classList.contains("end")) {
-      break;
-    }
-
-    await wait(240);
-    cursor.remove();
-    let next = line.nextElementSibling;
-
-    while (next && !next.classList.contains("cmd")) {
-      next.classList.remove("pending");
-      next = next.nextElementSibling;
-    }
-
-    await wait(700);
-  }
+const markOverflow = (scroller: HTMLElement) => {
+  const hidden = scroller.scrollWidth - scroller.clientWidth - scroller.scrollLeft;
+  scroller.classList.toggle("fades", hidden > 1);
 };
 
-const hero = document.querySelector<HTMLElement>("[data-play]");
+const resized = new ResizeObserver((entries) => {
+  for (const { target } of entries) {
+    if (target instanceof HTMLElement) {
+      markOverflow(target);
+    }
+  }
+});
 
-if (hero && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const play = async () => {
-    await document.fonts.ready;
-    await replay(hero);
-  };
-
-  void play();
+for (const scroller of scrollers) {
+  resized.observe(scroller);
+  scroller.addEventListener(
+    "scroll",
+    () => {
+      markOverflow(scroller);
+    },
+    { passive: true },
+  );
 }
 
 const config = find(".config");
