@@ -1225,7 +1225,7 @@ h2 {
 @media (max-width: 400px) {
   .band nav,
   .bar nav {
-    column-gap: 14px;
+    column-gap: 12px;
     font-size: 13.5px;
   }
   .docs,
