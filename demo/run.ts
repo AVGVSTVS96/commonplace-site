@@ -239,7 +239,7 @@ const blocks = {
   "add-source": agent(
     [
       `found Chrome's history and wrote <span class="id">sources/chrome.ts</span> <span class="d">(${chromeLines} lines)</span>`,
-      `added it to <span class="id">commonplace.config.ts</span> and ran commonplace sync`,
+      `added it to <span class="id">commonplace.config.ts</span> and ran <span class="id">commonplace sync</span>`,
     ],
     ran(added),
   ),

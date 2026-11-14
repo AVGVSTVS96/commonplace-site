@@ -39,7 +39,7 @@ What the system is built on, pulled from Bassim's own X bookmarks and Raindrop c
 - **Locke's "A New Method of Making Common-Place-Books" (1706)**. The original index-and-ledger method; the reason the brand is tables and dates, not notebooks and quills.
 - **Light terminal themes** (GitHub Light, Rosé Pine Dawn). The palette's role model: one warm paper, muted ANSI colours that only appear in output.
 
-## What was deliberately not taken
+### What was deliberately not taken
 
 - The hex site's neo-brutalist kit: thick 2px borders, hard offset shadows, yellow/pink/blue blocks, stickers. Right for hex, wrong for a template you read and fork.
 - Glassmorphism, gradients, 3D hero objects, isometric icons, dark-mode-first "hacker" terminals, ASCII art as background.

@@ -32,7 +32,7 @@
     <a href="#sources">Sources</a>
     <a href="#how">How it works</a>
     <a href="#privacy">Privacy</a>
-    <a href="https://github.com/AVGVSTVS96/commonplace#readme">Docs</a>
+    <a class="docs" href="https://github.com/AVGVSTVS96/commonplace#readme">Docs</a>
     <a href="https://github.com/AVGVSTVS96/commonplace">GitHub</a>
   </nav>
 </header>
@@ -59,7 +59,7 @@
       <p class="more">Ask your coding agent to add another source. It writes the code in your repo.</p>
       <div class="ctas">
         <span class="br"><a class="btn" href="https://github.com/new?template_name=commonplace&amp;template_owner=AVGVSTVS96">Use this template</a></span>
-        <a class="link" href="https://github.com/AVGVSTVS96/commonplace">Read the source <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="link" href="https://github.com/AVGVSTVS96/commonplace">Read the source <svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
       </div>
     </div>
     <div class="figure"><b>~1,400</b><div><strong>lines in the core</strong><p>0 runtime packages: Bun and its SQLite</p></div></div>
@@ -211,7 +211,7 @@
 <span class="line gap"></span>
 <!-- demo:add-source -->
 <span class="line say"><i class="who">agent</i>found Chrome's history and wrote <span class="id">sources/chrome.ts</span> <span class="d">(58 lines)</span></span>
-<span class="line say"><i class="who"></i>added it to <span class="id">commonplace.config.ts</span> and ran commonplace sync</span>
+<span class="line say"><i class="who"></i>added it to <span class="id">commonplace.config.ts</span> and ran <span class="id">commonplace sync</span></span>
 <span class="line"><i class="who"></i><b class="p">$</b> commonplace timeline --verb visited --limit 3</span>
 <span class="line"><i class="who"></i>2026-11-14  visited     <span class="id">chrome:4182</span>  <span class="d ti">(prefers-color-scheme - CSS | MDN)</span></span>
 <span class="line"><i class="who"></i>2026-11-13  visited     <span class="id">chrome:4181</span>  <span class="d ti">(Kyoto by train: is the JR Pass worth it?)</span></span>
@@ -322,9 +322,8 @@ src/mcp.ts      <span class="c">the other</span></pre></div>
 </section>
 
 <section class="sec" id="start" aria-labelledby="start-title">
-  <div class="sec-head">
-    <div><p class="label"><b>07</b></p><h2 id="start-title">Start</h2></div>
-    <div class="aside"><p class="line">You need Bun, and <code>gh</code> signed in for the GitHub source. On a Mac, iMessage is on by default, so give your terminal Full Disk Access first. <a href="https://github.com/AVGVSTVS96/commonplace#x">X</a> is off until you sign in and add it.</p></div>
+  <div class="sec-head solo">
+    <div><p class="label"><b>07</b></p><h2 id="start-title">Start</h2><p class="line">You need Bun, and <code>gh</code> signed in for the GitHub source. On a Mac, iMessage is on by default, so give your terminal Full Disk Access first. <a href="https://github.com/AVGVSTVS96/commonplace#x">X</a> is off until you sign in and add it.</p></div>
   </div>
   <div class="split start">
     <div class="sec-body">
