@@ -2,9 +2,8 @@ export const CHAR = 0.045
 export const ENTER = 0.22
 export const LATENCY = 0.16
 
-const D = "2026-10-08"
-const Y = "2026-10-07"
-const you = { prompt: "you", pcls: "who you" }
+const D = "2026-11-14"
+const you = { prompt: "you", pcls: "who you", cls: "say" }
 const agent = `<i class="who">agent</i>`
 const cont = `<i class="who"></i>`
 
@@ -20,181 +19,208 @@ export const scenes = [
   {
     kind: "end intro",
     html: `
-      <span class="rubric line" data-t="0">introducing</span>
-      <svg class="wordmark line" data-t="0.5" viewBox="0 0 736.8 107.1"><use href="#wordmark"/></svg>
-      <p class="tagline line" data-t="1.3">your personal data kit for agents</p>`,
+      <p class="label line" data-t="0">introducing</p>
+      <p class="word big line" data-t="0.5"><svg><use href="#mark"/></svg>commonplace</p>
+      <p class="tagline-big line" data-t="1.3">your personal data kit for agents</p>`,
     steps: [{ wait: 0.5 }, { html: ``, tone: "answer" }, { wait: 4.0 }],
     hold: 0,
   },
   {
-    rubric: "everything",
-    title: `Not just your GitHub. Your texts, your mail, your charges, what you watched, what you saved, every prompt you typed.`,
+    rubric: "Everything",
+    title: `Not just your code. Your texts, what you liked and posted, every prompt you typed.`,
     head: ["~/my-commonplace", "bash"],
+    hang: "12ch",
     steps: [
       { wait: 0.5 },
-      { cmd: `commonplace timeline --since ${Y}` },
-      { row: `${D}  charged     [[bank:txn:7a3e9c1d]]  ((ANA Airlines  $1,184.20))` },
-      { row: `${D}  received    [[gmail:msg:18f2c0a4b]]  ((Your flight to Tokyo is confirmed))` },
-      { row: `${D}  prompted    [[prompts:claude:3e9a71]]  (("plan japan from what i've saved"))` },
-      { row: `${D}  watched     [[yt:video:p7Lq0WnE3xY]]  ((How Shinkansen timetables are made))` },
-      { row: `${D}  paid        [[bank:txn:9d02b6f1]]  ((PG&E  $142.60))` },
-      { row: `${Y}  sent        [[imessage:c81f4e]]  (("landed. dinner?"))` },
-      { row: `${Y}  visited     [[url:japan-guide.com/e/e2361.html]]  ((JR Pass: is it still worth it?))` },
-      { row: `${Y}  saved       [[x:post:18834920]]  ((a thread on kerning by hand))` },
-      { row: `${Y}  liked       [[ig:post:CzQ4pR2]]  ((a kitchen with one long oak counter))` },
-      { row: `${Y}  commented   [[gh:pr:acme/app#412]]  (("this allocates on every keystroke"))` },
-      { row: `${Y}  noted       [[obsidian:ideas/kitchen]]  ((ideas/kitchen.md))` },
+      { cmd: `commonplace timeline --limit 6` },
+      { row: `${D}  prompted    [[prompts:beb29332c5155063]]  (((tidepool)))` },
+      { row: `((            the tide chart is unreadable in dark mode. follow the system theme, no toggle))`, every: 0.36 },
+      { row: `${D}  sent        [[imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A55]]  (((+15550103)))` },
+      { row: `((            running late, save me a seat))`, every: 0.36 },
+      { row: `2026-11-13  liked       [[liked:x:tweet:1846203117740000103]]` },
+      { row: `((            a database in one file, with full-text search built in, on every phone you've ever owned))`, every: 0.36 },
+      { row: `2026-11-13  received    [[imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A54]]  (((kyoto crew)))` },
+      { row: `((            found a ramen counter by kyoto station that opens at 6am))`, every: 0.36 },
+      { row: `2026-11-13  posted      [[posted:x:tweet:1846203117740000104]]` },
+      { row: `((            first pass at kerning the tidepool wordmark by hand. the r and n were fighting))`, every: 0.36 },
+      { row: `2026-11-13  committed   [[github:commit:9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2f1e0d]]  (((me/tidepool)))` },
+      { row: `((            Read tide tables in the station's local time))`, every: 0.36 },
       { wait: 0.5 },
       { cap: `One archive on your machine. One shape for all of it: things, events, links.` },
     ],
     hold: 4.0,
   },
   {
-    rubric: "search",
+    rubric: "Search",
     title: `One search over all of it.`,
     head: ["~/my-commonplace", "bash"],
+    hang: "12ch",
     steps: [
       { wait: 0.5 },
-      { cmd: `commonplace search "japan trip"` },
+      { cmd: `commonplace search kyoto --limit 5` },
       {
         out: [
-          `2026-09-28  txn      [[bank:txn:7a3e9c1d]]  ((ANA Airlines  $1,184.20))`,
-          `2026-09-27  email    [[gmail:msg:18f2c0a4b]]  ((Your flight to Tokyo is confirmed))`,
-          `2026-09-21  post     [[reddit:post:1g4x2k]]  ((Two weeks in Japan: what I'd do again))`,
-          `2026-09-19  video    [[yt:video:kX9rT2mQ4bA]]  ((Tokyo on a budget: 10 days, 10 neighborhoods))`,
-          `2026-09-18  message  [[imessage:c81f4e]]  (("ok «japan» «trip» is happening. april?"))`,
-          `2026-09-14  page     [[url:japan-guide.com/e/e2361.html]]  ((JR Pass: is it still worth it?))`,
+          `2026-11-13  chat        [[chat:imessage:iMessage;+;chat482913570]]  (((kyoto crew)))`,
+          `((            «kyoto» crew))`,
+          `2026-11-12  query       [[query:ryokan kyoto]]  (((ryokan kyoto)))`,
+          `((            ryokan «kyoto»))`,
+          `2026-11-11  url         [[url:japan-guide.com/railpass/kyoto]]  (((Kyoto by train: is the JR Pass worth it?)))`,
+          `((            «Kyoto» by train: is the JR Pass worth it?))`,
+          `2026-11-08  prompted    [[prompts:26348b2f071effb3]]  (((trips)))`,
+          `((            cheapest way from kansai airport to «kyoto» with two bags))`,
+          `2026-11-13  received    [[imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A54]]  (((kyoto crew)))`,
+          `((            found a ramen counter by «kyoto» station that opens at 6am))`,
         ],
       },
       { wait: 0.5 },
-      { cap: `A card charge, a mail, a thread you saved, a video, a text, a page. One query.` },
+      { cap: `A group chat, a Google search, a saved page, a prompt, a text. One query.` },
     ],
     hold: 4.0,
   },
   {
-    rubric: "sync",
+    rubric: "Sync",
     title: `One dated, read-only snapshot per source per day. Kept forever. Never in git.`,
     head: ["~/my-commonplace", "bash"],
+    kind: "term small",
     steps: [
       { wait: 0.5 },
       { cmd: `commonplace sync` },
-      { row: `((fetch gmail))`, every: 0.16 },
-      { row: `((fetch chrome))`, every: 0.16 },
-      { row: `((fetch youtube))`, every: 0.16 },
-      { row: `((fetch imessage))`, every: 0.16 },
-      { row: `((fetch x))`, every: 0.16 },
-      { row: `((fetch bank))`, every: 0.16 },
-      { row: `((fetch github))`, every: 0.16 },
-      { row: `((fetch prompts))`, every: 0.6 },
+      { row: `((fetch x))`, every: 0.3 },
+      { row: `((fetch prompts))`, every: 0.3 },
+      { row: `((fetch github))`, every: 0.3 },
+      { row: `((fetch imessage))`, every: 0.8 },
       {
         out: [
-          `source        snapshot         things   events    links redacted`,
-          `gmail         {{${D}}}        48211    52904    48211        3`,
-          `chrome        {{${D}}}        39480    61117        0        0`,
-          `youtube       {{${D}}}        12306    14872    12306        0`,
-          `imessage      {{${D}}}         9418    88250     9418       12`,
-          `x             {{${D}}}         7905     9131     7905        0`,
-          `bank          {{${D}}}         3266     3266        0        0`,
-          `github        {{${D}}}         2521     1404     2521        0`,
-          `prompts       {{${D}}}         1170     1158     1170        1`,
+          `source            snapshot             things   events    links redacted`,
+          `imessage          2026-11-12                2        3        0        0`,
+          `imessage          2026-11-13                2        1        0        0`,
+          `imessage          {{${D}}}                2        1        0        0`,
+          `github            2026-11-12                3        2        1        0`,
+          `github            2026-11-13                3        2        1        0`,
+          `github            {{${D}}}                2        1        1        0`,
+          `prompts           2026-11-12                2        3        0        0`,
+          `prompts           2026-11-13                1        1        0        0`,
+          `prompts           {{${D}}}                1        1        0        0`,
+          `x                 2026-11-12                4        4        0        0`,
+          `x                 2026-11-13                2        2        0        0`,
+          `x                 {{${D}}}                0        0        0        0`,
+          `takeout           2026-11-13                5        5        0        0`,
+          `raindrop          2026-11-11                3        3        0        0`,
           ``,
         ],
         hold: 0.6,
       },
-      { out: `commonplace.db  124,237 things · 232,102 events · 81,531 links`, tone: "build" },
+      { out: `commonplace.db  19 things · 25 events · 1 links`, tone: "build" },
       { wait: 0.5 },
       { cap: `Build replays every snapshot into one SQLite file. Same <code>raw/</code>, same database.` },
     ],
-    kind: "term split",
     tree: `data/
 ├ raw/
-│ ├ gmail/
-│ │ ├ 2026-10-06/
-│ │ ├ 2026-10-07/
-│ │ └ {{${D}/}}
-│ ├ bank/
-│ │ ├ 2026-10-07/
-│ │ └ {{${D}/}}
-│ └ @@… six more@@
+│ ├ github/
+│ │ ├ 2026-11-12/
+│ │ <i class="old">└</i><i class="new">├</i> 2026-11-13/<i class="new">
+│ │ └ {{${D}/}}</i>
+│ ├ imessage/
+│ │ ├ 2026-11-12/
+│ │ <i class="old">└</i><i class="new">├</i> 2026-11-13/<i class="new">
+│ │ └ {{${D}/}}</i>
+│ └ @@… four more@@
 └ commonplace.db`,
     hold: 4.5,
   },
   {
-    rubric: "why",
-    title: `This is how an agent learns your judgment.`,
-    head: ["claude", "mcp · commonplace"],
+    rubric: "Why",
+    title: `Let your agent look up the history behind your request.`,
+    head: ["claude", "bash · commonplace"],
+    kind: "term small",
+    hang: "19ch",
     steps: [
       { wait: 0.5 },
-      { cmd: `plan the japan trip. same vibe as portugal, under $4k, mid april.`, ...you, latency: 0.7 },
+      { cmd: `make me a packing list for kyoto`, ...you, latency: 0.7 },
       { gap: true },
-      { html: `${agent}((search)) "portugal"  ((·))  ((timeline)) --verb charged --since 2025-05`, tone: "land", hold: 0.6 },
-      { row: `${cont}2025-05-12  txn      [[bank:txn:2c7e40a9]]  ((TAP Air Portugal  $812.40))`, cls: "html", every: 0.14 },
-      { row: `${cont}2025-05-14  txn      [[bank:txn:5b19f3d2]]  ((Casa do Conto  $698.00 · 4 nights))`, cls: "html", every: 0.14 },
-      { row: `${cont}2025-05-18  message  [[imessage:c81f4e]]  (("the tiny hotel in porto was the best part"))`, cls: "html", every: 0.14 },
-      { row: `${cont}2026-09-21  post     [[reddit:post:1g4x2k]]  ((Two weeks in Japan: what I'd do again))`, cls: "html", every: 0.14 },
-      { row: `${cont}2026-09-28  txn      [[bank:txn:7a3e9c1d]]  ((ANA Airlines  $1,184.20))`, cls: "html", every: 1.4 },
+      { row: `${agent}<b class="p">$</b>commonplace search "packing list"`, raw: true, tone: "land", every: 0.5 },
+      { row: `${cont}2026-06-02  prompted    [[prompts:7e5f78a55710462f]]  (((trips)))`, raw: true, every: 0.14 },
+      { row: `${cont}((            «packing» «list» for lisbon. carry-on only, i never check a bag))`, raw: true, every: 0.6 },
+      { row: `${cont}<b class="p">$</b>commonplace search "kyoto april"`, raw: true, tone: "land", every: 0.5 },
+      { row: `${cont}2026-11-10  received    [[imessage:6B2E1F0A-3C4D-4E5F-8A9B-0C1D2E3F4A51]]  (((kyoto crew)))`, raw: true, every: 0.14 },
+      { row: `${cont}((            ryokan in «kyoto» is booked! «april» 14 to 18, right by the philosopher's path))`, raw: true, every: 0.6 },
+      { row: `${cont}<b class="p">$</b>commonplace search fushimi`, raw: true, tone: "land", every: 0.5 },
+      { row: `${cont}2026-11-10  place       [[place:17291468421904536081]]  (((Fushimi Inari Taisha)))`, raw: true, every: 0.14 },
+      { row: `${cont}((            «Fushimi» Inari Taisha))`, raw: true, every: 0.14 },
+      { row: `${cont}2026-11-12  tweet       [[x:tweet:1846203117740000102]]`, raw: true, every: 0.14 },
+      { row: `${cont}((            …arashiyama before 8am, «fushimi» inari at dawn (two hours of stairs, wear real shoes), one ryokan night is plenty))`, raw: true, every: 1.2 },
       { gap: true },
       {
-        out: [
-          `${agent}Portugal was nine days, $3,120, one small hotel you loved, no tours. You already`,
-          `${cont}bought the ANA flight for April 14. A ryokan in Kyoto like the Porto place, and`,
-          `${cont}the Reddit itinerary you saved cut to ten days, lands at $3,860. Want the plan?`,
-        ],
-        cls: "html",
+        out: `${agent}Carry-on only, like your Lisbon list. You're in Kyoto April 14 to 18, so five days of clothes, and real shoes for the two hours of stairs at Fushimi Inari. Want it as a checklist?`,
+        raw: true,
+        cls: "say",
         tone: "answer",
       },
       { wait: 0.5 },
-      { cap: `An agent that can search what you saved stops guessing what you mean.` },
+      { cap: `The more an agent can look up, the less you have to say.` },
     ],
-    hold: 5.0,
+    hold: 5.5,
   },
   {
-    rubric: "allow",
-    title: `Agents only see the sources you allow.`,
+    rubric: "Privacy",
+    title: `Choose what you collect and what agents can read.`,
     head: ["commonplace.config.ts", "typescript"],
     steps: [
       { wait: 0.5 },
       {
         out: [
           `<span class="kw">export default</span> defineConfig({`,
-          `  sources: [github, prompts, gmail, imessage, bank, chrome, youtube, x],`,
+          `<span class="hi hi-sources">  sources: [</span>`,
+          `<span class="hi hi-sources">    github(),</span>`,
+          `<span class="hi hi-sources">    prompts(),</span>`,
+          `<span class="hi hi-sources hi-drop">    imessage({ drop: (m) =&gt; m.handle === <span class="str">"+15550100"</span> }),</span>`,
+          `<span class="hi hi-sources">  ],</span>`,
           ``,
-          `  <span class="k-mcp">mcp: [<span class="str">"github"</span>, <span class="str">"prompts"</span>, <span class="str">"gmail"</span>, <span class="str">"chrome"</span>, <span class="str">"youtube"</span>, <span class="str">"x"</span>],</span>`,
-          ``,
-          `  <span class="k-redact">redact: (row) =></span>`,
-          `  <span class="k-redact">  row.type === <span class="str">"event"</span> && <span class="str">/\\b(password|api[_ -]?key|secret)\\b/i</span>.test(row.text ?? <span class="str">""</span>),</span>`,
+          `<span class="hi hi-redact">  redact: (row) =&gt;</span>`,
+          `<span class="hi hi-redact">    row.type === <span class="str">"event"</span> &amp;&amp; <span class="str">/\\b(password|api[_ -]?key|secret)\\b/i</span>.test(row.text ?? <span class="str">""</span>),</span>`,
           `});`,
         ],
-        cls: "html",
-        hold: 1.5,
+        raw: true,
+        hold: 1.2,
       },
-      { html: ``, cls: "mark-mcp", tone: "row" },
-      { wait: 2.5 },
+      { html: ``, cls: "mark-sources", tone: "row" },
+      { wait: 2.0 },
+      { html: ``, cls: "mark-drop", tone: "row" },
+      { wait: 2.0 },
       { html: ``, cls: "mark-redact", tone: "row" },
       { wait: 0.3 },
-      { cap: `Agents never open the database. <code>redact</code> rows are never even written.` },
+      { cap: `A source you leave off is never read. <code>drop</code> keeps messages out of snapshots, <code>redact</code> keeps rows out of the database.` },
+    ],
+    hold: 5.0,
+  },
+  {
+    rubric: "Add a source",
+    title: `Anything with an export, a database, an API or a CLI. Your agent writes the source.`,
+    head: ["claude", "skill · add-source"],
+    hang: "19ch",
+    steps: [
+      { wait: 0.5 },
+      { cmd: `add my browser history to commonplace`, ...you, latency: 1.0 },
+      { gap: true },
+      { row: `${agent}found Chrome's history and wrote [[sources/chrome.ts]] (((58 lines)))`, raw: true, cls: "say", every: 0.8 },
+      { row: `${cont}added it to [[commonplace.config.ts]] and ran commonplace sync`, raw: true, cls: "say", every: 0.8 },
+      { row: `${cont}<b class="p">$</b>commonplace timeline --verb visited --limit 3`, raw: true, tone: "land", every: 0.5 },
+      {
+        out: [
+          `${cont}${D}  visited     [[chrome:4182]]  (((prefers-color-scheme - CSS | MDN)))`,
+          `${cont}2026-11-13  visited     [[chrome:4181]]  (((Kyoto by train: is the JR Pass worth it?)))`,
+          `${cont}((            Which passes pay off for Kyoto, Osaka and Nara day trips))`,
+          `${cont}2026-11-13  visited     [[chrome:4180]]  (((Tide Predictions - NOAA Tides &amp; Currents)))`,
+        ],
+        raw: true,
+      },
+      { wait: 0.5 },
+      { cap: `One file in your repo. Any coding agent with file and terminal access can follow the skill.` },
     ],
     hold: 4.5,
   },
   {
-    rubric: "add a source",
-    title: `Anything with an export, a database, an API or a CLI. Your agent writes the source.`,
-    head: ["claude", "skill · add-source"],
-    steps: [
-      { wait: 0.5 },
-      { cmd: `add my obsidian vault to commonplace`, ...you, latency: 1.0 },
-      { gap: true },
-      { row: `${agent}wrote [[sources/obsidian.ts]] ((61 lines))`, cls: "html", every: 0.8 },
-      { row: `${cont}added it to [[commonplace.config.ts]]`, cls: "html", every: 0.8 },
-      { cmd: `commonplace sync`, pre: cont, latency: 0.6 },
-      { out: `${cont}obsidian      {{${D}}}         1204     1204        0        0`, cls: "html", tone: "build" },
-      { wait: 0.5 },
-      { cap: `One file, usually under 80 lines. Works with any agent that reads files.` },
-    ],
-    hold: 4.0,
-  },
-  {
-    rubric: "yours",
+    rubric: "Yours",
     title: `A template you own. Not an app you install.`,
     head: ["~/my-commonplace", "bash"],
     steps: [
@@ -202,28 +228,30 @@ export const scenes = [
       { cmd: `wc -l src/*.ts` },
       {
         out: [
-          `  281 src/build.ts     @@replays every snapshot; the only writer@@`,
-          `  142 src/cli.ts       @@one door@@`,
-          `   13 src/config.ts`,
-          `  145 src/mcp.ts       @@the other@@`,
-          `  141 src/schema.ts    @@things, events, links; verbs@@`,
-          `   50 src/source.ts    @@defineSource and the read helpers@@`,
-          `  186 src/store.ts     @@every read, filtered by what the reader may see@@`,
-          `  110 src/sync.ts      @@daily snapshots on demand, then the build@@`,
-          ` 1068 total`,
+          `  309 src/build.ts`,
+          `  171 src/cli.ts`,
+          `    9 src/config.ts`,
+          `   61 src/install.ts`,
+          `    6 src/launcher.ts`,
+          `  175 src/mcp.ts`,
+          `  209 src/schema.ts`,
+          `  117 src/source.ts`,
+          `  178 src/store.ts`,
+          `  155 src/sync.ts`,
+          ` 1390 total`,
         ],
         hold: 1.8,
       },
       { cmd: `jq .dependencies package.json` },
       { out: `null` },
       { wait: 0.5 },
-      { cap: `About a thousand lines of TypeScript, no dependencies. Read it in an afternoon. Change anything.` },
+      { cap: `About 1,400 lines of TypeScript, no runtime packages. Read it in an afternoon. Change anything.` },
     ],
     hold: 4.5,
   },
   {
-    rubric: "start",
-    title: `Start in five lines.`,
+    rubric: "Start",
+    title: `Start in six lines.`,
     head: ["~", "bash"],
     steps: [
       { wait: 0.5 },
@@ -231,19 +259,19 @@ export const scenes = [
       { cmd: `cd my-commonplace`, char: 0.025, latency: 0.1 },
       { cmd: `bun install`, char: 0.025, latency: 0.3 },
       { cmd: `bun add -g "$PWD"`, char: 0.025, latency: 0.3 },
-      { cmd: `commonplace sync`, char: 0.025, latency: 0.9 },
-      { out: `commonplace.db  3,691 things · 2,562 events · 3,691 links`, tone: "build" },
+      { cmd: `commonplace sync`, char: 0.025, latency: 0.3 },
+      { cmd: `commonplace install   # on a Mac: sync on its own`, char: 0.025, latency: 0.3 },
       { wait: 0.5 },
       { cap: `Then ask your agent something only your history can answer.` },
     ],
-    hold: 3.5,
+    hold: 4.0,
   },
   {
     kind: "end",
     html: `
-      <svg class="wordmark line" data-t="0.2" viewBox="0 0 736.8 107.1"><use href="#wm-text"/><rect class="cursor" x="684" y="38" width="46.8" height="52"/></svg>
-      <p class="tagline line" data-t="0.9">a commonplace book for the age of agents</p>
-      <p class="url line" data-t="1.4">github.com/AVGVSTVS96/commonplace</p>
+      <p class="word big line" data-t="0.2"><svg><use href="#mark"/></svg>commonplace</p>
+      <p class="tagline-big line" data-t="0.9">a commonplace book for the age of agents</p>
+      <p class="url line" data-t="1.4"><span>github.com/AVGVSTVS96/commonplace</span></p>
       <span class="sig line" data-t="2.2">— bassim</span>`,
     steps: [{ wait: 0.2 }, { html: ``, tone: "end" }, { wait: 5.8 }],
     hold: 0,

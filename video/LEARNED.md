@@ -18,16 +18,16 @@ Pulled from the T3 Code threads where Bassim made `~/Developer/hex-launch` (Oct 
 
 ## Typography and layout
 
-- The site's look exactly, at video scale: 1920×1080 with rails (wordmark top-left, tagline top-right, scene count bottom-left, URL bottom-right). Here: the same rails in hairlines on paper.
-- One big statement per screen, body mono 25–32 px, labels ~26 px. Here: Plex Sans headline 52 px, mono 29 px, caption 34 px, so a line of real CLI output still reads on a phone.
+- The site's look exactly, at video scale: 1920×1080 with rails (wordmark top-left, tagline top-right, scene count bottom-left, URL bottom-right). Here: the site's Field sheet frame, sky band on top (mark, name, tagline), black strip at the foot (scene count, URL).
+- One big statement per screen, body mono 25–32 px, labels ~26 px. Here: Inter Tight headline 54 px, Geist Mono 26 px (24 px in the two busiest scenes), caption 30 px, so a line of real CLI output still reads on a phone.
 - He catches one-pixel problems and expects them fixed, not argued: a missing 2 px rule ("that feels like a missing detail"), a border missing mid-animation ("looks incomplete before the next cards come in"), dots too close to a border, foreground text over background text. Check every held frame for a line that is missing or an element that overlaps.
 - Real UIs, not abstractions: "the real UIs... of the actual apps". Here the real UI is the CLI, so every line keeps the shape `commonplace` prints today (dates first, verb column, id in blue, title dimmed; the build report table from `src/build.ts`).
 
 ## Content
 
-- Honest numbers beside named things, with the rounding against yourself. Here: real `wc -l` counts, real `{}` for dependencies, the real five start commands.
+- Honest numbers beside named things, with the rounding against yourself. Here: real `wc -l` counts of v0.1.0, real `null` for dependencies, the real start commands.
 - Cut anything that reads as a feature list: "everyone has heard most those features a thousand times". Say what happened: a charge, a mail, a text, a prompt.
-- The "magic underneath" beat he added late: "It's like simple. Yeah, but it's insanely like cutting edge…" Here that is `sync`: eight fetches, one report table, one database line, the dated tree.
+- The "magic underneath" beat he added late: "It's like simple. Yeah, but it's insanely like cutting edge…" Here that is `sync`: four fetches, one report table, one database line, the dated tree.
 - Fix what you notice: "you saw those two things as wrong but you didn't actually fix them."
 
 ## Process

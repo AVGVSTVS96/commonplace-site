@@ -55,27 +55,24 @@ commonplace puts it in one private archive on your machine, keeps it current, an
 a template you own. ~1,400 lines, zero deps, sqlite, mit. github, imessage, x, mail and every claude code, codex and pi prompt built in; takeout, the x archive and raindrop from their exports; anything else is one ask away
 ```
 
-## Launch video, 60–90 seconds
+## Launch video, about 100 seconds
 
-Same look as the site: a light terminal, monospace, no voiceover, captions burned in. Every beat is one card of text and one visual. The typing is real-time, the output appears as the CLI prints it. Music is quiet and stays under the captions.
+`video/out/commonplace-launch.mp4`, rendered from `video/scenes.js`. The site's look: one framed sheet on the grey page, the sky band on top, a black strip at the foot, terminals as plates with crop marks. No voiceover, captions burned in. Typing is real-time and the output lands whole, as the CLI prints it. Sound is keypress ticks and a tone on the moments that matter, no music bed.
 
 | # | time | on screen | caption |
 |---|---|---|---|
-| 01 | 0:00 | Empty terminal. Cursor blinks. | **your agent has read all your code.** |
-| 02 | 0:03 | Still empty. | **and none of your judgment.** |
-| 03 | 0:06 | A fast scroll of app icons or names, muted: X, iMessage, Gmail, YouTube, Reddit, Raindrop, GitHub, Claude Code, Codex. They blur past. | what you saved, liked, watched, said. scattered across twenty apps. |
-| 04 | 0:11 | The names fall into one folder: `data/raw/`. Then a single file: `commonplace.db`. | **commonplace** · your personal data kit for agents |
-| 05 | 0:15 | `$ commonplace sync` types out. Output lines appear one by one: `github  2026-10-08  2521 things  1404 events`, `prompts 2026-10-08  1170 things  1158 events`. | one dated snapshot per source per day. kept forever, never in git. |
-| 06 | 0:22 | `$ commonplace search "syntax highlighting"` and three real results: a saved repo, a prompt, a PR. | everything you've made, saved and said. one shape: things, events, links. |
-| 07 | 0:29 | `$ commonplace timeline --since 2026-10-01 --verb prompted` and three prompts. | every prompt you ever typed, with the date. |
-| 08 | 0:35 | Split: an agent's question on the left, `search "markdown streaming"` and two hits on the right, then its one-line answer citing what you saved in July. | an agent that can search this stops guessing what you mean. |
-| 09 | 0:43 | `commonplace.config.ts`, the `mcp: ["github", "prompts"]` line highlighted, then the `redact` line. | agents only see the sources you allow. redact rules keep rows out entirely. |
-| 10 | 0:50 | The sources table, three tiers. "built in" is solid, "coming" is muted, "one ask away" is a row of chips. | two built in. five coming. anything with an export is one ask away. |
-| 11 | 0:56 | `you  add my obsidian vault to commonplace` → `agent  wrote sources/obsidian.ts (61 lines)` → `$ commonplace sync` → one new line in stats. | your agent writes the source. one file, usually under 80 lines. |
-| 12 | 1:04 | A file tree: `src/` with its eight files, one line each. A counter runs up to ~1,000 lines, 0 dependencies. | a template you own. read it in an afternoon. change anything. |
-| 13 | 1:11 | The five start commands, typed at speed, ending on `commonplace sync`. | start in five lines. |
-| 14 | 1:17 | Wordmark, tagline, URL. Hold. | **commonplace** · a commonplace book for the age of agents · github.com/AVGVSTVS96/commonplace |
+| 01 | 0:00 | **Your agent has read all your code.** Then, dimmed: **And none of your judgment.** | |
+| 02 | 0:05 | "introducing", the mark and **commonplace**, the tagline. | your personal data kit for agents |
+| 03 | 0:09 | `$ commonplace timeline --limit 6`: a prompt, a text sent, a liked post, a text received, a post, a commit. | One archive on your machine. One shape for all of it: things, events, links. |
+| 04 | 0:19 | `$ commonplace search kyoto --limit 5`: a group chat, a Google search, a saved page, a prompt, a text. | A group chat, a Google search, a saved page, a prompt, a text. One query. |
+| 05 | 0:26 | `$ commonplace sync`: four fetches, the build report, the database line; beside it the `data/raw/` tree gains today's folders. | Build replays every snapshot into one SQLite file. Same `raw/`, same database. |
+| 06 | 0:35 | `you  make me a packing list for kyoto`; the agent runs three searches, then answers from what it found. | The more an agent can look up, the less you have to say. |
+| 07 | 0:49 | `commonplace.config.ts`: `sources`, then `drop`, then `redact` highlighted. | A source you leave off is never read. `drop` keeps messages out of snapshots, `redact` keeps rows out of the database. |
+| 08 | 1:00 | `you  add my browser history to commonplace` → `agent  wrote sources/chrome.ts (58 lines)` → `timeline --verb visited`. | One file in your repo. Any coding agent with file and terminal access can follow the skill. |
+| 09 | 1:10 | `$ wc -l src/*.ts` (1,390 total at v0.1.0), `$ jq .dependencies package.json` → `null`. | About 1,400 lines of TypeScript, no runtime packages. Read it in an afternoon. Change anything. |
+| 10 | 1:20 | The six start commands, typed at speed. | Then ask your agent something only your history can answer. |
+| 11 | 1:33 | The mark and **commonplace**, a commonplace book for the age of agents, the URL. Hold. | |
 
-Cut for a 60-second version: drop 07 and 13, and shorten 03.
+Cut for a 60-second version: drop 04 and 09.
 
-*(Beats 05–07 use Bassim's real archive output, with any private text removed. Nothing in the video may show a source that isn't built in today as if it were running.)*
+*(Every terminal line is real output of commonplace v0.1.0 on the made-up archive in `demo/`, the same one the site's terminals show. Nothing in the video may show a source that isn't built in today as if it were running: the only source not built in, Chrome history, is shown being written by the agent.)*

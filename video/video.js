@@ -1,13 +1,14 @@
 import { scenes, CHAR, ENTER, LATENCY } from "./scenes.js"
 
 const stage = document.getElementById("stage")
+const holder = document.getElementById("scenes")
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;")
 const rich = text =>
   text
     .replace(/«([^»]+)»/g, '<mark class="hl">$1</mark>')
     .replace(/\[\[([^\]]+)\]\]/g, '<span class="id">$1</span>')
     .replace(/\{\{([^}]+)\}\}/g, '<b class="now">$1</b>')
-    .replace(/\(\(([^)]+)\)\)/g, '<span class="d">$1</span>')
+    .replace(/\(\((.+?)\)\)(?!\))/g, '<span class="d">$1</span>')
     .replace(/@@([^@]+)@@/g, '<span class="c">$1</span>')
 
 const cues = []
@@ -19,6 +20,7 @@ function lay(scene, index) {
   const n = String(index + 1).padStart(2, "0")
   const el = document.createElement("section")
   el.className = `scene ${scene.kind ?? "term"}`
+  if (scene.hang) el.style.setProperty("--hang", scene.hang)
   el.dataset.n = n
   let t = start
   let caption = null
@@ -33,14 +35,14 @@ function lay(scene, index) {
     else if (step.cmd !== undefined) {
       const char = step.char ?? CHAR
       const typed = step.cmd.length * char
-      push("cmd", step.cmd, { prompt: step.prompt ?? "$", pcls: step.pcls ?? "p", pre: step.pre ?? "", until: t + typed, char })
+      push("cmd", step.cmd, { cls: step.cls ?? "", prompt: step.prompt ?? "$", pcls: step.pcls ?? "p", pre: step.pre ?? "", until: t + typed, char })
       for (let i = 0; i < step.cmd.length; i++) if (step.cmd[i] !== " ") cues.push({ t: t + i * char, kind: "key" })
       t += typed + ENTER
       cues.push({ t, kind: "enter" })
       t += step.latency ?? LATENCY
     } else {
       const lines = step.out !== undefined ? [step.out].flat() : step.row !== undefined ? [step.row] : [step.html]
-      for (const line of lines) push(line === "" && step.html === undefined ? "gap" : "out", line, { raw: step.cls === "html" || step.html !== undefined, cls: step.html !== undefined ? step.cls : "" })
+      for (const line of lines) push(line === "" && step.html === undefined ? "gap" : "out", line, { raw: step.raw || step.html !== undefined, cls: step.cls ?? "" })
       const tone = step.tone ?? (step.row !== undefined ? "row" : step.html !== undefined ? null : "land")
       if (tone) cues.push({ t, kind: tone })
       if (tone === "build" || tone === "answer") buildAt ??= t
@@ -56,19 +58,19 @@ function lay(scene, index) {
     const rows = body
       .map(line => {
         if (line.kind === "cmd")
-          return `<div class="line cmd" data-t="${line.t}" data-until="${line.until}" data-char="${line.char}" data-text="${esc(line.text)}">${line.pre}<b class="${line.pcls}">${esc(line.prompt)}</b><span class="t"></span><i class="cur"></i></div>`
+          return `<div class="line cmd ${line.cls}" data-t="${line.t}" data-until="${line.until}" data-char="${line.char}" data-text="${esc(line.text)}">${line.pre}<b class="${line.pcls}">${esc(line.prompt)}</b><span class="t"></span><i class="cur"></i></div>`
         if (line.kind === "gap") return `<div class="line gap" data-t="${line.t}"></div>`
         return `<div class="line out ${line.cls ?? ""}" data-t="${line.t}">${rich(line.raw ? line.text : esc(line.text))}</div>`
       })
       .join("")
     const head = scene.head ? `<div class="head"><b>${esc(scene.head[0])}</b><span>${esc(scene.head[1] ?? "")}</span></div>` : ""
-    const tree = scene.tree ? `<pre class="tree" data-t="${buildAt ?? start}">${rich(scene.tree)}</pre>` : ""
+    const tree = scene.tree ? `<pre class="tree plate" data-t="${buildAt ?? start}">${rich(scene.tree)}</pre>` : ""
     const cap = caption ? `<p class="cap" data-t="${caption.t}">${caption.html}</p>` : ""
-    el.innerHTML = `<header class="title"><span class="rubric">${n}  ${esc(scene.rubric ?? "")}</span><h2>${scene.title}</h2></header><div class="panels"><div class="panel">${head}<div class="body">${rows}</div></div>${tree}</div>${cap}`
+    el.innerHTML = `<header class="title"><p class="label"><b>${n}</b>${esc(scene.rubric ?? "")}</p><h2>${scene.title}</h2></header><div class="panels"><div class="panel plate">${head}<div class="body">${rows}</div></div>${tree}</div>${cap}`
   }
   el.dataset.s = start
   el.dataset.e = end
-  stage.append(el)
+  holder.append(el)
   timed.push(...el.querySelectorAll("[data-t]"))
   clock = end
 }
@@ -95,16 +97,18 @@ function seek(t) {
     c.classList.toggle("idle", t >= +c.dataset.until)
   }
   for (const b of bodies) {
+    if (!b.closest(".scene.on")) continue
     const on = [...b.querySelectorAll(".line.on")]
     const style = getComputedStyle(b)
     const room = b.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)
-    const height = l => (l.classList.contains("gap") ? 0.8 * parseFloat(style.fontSize) : parseFloat(style.lineHeight))
-    let used = on.reduce((sum, l) => sum + height(l), 0)
-    for (const l of on) {
+    for (const l of on) l.classList.remove("gone")
+    const heights = on.map(l => l.getBoundingClientRect().height)
+    let used = heights.reduce((sum, h) => sum + h, 0)
+    on.forEach((l, i) => {
       const gone = used > room + 0.5
       l.classList.toggle("gone", gone)
-      if (gone) used -= height(l)
-    }
+      if (gone) used -= heights[i]
+    })
     for (const c of b.querySelectorAll(".cmd")) c.classList.toggle("live", c === on.at(-1))
   }
 }

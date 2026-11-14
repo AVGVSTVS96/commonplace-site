@@ -10,8 +10,10 @@ bun render.mjs audio              # out/soundtrack.wav, aiming for -14 LUFS unde
 bun render.mjs video              # out/commonplace-launch.mp4: 60 fps, BT.709, 5 s parts that resume, with the soundtrack if it exists
 ```
 
-Open `index.html` through any static server rooted at the repo (fonts come from `../brand/fonts/`) to watch it live; `?t=30` jumps to a time.
+Open `index.html` through any static server rooted at the repo (fonts come from `../site/public/fonts/`, the site's own) to watch it live; `?t=30` jumps to a time.
 
-Timing is data: `CHAR` is seconds per typed character, `ENTER` the pause before return, `LATENCY` the pause before output. A step's `hold` or `every` is how long the scene sits after it; a scene's `hold` is the beat at its end. Markup in output lines: `[[id]]` blue, `((dim))`, `{{now}}` red, `«hit»` search highlight, `@@comment@@`.
+Timing is data: `CHAR` is seconds per typed character, `ENTER` the pause before return, `LATENCY` the pause before output. A step's `hold` or `every` is how long the scene sits after it; a scene's `hold` is the beat at its end. Markup in output lines: `[[id]]` an id, `((dim))`, `{{now}}` today's date, underlined in sky, `«hit»` search highlight, `@@comment@@`. A scene's `hang` is the hanging indent for lines that wrap; `kind: "term small"` sets a tighter 24 px terminal for scenes with more lines.
+
+The look is the site's Field sheet: one framed sheet on the grey page, the sky band with the grid mark and the name on top, a black strip at the foot, terminals as plates with corner crop marks. Every terminal line is real output of commonplace v0.1.0 on the made-up archive in `../demo/` (the same one the site's terminals show).
 
 `LEARNED.md` is what the hex launch video taught us, and why this one is paced and sounds the way it does.
