@@ -1,8 +1,16 @@
 # references
 
+## Field sheet (current, Nov 2026)
+
+Pulled from Bassim's X saves with the commonplace CLI (X synced 2026-11-12); the full board and the two directions not taken are in `~/Developer/brand-it-directions/commonplace/`.
+
+- **@kyleanthony, "Utilitarian style website design"**, https://x.com/kyleanthony/status/2008525918047007201, and his "Neo Industrial" post, https://x.com/kyleanthony/status/2093309881893724669. Taken: the page as framed sheets; a black status strip on top and a ruled strip at the foot; the sky-blue nav band; the bracketed button; one big figure in a black cell; panels with corner crop marks; a cell grid for counts. Changed: Inter Tight throughout instead of a serif, sentence-case labels, white sheets on cool grey instead of cream, sky blue and ink instead of orange, and real `commonplace` output on every plate.
+
+## Paper, mono and one red (retired, Oct 2026)
+
 What the system is built on, pulled from Bassim's own X bookmarks and Raindrop collections (me.db, Oct 8 2026), plus a few outside references that clearly fit. One line each on what to take.
 
-## From his saved posts and bookmarks
+### From his saved posts and bookmarks
 
 1. **Neo Industrial: "the perfect collision of Swiss design and technical spec sheets"**, @kyleanthony. https://x.com/kyleanthony/status/2093309881893724669. The thesis in one line: Swiss grid and restraint, spec-sheet tables and labels. The ledger and the rubric come from here.
 2. **markdown graphs: "tables, charts, and diagrams for MDX that look like they were typed"**, @kshvbgde. https://x.com/kshvbgde/status/2093015885669888237. The diagram and chart style: typed, mono, 1px, no icons.
@@ -25,7 +33,7 @@ What the system is built on, pulled from Bassim's own X bookmarks and Raindrop c
 19. **ASCII backgrounds are trending**, @kail_designs, @uihssn; and the counterpoint, @hewarsaber: "unlike the bs ascii art flooding the timeline". https://x.com/kail_designs/status/2063524629571064128 · https://x.com/hewarsaber/status/2044350699979333727. He saved both: the terminal look is in, and ASCII wallpaper is already a cliché. So: box-drawing where it carries meaning (the tree), never as texture.
 20. **Linear's new icons and components**, @Griveau. https://twitter.com/i/web/status/2090746237934883043. If icons ever appear: this weight and restraint.
 
-## Outside references that fit
+### Outside references that fit
 
 - **IBM Plex** specimen and the reasoning behind the family (https://www.ibm.com/plex/). Mono and sans drawn together; why one family carries both voices.
 - **Locke's "A New Method of Making Common-Place-Books" (1706)**. The original index-and-ledger method; the reason the brand is tables and dates, not notebooks and quills.

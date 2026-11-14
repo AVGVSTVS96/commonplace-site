@@ -10,8 +10,8 @@ introducing commonplace: your personal data kit for agents
 a commonplace book for the age of agents. it copies everything you've made, saved and said into a private archive on your machine, keeps it current, and gives every agent one safe door to it
 
 - not just your github. texts, mail, review comments, what you watched, what you saved, every prompt you ever typed
-- agents read it over mcp, and see only the sources you allow
-- four sources built in, three that read an export, and anything with an export, db, api or cli is one ask away: the add-source skill has your agent write it
+- agents read it over mcp or the cli
+- five sources built in, three that read an export, and anything with an export, db, api or cli is one ask away: the add-source skill has your agent write it
 - a template you own, not an app you install. ~1,400 lines of typescript, zero deps, sqlite, mit
 
 this is how an agent learns your intent and your judgment, not just your code
@@ -50,9 +50,9 @@ your agent has read all your code and none of your judgment
 
 what you saved, what you liked, what you starred, what you rejected, how you asked for it last time. that's where your taste lives, and it's scattered across twenty apps
 
-commonplace puts it in one private archive on your machine, keeps it current, and gives every agent one safe door to it. over mcp, only the sources you allow
+commonplace puts it in one private archive on your machine, keeps it current, and gives every agent one safe door to it, over mcp or the cli
 
-a template you own. ~1,400 lines, zero deps, sqlite, mit. github, imessage, x and every claude code, codex and pi prompt built in; takeout, the x archive and raindrop from their exports; anything else is one ask away
+a template you own. ~1,400 lines, zero deps, sqlite, mit. github, imessage, x, mail and every claude code, codex and pi prompt built in; takeout, the x archive and raindrop from their exports; anything else is one ask away
 ```
 
 ## Launch video, 60–90 seconds

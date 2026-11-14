@@ -1,14 +1,16 @@
 # commonplace · brand
 
-**The idea in a sentence:** a commonplace book for the age of agents, and it looks like one that a developer keeps in a terminal: paper, mono, one red pen.
+**The idea in a sentence:** a commonplace book for the age of agents, laid out like a field sheet: framed panels, ink, one sky blue, and real output as the picture.
+
+The look is direction A, "Field sheet", from `~/Developer/brand-it-directions/commonplace/` (built on @kyleanthony's "Utilitarian style website design" and "Neo Industrial" posts; see `references.md`). The site in `site/` is the living specimen: when this file and the site disagree, the site wins and this file gets fixed.
 
 ## Personality
 
 - **Plain.** It says what it does in the words a README would use. No marketing voice, no setup-and-punchline.
 - **Yours.** A template you own, not an app you install. Everything on the page should look readable, editable, forkable: file trees, config, one-file sources.
 - **Quiet about privacy, loud about structure.** Trust comes from showing the mechanism (dated read-only snapshots, one door, you choose what goes in), not from a lock icon.
-- **Data-powerful, not data-dashboard.** Numbers are real and set in a ledger, never in a KPI tile.
-- **Developer, in the sense of hackable.** Terminal and tree views, but light, airy and friendly. Never the dark-neovim-rice look.
+- **Data-powerful, not data-dashboard.** Numbers are real, set big in a black cell or as a bar of cells, never as a KPI tile with a trend arrow.
+- **Developer, in the sense of hackable.** Terminal and tree views, framed like plates on a spec sheet. Light by default, with a dark theme that is the same tokens swapped.
 
 ## What it is and isn't
 
@@ -21,93 +23,82 @@
 
 ## The visual system
 
-### Type: Ioskeley Mono + IBM Plex Sans (OFL, free)
+### Type: Inter Tight + Geist Mono (OFL, free)
 
-Two voices. Ioskeley Mono is an Iosevka build in the proportions of Berkeley Mono (the mono he admires, see `references.md`), free under the OFL, and it ships every glyph the system draws with: box drawing `├ └ │ ─`, arrows `→ ↗`, the block `▮`. Plex Sans carries the prose.
+- **Inter Tight** for everything a person says: headlines at 600 with `-0.035em` tracking and line-height about 1 (hero `clamp(44px, 4.9vw, 70px)`, section heads `clamp(32px, 3.4vw, 48px)`); body 400 at 16–18px/1.55; labels and captions 500 at 13px, sentence case. No serif, no uppercase tracking.
+- **Geist Mono** for everything the computer says: terminals, paths, commands, `needs` notes, verbs in the ledger. 13px in terminals, 12–12.5px in dense notes. Ligatures off (`font-variant-ligatures: none`).
+- Geist Mono has no box-drawing or arrow glyphs, so the same family name also loads Ioskeley Mono 400 for `U+2190–21FF, U+2500–257F, U+25A0–25FF` only. Both are 600 units wide, so trees and columns still line up. Inter Tight gets the arrows from the same file.
+- Files: `site/public/fonts/inter-tight.woff2`, `geist-mono.woff2`, `ioskeley-mono-400.woff2`.
 
-- **Ioskeley Mono** for everything the computer says: terminal, tables, labels, paths, dates, numbers, the wordmark. 14px is the working size (`0.875rem/1.6`); 12px uppercase tracked `0.08em` for labels; 13px in diagrams and dense panels. Weights 400 and 500 only, 500 for the wordmark. Ligatures off everywhere (`font-variant-ligatures: none`): `=>` and `--` stay two characters, like a terminal.
-- **Plex Sans** (variable) for everything a person says: headlines at 540–560, letter-spacing `-0.02` to `-0.028em`, line-height 1.02–1.1; body at 400, 17px/1.55; small body 15px. Enable `ss01` and `cv05` (the single-storey a and open g make it friendlier). Measure 64ch.
-- The mono is one CSS token, `--font-mono`, so swapping it is one line. Shipped as subsets (`fonts/ioskeley-mono-{400,500,600}.woff2`, Latin plus U+2190–21FF, U+2500–257F, U+25A0–25FF, about 17 KB each); the full builds are in `fonts/ioskeley/`.
-- Upgrade path if he wants to spend money: **Berkeley Mono** ($75, US Graphics) swaps in for Ioskeley with no other change; the proportions already match.
+### Color: ink, sheet, one sky blue
 
-### Color: paper, ink, one red
-
-Light is the default (the brief says light-terminal). Dark is the same tokens swapped, never a second design.
+Light is the default. Dark is the same tokens swapped, never a second design.
 
 | token | light | dark | use |
 | --- | --- | --- | --- |
-| `--bg` | `#FAF9F6` | `#121211` | the page: paper, not white; near-black, not black |
-| `--bg-2` | `#F1EFEA` | `#1A1A18` | terminal and panel fill |
-| `--ink` | `#141412` | `#ECEAE4` | text, rules, filled buttons |
-| `--ink-2` | `#5C5A55` | `#A7A49D` | secondary text, terminal output |
-| `--ink-3` | `#6F6C66` | `#8F8C85` | labels, hints, dimmed rows |
-| `--hair` | `rgb(20 20 18 / .14)` | `rgb(236 234 228 / .16)` | 1px rules and borders |
-| `--hair-2` | `rgb(20 20 18 / .07)` | `rgb(236 234 228 / .08)` | row dividers, bar tracks |
-| `--red` | `#D2451E` | `#F06A42` | the rubric: `$`, section labels, the newest snapshot, the cursor, the "now" row |
-| `--red-soft` | `rgb(210 69 30 / .10)` | `rgb(240 106 66 / .14)` | search-term highlight, selection |
-| `--green` | `#2F7D4A` | `#5FBF80` | done, built, added |
-| `--blue` | `#2A56C6` | `#83A6FF` | IDs and links inside terminal output only |
-| `--amber` | `#B06F0A` | `#E2A43C` | pending, coming |
+| `--page` | `#E9ECEF` | `#08090B` | the field the sheets sit on |
+| `--sheet` | `#FFFFFF` | `#0F1216` | every framed panel |
+| `--plate` | `#F6F8FA` | `#0B0E11` | terminal and code plates |
+| `--ink` | `#0D1117` | `#E8EBEF` | text, frames, crop marks |
+| `--ink-2` | `#555D68` | `#A2A9B3` | secondary text, output |
+| `--ink-3` | `#747B86` | `#7D858F` | labels, IDs, prompts |
+| `--frame` | `#0D1117` | `rgb(232 235 239 / .36)` | the 1px frame of every sheet and cell |
+| `--line` | `rgb(13 17 23 / .12)` | `rgb(232 235 239 / .10)` | rows inside a cell, plate borders |
+| `--solid` / `--on-solid` | `#0D1117` / `#FFFFFF` | `#E8EBEF` / `#0D1117` | black strips, figure cells, buttons |
+| `--sky` / `--on-sky` | `#9DDCFF` / `#0D1117` | `#8FD3FB` / `#0D1117` | the nav band, the second series in a bar |
+| `--sky-ink` | `#0B6AA8` | `#8FD3FB` | blue text: "you", strings, the newest entry, focus rings |
+| `--solid-accent` | `#9DDCFF` | `#0B6AA8` | blue text on a solid strip |
+| `--hit` | `rgb(80 180 245 / .26)` | `rgb(143 211 251 / .22)` | search hits, today's date, the highlighted config lines |
 
-Rule: **red is the only brand colour, and it means "this one, now".** Green, blue and amber live inside terminal output and status chips, like a light terminal theme, and never become decoration. The reason it holds together: a medieval commonplace book used red (rubrication) for headings and the marks that said "look here"; a shell uses one colour for the prompt. Same job, one colour.
+Rule: **sky blue is the only colour, and it means "this one" or "yours"**: the band you navigate by, the hit you searched for, the line you're reading, the second kind in a count. Everything else is ink at three strengths. No red, no green, no amber.
 
-### Grid and spacing
+### Frames and spacing
 
-- 8px base, 4px half step. Scale: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96.
-- Page max 76rem with 1px hairline side rails; gutters `clamp(1rem, 4vw, 3rem)`; sections separated by hairlines, not by background changes.
-- Square corners everywhere. No shadows. 1px borders in `--hair`; 1px in `--ink` only for the primary thing on screen (table head rule, a diagram box, a button).
-- Tables and terminal panels go full width of their column and scroll sideways on phones rather than wrapping.
+- The page is a stack of framed sheets on `--page`, 40px apart and inset (14px below 1100px). Max width 1440px.
+- Every sheet is a grid of cells divided by 1px `--frame` rules; rows inside a cell use `--line`. Square corners, no shadows.
+- Padding is 32px inside a cell (18px on phones). Section heads are a 2:1 split: heading and line left, a data panel right.
+- Terminals never clip: long output wraps with a hanging indent (the hero) or scrolls sideways with a 40px fade at the edge that disappears once scrolled to the end.
 
 ### Motifs
 
-1. **The prompt line.** `$ commonplace sync` with a red `$`. It is the hero, the CTA (`$ gh repo create --template`) and the section opener. The prompt says "you type this, it is yours", where a button says "we run this for you".
-2. **The rubric.** Every section opens with a 12px red mono label and a number: `03  SOURCES`. Headlines stay ink.
-3. **The ledger.** Tables with a solid 1px head rule, hairline rows, dates first, numbers right-aligned in tabular figures, source names in 500. Dimmed rows for what's coming, never fake numbers.
-4. **The snapshot tree.** `data/raw/github/2026-10-08/` drawn with box-drawing characters, newest date in red. It is the proof of "private, read-only, kept forever" and it is also the brand's one picture.
-5. **The cursor.** A block at x-height in red. The wordmark ends with it, the terminal ends with it, the video ends with it.
-6. **The date.** `2026-10-08` as a stamp wherever something was last true. Never "2 hours ago".
-
-The book heritage is carried by the mono, red rubrics and ledger tables. No quills, parchment, serifs, drop caps, or ornament.
-
-### Iconography
-
-Almost none. Prefer glyphs the fonts already have: `→ ↗ ✓ · ─ │ ├ └ ▮ ›`. Source badges are two-to-four-letter mono chips in a hairline box (`gh`, `x`, `yt`, `rd`). If an icon is unavoidable: 16px grid, 1.5px stroke, square caps, ink only.
-
-### Diagrams
-
-Diagrams look typed: 1px ink boxes, mono labels, straight orthogonal wires that meet at right angles, dashed for optional, red for the path to you. Flow goes left to right: accounts → `data/raw/` → `commonplace.db` → CLI and MCP → you and your agents. Drawn as SVG so the site can animate the wires; a `<pre>` tree whenever text alone says it. Never isometric, never gradients, never icons in boxes.
+1. **The sheet.** One framed panel per section, with a numbered label (`01 Everything`) above a big heading.
+2. **The strip.** A black strip of facts across the top of the first sheet, and a ruled strip for captions at its foot.
+3. **The band.** The sky-blue nav band with the logo and tagline. Once it scrolls away, the same band slides in fixed at the top.
+4. **The figure.** One real number, big, in a black cell: `~1,400` lines in the core.
+5. **The plate.** Terminals, code and trees sit on a plate with two ink crop marks, top left and bottom right. The primary button gets four corner brackets.
+6. **The cell bar.** A count as a row of squares: solid for built in, sky for from an export, an empty outline for what your agent writes.
 
 ### Data viz
 
-A chart is a table row with a bar in it. Horizontal bars on a `--hair-2` track, ink fill, the row you are talking about in red, label left in `--ink-2`, number right in tabular figures. Sparklines are 1px ink. Categorical colour is ink shades first and red for one series; never a rainbow. Only numbers that exist in a real archive, with the date they were true.
+A count is a cell bar; a number is a figure cell; a list is a ruled grid of cells. Only numbers that exist in the real code or the demo archive, with the date they were true.
 
 ### Motion
 
-- **Follows state.** Something moves because something happened: a snapshot landed, a row appeared, a command returned. Nothing on timers or scroll position, no parallax, no scroll-jacking.
-- **Three durations, one curve.** 120ms colour and hover, 200ms enter and reveal, 320ms layout and diagram wires; `cubic-bezier(.2, .7, .2, 1)`.
-- **Typed, not faded.** Terminal lines appear whole and in order like real output; the cursor blinks at 1s in `steps(1)`. `prefers-reduced-motion` stops the blink and skips reveals.
-- **Numbers are real.** A counter counts to a number from an archive, once, over 320ms, and stops.
+- **Follows state.** Something moves because something happened: the band leaves the screen, a rule is hovered, Copy is pressed. Nothing on scroll position or timers, apart from the terminal cursor's 1s blink.
+- 120ms for colour and hover, 200ms for the fixed band; `cubic-bezier(.2, .7, .2, 1)`. `prefers-reduced-motion` turns transitions off.
+- Terminals show their whole output at once. The output is the proof; nobody should wait for it.
 
 ### Video
 
-Same system on a 1920×1080 paper stage. Every scene is a real command and its real output, typed at ~45ms per character with the output landing whole. Hard cuts on the beat, no crossfades. One red object per scene (the `$`, the newest snapshot, the cursor). Sound: keypress ticks and one tone when the build line lands. It ends on `commonplace▮`.
+The same system on a 1920×1080 stage: sheets, strips, plates and the sky band, every scene a real command and its real output. Hard cuts on the beat, no crossfades. See `video/README.md` and `video/LEARNED.md`.
 
 ## Logo
 
-`logo/commonplace.svg` (light), `logo/commonplace-dark.svg`, `logo/commonplace-mono.svg` (`currentColor`, for inline use), `logo/mark.svg`, `logo/mark-dark.svg`, `logo/favicon.svg` (follows the system theme). `logo/gen.mjs` regenerates all of them from the fonts with `bun logo/gen.mjs`.
+The mark is a square grid, three rows with the bottom two split: an index card, a ledger, a table. 22-unit viewBox, 2-unit stroke, square caps, `currentColor`. The wordmark is the word **commonplace** in Inter Tight 600 at `-0.03em`, set 10px to the right of the mark at 20–24px, live text rather than outlines. Next to it, after a thin rule, the tagline in lowercase: *your personal data kit for agents*.
 
-Three directions were explored (`logo/explore-*.svg`, shown and argued in `specimen.html`). The pick is **A, the cursor**: the name in Ioskeley Mono with a red block cursor at x-height. It says CLI without drawing a window, it says the book is never finished, and it reduces to a 16px favicon (`c▮`) without losing anything.
-
-Clear space: one cursor width on every side. Minimum height: 14px for the wordmark, 16px for the mark. Never recolour the cursor to anything but `--red` (or `currentColor` in the mono version).
+- `logo/grid.svg`: the mark alone, in `currentColor`.
+- `site/public/favicon.svg`: the mark in ink on a sky rounded square, the same in both themes; `apple-touch-icon.png` is rendered from it by `bun --filter site shots`.
 
 ## Files
 
 ```
 brand/
 ├ BRAND.md            this
-├ references.md       what from his own saved inspiration this is built on
-├ specimen.html       the system in use
-├ render.mjs          bun render.mjs → shots/{desktop,phone}-{light,dark}.png
-├ fonts/              Ioskeley Mono 400/500/600 subsets (+ full builds in ioskeley/), Plex Sans variable (+italic), OFL
-└ logo/               wordmark, mark, favicon, explorations, gen.mjs, the two TTFs it reads (Ioskeley Mono Medium, Plex Sans SemiBold)
+├ references.md       what the system is built on
+├ logo/grid.svg       the mark
+└ fonts/              Ioskeley Mono and Plex Sans, used by the retired system and the box-drawing fallback
 ```
+
+### Retired: paper, mono and one red (Oct 2026)
+
+The first system: Ioskeley Mono and Plex Sans on warm paper, a red rubric and a block-cursor wordmark. Its files stay for the record: `specimen.html`, `fonts-compare.html`, `fonts.md`, `render.mjs`, `shots/`, and `logo/` apart from `grid.svg` (`gen.mjs` regenerates the cursor wordmark). Don't use them for new work.

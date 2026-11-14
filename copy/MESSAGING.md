@@ -31,7 +31,7 @@ The headline says what you get. The sub line says what goes in, where it lives a
 Three moves, in this order.
 
 **1. Your history is scattered.**
-Agents can already read your code. The rest is spread across apps: texts, saved posts, watched videos, searches, bookmarks, every prompt you typed. commonplace brings it into one archive with one shape: things, events, links. Seven sources ship today.
+Agents can already read your code. The rest is spread across apps: texts, saved posts, watched videos, searches, bookmarks, every prompt you typed. commonplace brings it into one archive with one shape: things, events, links. Eight sources ship today.
 
 **2. Your agent can look up the history behind a request.**
 What you saved, what you said, how you asked last time. Ask for a packing list and it can find that you pack carry-on only, the dates in the group chat, and the hike you saved. Say what it can find, never what it will understand.
@@ -48,7 +48,7 @@ Don't say "digital twin", "second brain", "memory layer", "context engine", "kno
 - **A template repo.** You copy it into a private repo of your own. The code is yours, in your repo, next to your data. About 1,400 lines in the core, plus one file per source. Bun and its built-in SQLite, with no runtime packages.
 - **An archive of dated snapshots.** At most one read-only snapshot per source per day in `data/raw/`, kept forever. One SQLite database rebuilt from them anytime. Full-text search that matches word forms, not meanings.
 - **A CLI and an MCP server.** Both read the same database, read-only. Claude Code, Codex, Claude Desktop, and anything else that speaks MCP.
-- **Sources.** Seven ship today. Four fetch on their own: GitHub; every Claude Code, Codex and Pi prompt; iMessage; and X, read from your own signed-in agent-browser session, with no paid API key. Three read an export you download: Google Takeout, the X archive, Raindrop. Your agent writes the rest with `add-source`.
+- **Sources.** Eight ship today. Five fetch on their own: GitHub; every Claude Code, Codex and Pi prompt; iMessage; X, read from your own signed-in agent-browser session, with no paid API key; and mail from any provider with IMAP. Three read an export you download: Google Takeout, the X archive, Raindrop. Your agent writes the rest with `add-source`.
 
 ## What it isn't
 

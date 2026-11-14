@@ -68,7 +68,7 @@ Closing line: The more an agent can look up, the less you have to say, and the m
 ## Sources
 
 Section title: Sources, by how much setup they need.
-Line: Seven ship today: four fetch on their own and three read an export you download. Your agent can write more.
+Line: Eight ship today: five fetch on their own and three read an export you download. Your agent can write more.
 
 ### Built in
 
@@ -80,6 +80,7 @@ Line: Seven ship today: four fetch on their own and three read an export you dow
 | `prompts` | every prompt you typed into Claude Code, Codex and Pi, or sent from chat apps | nothing, read from disk |
 | `imessage` | your conversations | macOS, Full Disk Access |
 | `x` | your bookmarks with their folders, likes, posts and replies | `agent-browser`, [signed in to X](https://github.com/AVGVSTVS96/commonplace#x). No paid API key. |
+| `mail` | every message you sent and received, from any provider with IMAP | an app password in `~/.netrc`, [set up](https://github.com/AVGVSTVS96/commonplace#mail) |
 
 ### From an export
 
@@ -99,7 +100,7 @@ Line: Anything with an export, a local database, an API or a CLI. Ask your agent
 
 - Money: bank and card CSV exports, Apple Card, receipts in Gmail
 - Browsing: Chrome, Safari, Firefox, Edge, Arc, any other browser
-- Mail and calendar: Gmail via Takeout, any mbox, any `.ics`
+- Mail and calendar: any mbox, any `.ics`
 - Chat: Slack, Discord, Telegram exports
 - Saves: Instagram, Pinterest, Reddit, Readwise
 - Notes: Obsidian, any folder of markdown, Apple Notes
@@ -233,7 +234,7 @@ Closing line: Then ask something only your history can answer. *"What was I work
 
 *(A short muted strip, "next" tag.)*
 
-Remote MCP for ChatGPT and claude.ai on the web. Mail, calendars and live browser history. Yours, if you send one back.
+Remote MCP for ChatGPT and claude.ai on the web. Calendars and live browser history. Yours, if you send one back.
 
 ## Footer
 
